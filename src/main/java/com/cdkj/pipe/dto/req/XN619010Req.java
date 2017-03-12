@@ -38,6 +38,9 @@ public class XN619010Req extends APageReq {
     // 负责人（选填）
     private String owner;
 
+    // 状态（选填）
+    private String status;
+
     public String getLoginName() {
         return loginName;
     }
@@ -84,6 +87,14 @@ public class XN619010Req extends APageReq {
 
     public void setOwner(String owner) {
         this.owner = owner;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
 }

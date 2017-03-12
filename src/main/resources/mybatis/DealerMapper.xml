@@ -29,6 +29,27 @@
 			<if test="code != null and code != '' ">
 				AND t.code = #{code}
 			</if>
+			<if test="loginName != null and loginName != '' ">
+				AND t.login_name like "%"#{loginName}"%"
+			</if>
+			<if test="name != null and name != '' ">
+				AND t.name like "%"#{name}"%"
+			</if>
+			<if test="province != null and province != '' ">
+				AND t.province = #{province}
+			</if>
+			<if test="city != null and city != '' ">
+				AND t.city = #{city}
+			</if>
+			<if test="area != null and area != '' ">
+				AND t.area = #{area}
+			</if>
+			<if test="owner != null and owner != '' ">
+				AND t.owner like "%"#{owner}"%"
+			</if>
+			<if test="status != null and status != '' ">
+				AND t.status = #{status}
+			</if>
 		</trim>
 	</sql>
 	<select id="select_dealer" parameterType="dealer" resultMap="dealer_DB_Result">
@@ -117,11 +138,10 @@
 		)
 	</insert>
 
-	<update id="update_dealer" parameterType="dealer">
+	<update id="update_platEdit" parameterType="dealer">
 		UPDATE tp_dealer
 		SET
-		login_name = #{loginName}
-		,name = #{name}
+		name = #{name}
 		,province = #{province}
 		,city = #{city}
 		,area = #{area}
@@ -133,12 +153,29 @@
 		,mobile = #{mobile}
 		,pic = #{pic}
 		,detail = #{detail}
-		,status = #{status}
-		,create_datetime = #{createDatetime}
+		,updater = #{updater}
+		,update_datetime = #{updateDatetime}
+		WHERE code = #{code}
+	</update>
+	
+	<update id="update_selfEdit" parameterType="dealer">
+		UPDATE tp_dealer
+		SET
+		mobile = #{mobile}
+		,pic = #{pic}
+		,detail = #{detail}
+		,updater = #{updater}
+		,update_datetime = #{updateDatetime}
+		WHERE code = #{code}
+	</update>
+	
+	<update id="update_putOnOff" parameterType="dealer">
+		UPDATE tp_dealer
+		SET
+		status = #{status}
 		,updater = #{updater}
 		,update_datetime = #{updateDatetime}
 		,remark = #{remark}
-		,userId = #{userId}
 		WHERE code = #{code}
 	</update>
 

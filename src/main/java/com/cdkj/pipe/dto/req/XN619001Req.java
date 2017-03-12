@@ -14,6 +14,7 @@ package com.cdkj.pipe.dto.req;
  * @history:
  */
 public class XN619001Req {
+
     // 经销商编号（必填）
     private String code;
 
@@ -55,9 +56,6 @@ public class XN619001Req {
 
     // 更新人（必填）
     private String updater;
-
-    // 备注（选填）
-    private String remark;
 
     public String getCode() {
         return code;
@@ -171,11 +169,4 @@ public class XN619001Req {
         this.updater = updater;
     }
 
-    public String getRemark() {
-        return remark;
-    }
-
-    public void setRemark(String remark) {
-        this.remark = remark;
-    }
 }

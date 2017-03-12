@@ -20,7 +20,7 @@ public class DispatcherImpl implements IDispatcher {
              * (codeList.contains(transcode)) { classname =
              * "com.xnjr.base.api.impl.XN" + transcode; } }
              */
-            classname = "com.cdkj.tour.pipe.impl.XN" + transcode;
+            classname = "com.cdkj.pipe.api.impl.XN" + transcode;
             IProcessor processor = (IProcessor) ReflectUtil
                 .getInstance(classname);
             // 接口调用

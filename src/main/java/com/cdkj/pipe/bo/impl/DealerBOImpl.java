@@ -1,5 +1,6 @@
 package com.cdkj.pipe.bo.impl;
 
+import java.util.Date;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
@@ -8,8 +9,11 @@ import org.springframework.stereotype.Component;
 
 import com.cdkj.pipe.bo.IDealerBO;
 import com.cdkj.pipe.bo.base.PaginableBOImpl;
+import com.cdkj.pipe.core.EGeneratePrefix;
+import com.cdkj.pipe.core.OrderNoGenerater;
 import com.cdkj.pipe.dao.IDealerDAO;
 import com.cdkj.pipe.domain.Dealer;
+import com.cdkj.pipe.enums.EDealerStatus;
 import com.cdkj.pipe.exception.BizException;
 
 @Component
@@ -32,31 +36,59 @@ public class DealerBOImpl extends PaginableBOImpl<Dealer> implements IDealerBO {
     public String saveDealer(Dealer data) {
         String code = null;
         if (data != null) {
-            // code = OrderNoGenerater.generateM(EGeneratePrefix.CT.getCode());
+            code = OrderNoGenerater.generateM(EGeneratePrefix.DEALER.getCode());
             data.setCode(code);
+            Date now = new Date();
+            data.setCreateDatetime(now);
+            data.setUpdateDatetime(now);
+            data.setStatus(EDealerStatus.NEW.getCode());
+            data.setRemark(EDealerStatus.NEW.getValue());
             dealerDAO.insert(data);
         }
         return code;
     }
 
     @Override
-    public int removeDealer(String code) {
+    public int platEdit(Dealer data) {
         int count = 0;
-        if (StringUtils.isNotBlank(code)) {
-            Dealer data = new Dealer();
-            data.setCode(code);
-            count = dealerDAO.delete(data);
+        if (StringUtils.isNotBlank(data.getCode())) {
+            data.setUpdateDatetime(new Date());
+            count = dealerDAO.platEdit(data);
         }
         return count;
     }
 
     @Override
-    public int refreshDealer(Dealer data) {
-        int count = 0;
-        if (StringUtils.isNotBlank(data.getCode())) {
-            // count = dealerDAO.update(data);
-        }
-        return count;
+    public int putOn(String code, String updater, String remark) {
+        Dealer data = new Dealer();
+        data.setCode(code);
+        data.setUpdater(updater);
+        data.setRemark(remark);
+        data.setStatus(EDealerStatus.PUT_ON.getCode());
+        return dealerDAO.update_putOnOff(data);
+    }
+
+    @Override
+    public int putOff(String code, String updater, String remark) {
+        Dealer data = new Dealer();
+        data.setCode(code);
+        data.setUpdater(updater);
+        data.setRemark(remark);
+        data.setStatus(EDealerStatus.PUT_OFF.getCode());
+        return dealerDAO.update_putOnOff(data);
+    }
+
+    @Override
+    public int selfEdit(String code, String mobile, String pic, String detail,
+            String updater, String remark) {
+        Dealer data = new Dealer();
+        data.setCode(code);
+        data.setMobile(mobile);
+        data.setPic(pic);
+        data.setDetail(detail);
+        data.setUpdater(updater);
+        data.setUpdateDatetime(new Date());
+        return dealerDAO.selfEdit(data);
     }
 
     @Override
@@ -77,4 +109,5 @@ public class DealerBOImpl extends PaginableBOImpl<Dealer> implements IDealerBO {
         }
         return data;
     }
+
 }
