@@ -4,23 +4,28 @@ import java.util.List;
 
 import com.cdkj.pipe.bo.base.Paginable;
 import com.cdkj.pipe.domain.Dealer;
-
-
+import com.cdkj.pipe.dto.req.XN619000Req;
+import com.cdkj.pipe.dto.req.XN619001Req;
 
 public interface IDealerAO {
-	static final String DEFAULT_ORDER_COLUMN = "code";
+    static final String DEFAULT_ORDER_COLUMN = "code";
 
+    public String addDealer(XN619000Req req);
 
-	public String addDealer(Dealer data);
+    public int platEditDealer(XN619001Req req);
 
-	public int dropDealer(String code);
+    public int putOn(String code, String updater, String remark);
 
-	public int editDealer(Dealer data);
+    public int putOff(String code, String updater, String remark);
 
-	public Paginable<Dealer> queryDealerPage(int start, int limit, Dealer condition);
+    public int selfEditDealer(String code, String mobile, String pic,
+            String detail, String updater, String remark);
 
-	public List<Dealer> queryDealerList(Dealer condition);
+    public Paginable<Dealer> queryDealerPage(int start, int limit,
+            Dealer condition);
 
-	public Dealer getDealer(String code);
+    public List<Dealer> queryDealerList(Dealer condition);
+
+    public Dealer getDealer(String code);
 
 }

@@ -19,7 +19,7 @@ import java.util.Map;
  */
 public enum EDealerStatus {
 
-    NEW("0", "新增"), PUT_ON("1", "已上架"), PUT_OFF("2", "已下架");
+    NEW("0", "新入驻"), PUT_ON("1", "已上架"), PUT_OFF("2", "已下架");
 
     public static Map<String, EDealerStatus> getBizTypeMap() {
         Map<String, EDealerStatus> map = new HashMap<String, EDealerStatus>();

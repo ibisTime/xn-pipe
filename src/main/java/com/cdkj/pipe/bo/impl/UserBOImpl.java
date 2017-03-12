@@ -46,7 +46,7 @@ public class UserBOImpl implements IUserBO {
         req.setIdNo(idNo);
         req.setMobile(mobile);
         req.setLoginName(loginName);
-        req.setKind("f2"); // 民宿主
+        req.setKind("f2"); // 经销商
         req.setUpdater(updater);
         req.setSystemCode(ESystemCode.QNSDGZS.getCode());
         XN805042Res res = BizConnecter.getBizData("805042",

@@ -57,9 +57,6 @@ public class XN619000Req {
     // 更新人（必填）
     private String updater;
 
-    // 备注（选填）
-    private String remark;
-
     public String getLoginName() {
         return loginName;
     }
@@ -170,14 +167,6 @@ public class XN619000Req {
 
     public void setUpdater(String updater) {
         this.updater = updater;
-    }
-
-    public String getRemark() {
-        return remark;
-    }
-
-    public void setRemark(String remark) {
-        this.remark = remark;
     }
 
 }

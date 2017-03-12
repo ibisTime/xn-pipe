@@ -8,9 +8,14 @@
  */
 package com.cdkj.pipe.api.impl;
 
+import com.cdkj.pipe.ao.IDealerAO;
 import com.cdkj.pipe.api.AProcessor;
+import com.cdkj.pipe.common.JsonUtil;
+import com.cdkj.pipe.core.StringValidater;
+import com.cdkj.pipe.dto.req.XN619002Req;
 import com.cdkj.pipe.exception.BizException;
 import com.cdkj.pipe.exception.ParaException;
+import com.cdkj.pipe.spring.SpringContextHolder;
 
 /** 
  * 经销商上架
@@ -20,13 +25,16 @@ import com.cdkj.pipe.exception.ParaException;
  */
 public class XN619002 extends AProcessor {
 
+    private IDealerAO dealerAO = SpringContextHolder.getBean(IDealerAO.class);
+
+    private XN619002Req req = null;
+
     /** 
      * @see com.cdkj.pipe.api.IProcessor#doBusiness()
      */
     @Override
     public Object doBusiness() throws BizException {
-        // TODO Auto-generated method stub
-        return null;
+        return dealerAO.putOn(req.getCode(), req.getUpdater(), req.getRemark());
     }
 
     /** 
@@ -34,8 +42,8 @@ public class XN619002 extends AProcessor {
      */
     @Override
     public void doCheck(String inputparams) throws ParaException {
-        // TODO Auto-generated method stub
-
+        req = JsonUtil.json2Bean(inputparams, XN619002Req.class);
+        StringValidater.validateBlank(req.getCode(), req.getUpdater());
     }
 
 }
