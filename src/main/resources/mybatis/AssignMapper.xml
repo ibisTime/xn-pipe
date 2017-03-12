@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdkj.pipe.dao.IAssignDAO">
+	<resultMap id="assign_DB_Result" type="assign">
+		<result column="id" property="id" />
+		<result column="user_id" property="userId" />
+		<result column="demand_code" property="demandCode" />
+		<result column="dealer_code" property="dealerCode" />
+		<result column="create_datetime" property="createDatetime" />
+		<result column="status" property="status" />
+	</resultMap>
+	<sql id="where_condition">
+		<trim prefix="WHERE" prefixOverrides="AND | OR">
+			<if test="code != null and code != '' ">
+				AND t.code = #{code}
+			</if>
+		</trim>
+	</sql>
+	<select id="select_assign" parameterType="assign" resultMap="assign_DB_Result">
+		SELECT
+		t.id
+		,t.user_id
+		,t.demand_code
+		,t.dealer_code
+		,t.create_datetime
+		,t.status
+		FROM
+		tp_assign t
+		<include refid="where_condition" />
+		<trim prefix="ORDER BY ">
+			<if test="order != null and order != '' ">
+				t.${order}
+			</if>
+		</trim>
+	</select>
+
+	<select id="select_assign_count" parameterType="assign"
+		resultType="java.lang.Long">
+		SELECT count(1) FROM tp_assign t
+		<include refid="where_condition" />
+	</select>
+
+	<insert id="insert_assign" parameterType="assign">
+		INSERT INTO
+		tp_assign(
+		id
+		,user_id
+		,demand_code
+		,dealer_code
+		,create_datetime
+		,status
+		)
+		VALUES(
+		#{id}
+		,#{userId}
+		,#{demandCode}
+		,#{dealerCode}
+		,#{createDatetime}
+		,#{status}
+		)
+	</insert>
+
+	<update id="update_assign" parameterType="assign">
+		UPDATE tp_assign
+		SET
+		user_id = #{userId}
+		,demand_code = #{demandCode}
+		,dealer_code = #{dealerCode}
+		,create_datetime = #{createDatetime}
+		,status = #{status}
+		WHERE code = #{code}
+	</update>
+
+
+</mapper>

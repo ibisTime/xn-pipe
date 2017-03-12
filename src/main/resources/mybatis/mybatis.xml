@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<typeAliases>
+		<typeAlias alias="sysDict" type="com.cdkj.pipe.domain.SYSDict" />
+		<typeAlias alias="sysConfig" type="com.cdkj.pipe.domain.SYSConfig" />
+		<typeAlias alias="dealer" type="com.cdkj.pipe.domain.Dealer" />
+		<typeAlias alias="demand" type="com.cdkj.pipe.domain.Demand" />
+		<typeAlias alias="hear" type="com.cdkj.pipe.domain.Hear" />
+		<typeAlias alias="assign" type="com.cdkj.pipe.domain.Assign" />
+		<typeAlias alias="demandOrder" type="com.cdkj.pipe.domain.DemandOrder" />
+	</typeAliases>
+</configuration>

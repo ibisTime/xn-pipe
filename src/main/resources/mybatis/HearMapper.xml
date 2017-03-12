@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdkj.pipe.dao.IHearDAO">
+	<resultMap id="hear_DB_Result" type="hear">
+		<result column="user_id" property="userId" />
+		<result column="content" property="content" />
+		<result column="status" property="status" />
+	</resultMap>
+	<sql id="where_condition">
+		<trim prefix="WHERE" prefixOverrides="AND | OR">
+			<if test="code != null and code != '' ">
+				AND t.code = #{code}
+			</if>
+		</trim>
+	</sql>
+	<select id="select_hear" parameterType="hear" resultMap="hear_DB_Result">
+		SELECT
+		t.user_id
+		,t.content
+		,t.status
+		FROM
+		tp_hear t
+		<include refid="where_condition" />
+		<trim prefix="ORDER BY ">
+			<if test="order != null and order != '' ">
+				t.${order}
+			</if>
+		</trim>
+	</select>
+
+	<select id="select_hear_count" parameterType="hear"
+		resultType="java.lang.Long">
+		SELECT count(1) FROM tp_hear t
+		<include refid="where_condition" />
+	</select>
+
+	<insert id="insert_hear" parameterType="hear">
+		INSERT INTO
+		tp_hear(
+		user_id
+		,content
+		,status
+		)
+		VALUES(
+		#{userId}
+		,#{content}
+		,#{status}
+		)
+	</insert>
+
+	<update id="update_hear" parameterType="hear">
+		UPDATE tp_hear
+		SET
+		content = #{content}
+		,status = #{status}
+		WHERE code = #{code}
+	</update>
+
+
+</mapper>

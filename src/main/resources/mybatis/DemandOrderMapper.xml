@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdkj.pipe.dao.IDemandOrderDAO">
+	<resultMap id="demandOrder_DB_Result" type="demandOrder">
+		<result column="code" property="code" />
+		<result column="type" property="type" />
+		<result column="demand_code" property="demandCode" />
+		<result column="dealer_code" property="dealerCode" />
+		<result column="receive_datetime" property="receiveDatetime" />
+		<result column="receiver" property="receiver" />
+		<result column="status" property="status" />
+		<result column="updater" property="updater" />
+		<result column="update_datetime" property="updateDatetime" />
+		<result column="remark" property="remark" />
+		<result column="give_integral" property="giveIntegral" />
+	</resultMap>
+	<sql id="where_condition">
+		<trim prefix="WHERE" prefixOverrides="AND | OR">
+			<if test="code != null and code != '' ">
+				AND t.code = #{code}
+			</if>
+		</trim>
+	</sql>
+	<select id="select_demandOrder" parameterType="demandOrder" resultMap="demandOrder_DB_Result">
+		SELECT
+		t.code
+		,t.type
+		,t.demand_code
+		,t.dealer_code
+		,t.receive_datetime
+		,t.receiver
+		,t.status
+		,t.updater
+		,t.update_datetime
+		,t.remark
+		,t.give_integral
+		FROM
+		tp_demand_order t
+		<include refid="where_condition" />
+		<trim prefix="ORDER BY ">
+			<if test="order != null and order != '' ">
+				t.${order}
+			</if>
+		</trim>
+	</select>
+
+	<select id="select_demandOrder_count" parameterType="demandOrder"
+		resultType="java.lang.Long">
+		SELECT count(1) FROM tp_demand_order t
+		<include refid="where_condition" />
+	</select>
+
+	<insert id="insert_demandOrder" parameterType="demandOrder">
+		INSERT INTO
+		tp_demand_order(
+		code
+		,type
+		,demand_code
+		,dealer_code
+		,receive_datetime
+		,receiver
+		,status
+		,updater
+		,update_datetime
+		,remark
+		,give_integral
+		)
+		VALUES(
+		#{code}
+		,#{type}
+		,#{demandCode}
+		,#{dealerCode}
+		,#{receiveDatetime}
+		,#{receiver}
+		,#{status}
+		,#{updater}
+		,#{updateDatetime}
+		,#{remark}
+		,#{giveIntegral}
+		)
+	</insert>
+
+	<update id="update_demandOrder" parameterType="demandOrder">
+		UPDATE tp_demand_order
+		SET
+		type = #{type}
+		,demand_code = #{demandCode}
+		,dealer_code = #{dealerCode}
+		,receive_datetime = #{receiveDatetime}
+		,receiver = #{receiver}
+		,status = #{status}
+		,updater = #{updater}
+		,update_datetime = #{updateDatetime}
+		,remark = #{remark}
+		,give_integral = #{giveIntegral}
+		WHERE code = #{code}
+	</update>
+
+
+</mapper>

@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdkj.pipe.dao.IDealerDAO">
+	<resultMap id="dealer_DB_Result" type="dealer">
+		<result column="code" property="code" />
+		<result column="login_name" property="loginName" />
+		<result column="name" property="name" />
+		<result column="province" property="province" />
+		<result column="city" property="city" />
+		<result column="area" property="area" />
+		<result column="address" property="address" />
+		<result column="longitude" property="longitude" />
+		<result column="latitude" property="latitude" />
+		<result column="owner" property="owner" />
+		<result column="contact" property="contact" />
+		<result column="mobile" property="mobile" />
+		<result column="pic" property="pic" />
+		<result column="detail" property="detail" />
+		<result column="status" property="status" />
+		<result column="create_datetime" property="createDatetime" />
+		<result column="updater" property="updater" />
+		<result column="update_datetime" property="updateDatetime" />
+		<result column="remark" property="remark" />
+		<result column="userId" property="userId" />
+	</resultMap>
+	<sql id="where_condition">
+		<trim prefix="WHERE" prefixOverrides="AND | OR">
+			<if test="code != null and code != '' ">
+				AND t.code = #{code}
+			</if>
+		</trim>
+	</sql>
+	<select id="select_dealer" parameterType="dealer" resultMap="dealer_DB_Result">
+		SELECT
+		t.code
+		,t.login_name
+		,t.name
+		,t.province
+		,t.city
+		,t.area
+		,t.address
+		,t.longitude
+		,t.latitude
+		,t.owner
+		,t.contact
+		,t.mobile
+		,t.pic
+		,t.detail
+		,t.status
+		,t.create_datetime
+		,t.updater
+		,t.update_datetime
+		,t.remark
+		,t.userId
+		FROM
+		tp_dealer t
+		<include refid="where_condition" />
+		<trim prefix="ORDER BY ">
+			<if test="order != null and order != '' ">
+				t.${order}
+			</if>
+		</trim>
+	</select>
+
+	<select id="select_dealer_count" parameterType="dealer"
+		resultType="java.lang.Long">
+		SELECT count(1) FROM tp_dealer t
+		<include refid="where_condition" />
+	</select>
+
+	<insert id="insert_dealer" parameterType="dealer">
+		INSERT INTO
+		tp_dealer(
+		code
+		,login_name
+		,name
+		,province
+		,city
+		,area
+		,address
+		,longitude
+		,latitude
+		,owner
+		,contact
+		,mobile
+		,pic
+		,detail
+		,status
+		,create_datetime
+		,updater
+		,update_datetime
+		,remark
+		,userId
+		)
+		VALUES(
+		#{code}
+		,#{loginName}
+		,#{name}
+		,#{province}
+		,#{city}
+		,#{area}
+		,#{address}
+		,#{longitude}
+		,#{latitude}
+		,#{owner}
+		,#{contact}
+		,#{mobile}
+		,#{pic}
+		,#{detail}
+		,#{status}
+		,#{createDatetime}
+		,#{updater}
+		,#{updateDatetime}
+		,#{remark}
+		,#{userId}
+		)
+	</insert>
+
+	<update id="update_dealer" parameterType="dealer">
+		UPDATE tp_dealer
+		SET
+		login_name = #{loginName}
+		,name = #{name}
+		,province = #{province}
+		,city = #{city}
+		,area = #{area}
+		,address = #{address}
+		,longitude = #{longitude}
+		,latitude = #{latitude}
+		,owner = #{owner}
+		,contact = #{contact}
+		,mobile = #{mobile}
+		,pic = #{pic}
+		,detail = #{detail}
+		,status = #{status}
+		,create_datetime = #{createDatetime}
+		,updater = #{updater}
+		,update_datetime = #{updateDatetime}
+		,remark = #{remark}
+		,userId = #{userId}
+		WHERE code = #{code}
+	</update>
+
+
+</mapper>
