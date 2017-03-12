@@ -9,7 +9,6 @@ import com.cdkj.pipe.bo.IAccountBO;
 import com.cdkj.pipe.bo.ISYSConfigBO;
 import com.cdkj.pipe.bo.IUserBO;
 import com.cdkj.pipe.common.JsonUtil;
-import com.cdkj.pipe.common.PropertiesUtil;
 import com.cdkj.pipe.common.SysConstants;
 import com.cdkj.pipe.core.CalculationUtil;
 import com.cdkj.pipe.domain.SYSConfig;
@@ -42,8 +41,8 @@ public class AccountBOImpl implements IAccountBO {
         }
         // 获取微信APP支付信息
         XN802182Req req = new XN802182Req();
-        req.setSystemCode(PropertiesUtil.Config.SYSTEM_CODE);
-        req.setCompanyCode(PropertiesUtil.Config.SYSTEM_CODE);
+        req.setSystemCode(ESystemCode.QNSDGZS.getCode());
+        req.setCompanyCode(ESystemCode.QNSDGZS.getCode());
         req.setFromUserId(userId);
         req.setToUserId(ESystemUser.SYS_USER.getCode());
         req.setTransAmount(String.valueOf(amount));

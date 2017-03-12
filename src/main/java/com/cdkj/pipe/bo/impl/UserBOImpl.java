@@ -4,8 +4,8 @@ import org.springframework.stereotype.Component;
 
 import com.cdkj.pipe.bo.IUserBO;
 import com.cdkj.pipe.common.PropertiesUtil;
-import com.cdkj.pipe.dto.req.XN805042Req;
 import com.cdkj.pipe.dto.req.XN805052Req;
+import com.cdkj.pipe.dto.req.XN805172Req;
 import com.cdkj.pipe.dto.req.XN805901Req;
 import com.cdkj.pipe.dto.req.XN805906Req;
 import com.cdkj.pipe.dto.req.XN805920Req;
@@ -38,18 +38,14 @@ public class UserBOImpl implements IUserBO {
     }
 
     @Override
-    public String doSaveUser(String realName, String idNo, String mobile,
-            String loginName, String updater) {
-        XN805042Req req = new XN805042Req();
-        req.setRealName(realName);
-        req.setIdKind("1");// 身份证
-        req.setIdNo(idNo);
-        req.setMobile(mobile);
+    public String doSaveDealer(String loginName, String updater) {
+        XN805172Req req = new XN805172Req();
         req.setLoginName(loginName);
-        req.setKind("f2"); // 经销商
+        req.setKind("f2");
+        req.setRoleCode(PropertiesUtil.Config.DEALER_ROLECODE);
         req.setUpdater(updater);
         req.setSystemCode(ESystemCode.QNSDGZS.getCode());
-        XN805042Res res = BizConnecter.getBizData("805042",
+        XN805042Res res = BizConnecter.getBizData("805172",
             JsonUtils.object2Json(req), XN805042Res.class);
         return res.getUserId();
     }
@@ -86,7 +82,7 @@ public class UserBOImpl implements IUserBO {
         req.setUserId(userId);
         req.setType(type);
         req.setRemark(remark);
-        req.setSystemCode(PropertiesUtil.Config.SYSTEM_CODE);
+        req.setSystemCode(ESystemCode.QNSDGZS.getCode());
         BizConnecter.getBizData("805920", JsonUtils.object2Json(req),
             Object.class);
     }
@@ -96,7 +92,7 @@ public class UserBOImpl implements IUserBO {
         XN805920Req req = new XN805920Req();
         req.setUserId(userId);
         req.setType(type);
-        req.setSystemCode(PropertiesUtil.Config.SYSTEM_CODE);
+        req.setSystemCode(ESystemCode.QNSDGZS.getCode());
         XN805921Res xn805921Res = BizConnecter.getBizData("805921",
             JsonUtils.object2Json(req), XN805921Res.class);
         return xn805921Res.isAdded();

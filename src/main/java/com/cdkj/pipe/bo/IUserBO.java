@@ -15,9 +15,8 @@ public interface IUserBO {
      */
     public XN805901Res getRemoteUser(String tokenId, String userId);
 
-    // 新增用户
-    public String doSaveUser(String realName, String idNo, String mobile,
-            String loginName, String updater);
+    // 新增经销商
+    public String doSaveDealer(String loginName, String updater);
 
     /**
      * 注销用户

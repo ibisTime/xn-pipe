@@ -13,6 +13,7 @@ import com.cdkj.pipe.api.AProcessor;
 import com.cdkj.pipe.common.JsonUtil;
 import com.cdkj.pipe.core.StringValidater;
 import com.cdkj.pipe.dto.req.XN619004Req;
+import com.cdkj.pipe.dto.res.BooleanRes;
 import com.cdkj.pipe.exception.BizException;
 import com.cdkj.pipe.exception.ParaException;
 import com.cdkj.pipe.spring.SpringContextHolder;
@@ -34,8 +35,9 @@ public class XN619004 extends AProcessor {
      */
     @Override
     public Object doBusiness() throws BizException {
-        return dealerAO.selfEditDealer(req.getCode(), req.getMobile(),
-            req.getPic(), req.getDetail(), req.getUpdater(), req.getRemark());
+        dealerAO.selfEditDealer(req.getCode(), req.getMobile(), req.getPic(),
+            req.getDetail(), req.getUpdater(), req.getRemark());
+        return new BooleanRes(true);
     }
 
     /** 

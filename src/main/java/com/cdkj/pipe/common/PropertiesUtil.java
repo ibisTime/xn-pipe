@@ -35,7 +35,8 @@ public class PropertiesUtil {
 
         public static String USER_DB = props.getProperty("USER_DB");
 
-        public static String SYSTEM_CODE = props.getProperty("SYSTEM_CODE");
+        public static String DEALER_ROLECODE = props
+            .getProperty("DEALER_ROLECODE");
 
         public static String SYS_INIT_PWD_STRENGTH = props
             .getProperty("SYS_INIT_PWD_STRENGTH");

@@ -27,17 +27,12 @@ public class DealerAOImpl implements IDealerAO {
 
     @Override
     public String addDealer(XN619000Req req) {
-        // 分配管理端账号
-        // XN805042Req xn805042Req = new XN805042Req();
-        // xn805042Req.setLoginName(req.getLoginName());
-        // xn805042Req.setKind(EUserKind.F2.getCode());
-        // xn805042Req.setUpdater(req.getUpdater());
-        // String userId = userBO.doSaveUser(req);
-        // data.setUserId(userId);
-        // data.setLoginName(loginName);
+        // 分配管理端用户
+        String userId = userBO.doSaveDealer(req.getLoginName(),
+            req.getUpdater());
         // 新增经销商
         Dealer dealer = DealerConverter.converter(req);
-        dealer.setUserId("");
+        dealer.setUserId(userId);
         return dealerBO.saveDealer(dealer);
     }
 
