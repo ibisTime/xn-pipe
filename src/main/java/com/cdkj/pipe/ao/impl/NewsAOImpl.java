@@ -42,7 +42,7 @@ public class NewsAOImpl implements INewsAO {
             String keywords, String content, String pic, String updater,
             String remark) {
         News news = newsBO.getNews(code);
-        if (!ENewsStatus.ONLINE.getCode().equals(news.getStatus())) {
+        if (ENewsStatus.ONLINE.getCode().equals(news.getStatus())) {
             throw new BizException("xn0000", "当前新闻处于已上架状态，请先下架后再修改");
         }
         newsBO.refreshNews(code, title, type, keywords, content, pic, updater,

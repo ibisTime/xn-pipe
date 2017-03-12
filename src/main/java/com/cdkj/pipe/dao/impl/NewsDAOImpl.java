@@ -92,11 +92,11 @@ public class NewsDAOImpl extends AMybatisTemplate implements INewsDAO {
      */
     @Override
     public int updateComment(News data) {
-        return super.update(NAMESPACE.concat("update_newsComment"), data);
+        return super.update(NAMESPACE.concat(""), data);
     }
 
     @Override
     public int upDownNews(News data) {
-        return super.update(NAMESPACE.concat("update_upDownNews"), data);
+        return super.update(NAMESPACE.concat("update_newsUpDown"), data);
     }
 }

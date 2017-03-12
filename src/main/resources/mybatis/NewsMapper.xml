@@ -65,7 +65,7 @@
 		,update_datetime
 		,remark
 		FROM
-		tr_news t 
+		tp_news t 
 		<include refid="where_condition" />
 		<trim prefix="ORDER BY ">
 			t.location desc,t.update_datetime desc
@@ -73,12 +73,12 @@
 	</select>
 
 	<select id="select_news_count" parameterType="news" resultType="java.lang.Long">
-		SELECT count(1) FROM tr_news t 
+		SELECT count(1) FROM tp_news t 
 		<include refid="where_condition" />
 	</select>
 	
 	<insert id="insert_news" parameterType="news">
-		INSERT INTO tr_news(
+		INSERT INTO tp_news(
 		code
 		,type
 		,title
@@ -117,12 +117,12 @@
 	</insert>
 
 	<delete id="delete_news" parameterType="news">
-		DELETE FROM tr_news
+		DELETE FROM tp_news
 		WHERE code = #{code}
 	</delete>
 	
 	<update id="update_news" parameterType="news">
-		UPDATE tr_news SET
+		UPDATE tp_news SET
 		title = #{title}
 		,keywords = #{keywords}
 		,content = #{content}
@@ -135,19 +135,19 @@
 	</update>
 	
 	<update id="update_newsScan" parameterType="news">
-		UPDATE tr_news SET
+		UPDATE tp_news SET
 		scan_num=#{scanNum}
 		WHERE code = #{code}
 	</update>
 	
 	<update id="update_newsComment" parameterType="news">
-		UPDATE tr_news SET
+		UPDATE tp_news SET
 		comment_num=#{commentNum}
 		WHERE code = #{code}
 	</update>
 	
 	<update id="update_newsUpDown" parameterType="news">
-		UPDATE tr_news SET
+		UPDATE tp_news SET
 		location=#{location}
 		,order_no=#{orderNo}
 		,status=#{status}
