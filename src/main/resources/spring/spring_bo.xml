@@ -41,4 +41,7 @@
 		<property name="paginableDAO" ref="demandOrderDAOImpl" />
 	</bean>
 	
+	<bean id="newsBO" class="com.cdkj.pipe.bo.impl.NewsBOImpl">
+		<property name="paginableDAO" ref="newsDAOImpl" />
+	</bean>
 </beans>

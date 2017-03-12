@@ -18,7 +18,7 @@ public enum EGeneratePrefix {
             "KW", "关键字"), CARPOOL("CP", "拼车"), CARPOOL_ORDER("CO", "拼车订单"), CATEGORY(
             "FL", "分类"), PRODUCT("CP", "产品"), CART("GW", "购物车"), ORDER("DD",
             "定单"), PRODUCT_ORDER("CD", "产品订单"), PAY_GROUP("PG", "支付订单号"), BOOK_HOTAL(
-            "BH", "预订编号");
+            "BH", "预订编号"), NEWS("N", "新闻");
 
     public static Map<String, EGeneratePrefix> getOrderTypeMap() {
         Map<String, EGeneratePrefix> map = new HashMap<String, EGeneratePrefix>();
