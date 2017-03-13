@@ -32,6 +32,9 @@ public class XN619031Req extends APageReq {
     // 简述（选填）
     private String summary;
 
+    // 状态（选填）
+    private String status;
+
     public String getProvince() {
         return province;
     }
@@ -62,6 +65,14 @@ public class XN619031Req extends APageReq {
 
     public void setSummary(String summary) {
         this.summary = summary;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
 }

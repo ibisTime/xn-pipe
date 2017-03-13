@@ -8,9 +8,13 @@
  */
 package com.cdkj.pipe.api.impl;
 
+import org.apache.commons.lang3.StringUtils;
+
 import com.cdkj.pipe.ao.IDemandAO;
 import com.cdkj.pipe.api.AProcessor;
 import com.cdkj.pipe.common.JsonUtil;
+import com.cdkj.pipe.core.StringValidater;
+import com.cdkj.pipe.domain.Demand;
 import com.cdkj.pipe.dto.req.XN619030Req;
 import com.cdkj.pipe.exception.BizException;
 import com.cdkj.pipe.exception.ParaException;
@@ -33,8 +37,20 @@ public class XN619030 extends AProcessor {
      */
     @Override
     public Object doBusiness() throws BizException {
-        // TODO Auto-generated method stub
-        return null;
+        Demand condition = new Demand();
+        condition.setProvince(req.getProvince());
+        condition.setCity(req.getCity());
+        condition.setArea(req.getArea());
+        condition.setSummary(req.getSummary());
+        condition.setStatus(req.getStatus());
+        String orderColumn = req.getOrderColumn();
+        if (StringUtils.isBlank(orderColumn)) {
+            orderColumn = IDemandAO.DEFAULT_ORDER_COLUMN;
+        }
+        condition.setOrder(orderColumn, req.getOrderDir());
+        int start = StringValidater.toInteger(req.getStart());
+        int limit = StringValidater.toInteger(req.getLimit());
+        return demandAO.queryDemandPage(start, limit, condition);
     }
 
     /** 
@@ -43,6 +59,7 @@ public class XN619030 extends AProcessor {
     @Override
     public void doCheck(String inputparams) throws ParaException {
         req = JsonUtil.json2Bean(inputparams, XN619030Req.class);
+        StringValidater.validateBlank(req.getStart(), req.getLimit());
     }
 
 }
