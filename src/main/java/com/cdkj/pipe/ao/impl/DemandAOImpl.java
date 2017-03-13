@@ -106,4 +106,10 @@ public class DemandAOImpl implements IDemandAO {
         return demandBO.getDemand(code);
     }
 
+    @Override
+    public Paginable<Demand> queryRangeDemandPage(int start, int limit,
+            Demand condition) {
+        return demandBO.queryRangeDemandPage(start, limit, condition);
+    }
+
 }

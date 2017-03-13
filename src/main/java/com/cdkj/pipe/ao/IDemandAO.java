@@ -36,4 +36,16 @@ public interface IDemandAO {
 
     public Demand getDemand(String code);
 
+    /**
+     * 分页查询一定范围内已发布的需求
+     * @param start
+     * @param limit
+     * @param condition
+     * @return 
+     * @create: 2017年3月13日 下午1:11:43 haiqingzheng
+     * @history:
+     */
+    public Paginable<Demand> queryRangeDemandPage(int start, int limit,
+            Demand condition);
+
 }

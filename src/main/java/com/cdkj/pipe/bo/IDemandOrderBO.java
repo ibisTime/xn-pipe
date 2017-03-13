@@ -12,6 +12,9 @@ public interface IDemandOrderBO extends IPaginableBO<DemandOrder> {
     public String saveDemandOrder(String type, String demandCode,
             String dealerCode, String receiver, String remark);
 
+    public void complete(DemandOrder order, String evaluate, Long giveIntegral,
+            String updater, String remark);
+
     public int removeDemandOrder(String code);
 
     public int refreshDemandOrder(DemandOrder data);

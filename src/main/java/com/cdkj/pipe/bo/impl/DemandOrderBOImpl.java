@@ -57,6 +57,17 @@ public class DemandOrderBOImpl extends PaginableBOImpl<DemandOrder> implements
     }
 
     @Override
+    public void complete(DemandOrder order, String evaluate, Long giveIntegral,
+            String updater, String remark) {
+        order.setGiveIntegral(giveIntegral);
+        order.setStatus(EDemandOrderStatus.FINISH.getCode());
+        order.setUpdater(updater);
+        order.setUpdateDatetime(new Date());
+        order.setRemark(remark);
+        demandOrderDAO.updateComplete(order);
+    }
+
+    @Override
     public int removeDemandOrder(String code) {
         int count = 0;
         if (StringUtils.isNotBlank(code)) {
@@ -94,4 +105,5 @@ public class DemandOrderBOImpl extends PaginableBOImpl<DemandOrder> implements
         }
         return data;
     }
+
 }

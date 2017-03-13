@@ -13,6 +13,33 @@ package com.cdkj.pipe.dto.req;
  * @since: 2017年3月12日 下午12:57:00 
  * @history:
  */
-public class XN619033Req {
+public class XN619033Req extends APageReq {
+
+    /** 
+     * @Fields serialVersionUID : TODO(用一句话描述这个变量表示什么) 
+     */
+    private static final long serialVersionUID = -7548721674958793535L;
+
+    // 经度（选填）
+    private String longitude;
+
+    // 纬度（选填）
+    private String latitude;
+
+    public String getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(String longitude) {
+        this.longitude = longitude;
+    }
+
+    public String getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(String latitude) {
+        this.latitude = latitude;
+    }
 
 }

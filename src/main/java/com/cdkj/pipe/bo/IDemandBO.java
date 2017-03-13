@@ -3,6 +3,7 @@ package com.cdkj.pipe.bo;
 import java.util.List;
 
 import com.cdkj.pipe.bo.base.IPaginableBO;
+import com.cdkj.pipe.bo.base.Paginable;
 import com.cdkj.pipe.domain.Demand;
 
 public interface IDemandBO extends IPaginableBO<Demand> {
@@ -24,5 +25,8 @@ public interface IDemandBO extends IPaginableBO<Demand> {
     public List<Demand> queryDemandList(Demand condition);
 
     public Demand getDemand(String code);
+
+    public Paginable<Demand> queryRangeDemandPage(int start, int limit,
+            Demand condition);
 
 }

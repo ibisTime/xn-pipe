@@ -60,4 +60,17 @@ public class DemandDAOImpl extends AMybatisTemplate implements IDemandDAO {
         return super.update(NAMESPACE.concat("update_take"), data);
     }
 
+    @Override
+    public Long selectRangeDemandTotalCount(Demand condition) {
+        return super.selectTotalCount(
+            NAMESPACE.concat("select_rangeDemand_count"), condition);
+    }
+
+    @Override
+    public List<Demand> selectRangeDemandList(Demand condition, int start,
+            int count) {
+        return super.selectList(NAMESPACE.concat("select_rangeDemand"), start,
+            count, condition, Demand.class);
+    }
+
 }

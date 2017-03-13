@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.cdkj.pipe.bo.IDemandBO;
+import com.cdkj.pipe.bo.base.Page;
+import com.cdkj.pipe.bo.base.Paginable;
 import com.cdkj.pipe.bo.base.PaginableBOImpl;
 import com.cdkj.pipe.core.EGeneratePrefix;
 import com.cdkj.pipe.core.OrderNoGenerater;
@@ -119,5 +121,19 @@ public class DemandBOImpl extends PaginableBOImpl<Demand> implements IDemandBO {
         data.setUpdateDatetime(new Date());
         data.setRemark("用户接单");
         return demandDAO.updateTake(data);
+    }
+
+    @Override
+    public Paginable<Demand> queryRangeDemandPage(int start, int limit,
+            Demand condition) {
+        long totalCount = demandDAO.selectRangeDemandTotalCount(condition);
+
+        Paginable<Demand> page = new Page<Demand>(start, limit, totalCount);
+
+        List<Demand> dataList = demandDAO.selectRangeDemandList(condition,
+            page.getStart(), page.getPageSize());
+
+        page.setList(dataList);
+        return page;
     }
 }

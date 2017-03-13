@@ -18,8 +18,17 @@ public class XN619062Req {
     // 需求订单编号
     private String code;
 
-    // 经销商编号编号
-    private String dealerCode;
+    // 操作人
+    private String updater;
+
+    // 评价
+    private String evaluate;
+
+    // 赠送积分数量
+    private String giveIntegral;
+
+    // 备注
+    private String remark;
 
     public String getCode() {
         return code;
@@ -29,12 +38,36 @@ public class XN619062Req {
         this.code = code;
     }
 
-    public String getDealerCode() {
-        return dealerCode;
+    public String getUpdater() {
+        return updater;
     }
 
-    public void setDealerCode(String dealerCode) {
-        this.dealerCode = dealerCode;
+    public void setUpdater(String updater) {
+        this.updater = updater;
+    }
+
+    public String getEvaluate() {
+        return evaluate;
+    }
+
+    public void setEvaluate(String evaluate) {
+        this.evaluate = evaluate;
+    }
+
+    public String getGiveIntegral() {
+        return giveIntegral;
+    }
+
+    public void setGiveIntegral(String giveIntegral) {
+        this.giveIntegral = giveIntegral;
+    }
+
+    public String getRemark() {
+        return remark;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark;
     }
 
 }

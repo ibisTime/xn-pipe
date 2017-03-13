@@ -22,6 +22,22 @@
 		<result column="update_datetime" property="updateDatetime" />
 		<result column="remark" property="remark" />
 	</resultMap>
+	<resultMap id="demandList_DB_Result" type="demand">
+		<result column="code" property="code" />
+		<result column="dealer_code" property="dealerCode" />
+		<result column="start_datetime" property="startDatetime" />
+		<result column="end_datetime" property="endDatetime" />
+		<result column="province" property="province" />
+		<result column="city" property="city" />
+		<result column="area" property="area" />
+		<result column="address" property="address" />
+		<result column="longitude" property="longitude" />
+		<result column="latitude" property="latitude" />
+		<result column="price" property="price" />
+		<result column="summary" property="summary" />
+		<result column="status" property="status" />
+		<result column="create_datetime" property="createDatetime" />
+	</resultMap>
 	<sql id="where_condition">
 		<trim prefix="WHERE" prefixOverrides="AND | OR">
 			<if test="code != null and code != '' ">
@@ -73,8 +89,40 @@
 			</if>
 		</trim>
 	</select>
+	
+	<select id="select_rangeDemand" parameterType="demand" resultMap="demandList_DB_Result">
+		SELECT
+		t.code
+		,t.dealer_code
+		,t.start_datetime
+		,t.end_datetime
+		,t.province
+		,t.city
+		,t.area
+		,t.address
+		,t.longitude
+		,t.latitude
+		,t.price
+		,t.summary
+		,t.status
+		,t.create_datetime
+		FROM
+		tp_demand t
+		<include refid="where_condition" />
+		<trim prefix="ORDER BY ">
+			<if test="order != null and order != '' ">
+				t.${order}
+			</if>
+		</trim>
+	</select>
 
 	<select id="select_demand_count" parameterType="demand"
+		resultType="java.lang.Long">
+		SELECT count(1) FROM tp_demand t
+		<include refid="where_condition" />
+	</select>
+	
+	<select id="select_rangeDemand_count" parameterType="demand"
 		resultType="java.lang.Long">
 		SELECT count(1) FROM tp_demand t
 		<include refid="where_condition" />

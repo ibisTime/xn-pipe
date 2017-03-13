@@ -8,9 +8,8 @@ import com.cdkj.pipe.domain.DemandOrder;
 public interface IDemandOrderAO {
     static final String DEFAULT_ORDER_COLUMN = "code";
 
-    public int dropDemandOrder(String code);
-
-    public int editDemandOrder(DemandOrder data);
+    public void complete(String code, String evaluate, Long giveIntegral,
+            String updater, String remark);
 
     public Paginable<DemandOrder> queryDemandOrderPage(int start, int limit,
             DemandOrder condition);

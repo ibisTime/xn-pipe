@@ -96,6 +96,17 @@
 		,give_integral = #{giveIntegral}
 		WHERE code = #{code}
 	</update>
+	
+	<update id="update_complete" parameterType="demandOrder">
+		UPDATE tp_demand_order
+		SET
+		status = #{status}
+		,updater = #{updater}
+		,update_datetime = #{updateDatetime}
+		,remark = #{remark}
+		,give_integral = #{giveIntegral}
+		WHERE code = #{code}
+	</update>
 
 
 </mapper>
