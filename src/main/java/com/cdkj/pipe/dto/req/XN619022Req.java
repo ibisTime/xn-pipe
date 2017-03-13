@@ -48,6 +48,9 @@ public class XN619022Req {
     // 简述（必填）
     private String summary;
 
+    // 图片（必填）
+    private String pic;
+
     // 详述（必填）
     private String detail;
 
@@ -143,6 +146,14 @@ public class XN619022Req {
 
     public void setSummary(String summary) {
         this.summary = summary;
+    }
+
+    public String getPic() {
+        return pic;
+    }
+
+    public void setPic(String pic) {
+        this.pic = pic;
     }
 
     public String getDetail() {

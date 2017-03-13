@@ -14,6 +14,7 @@
 		<result column="longitude" property="longitude" />
 		<result column="latitude" property="latitude" />
 		<result column="price" property="price" />
+		<result column="pic" property="pic" />
 		<result column="summary" property="summary" />
 		<result column="detail" property="detail" />
 		<result column="status" property="status" />
@@ -34,9 +35,15 @@
 		<result column="longitude" property="longitude" />
 		<result column="latitude" property="latitude" />
 		<result column="price" property="price" />
+		<result column="pic" property="pic" />
 		<result column="summary" property="summary" />
 		<result column="status" property="status" />
 		<result column="create_datetime" property="createDatetime" />
+		
+		<association property="dealer" javaType="dealer">   
+            <result column="dealer_pic" property="pic" />
+		    <result column="dealer_name" property="name" />
+        </association>
 	</resultMap>
 	<sql id="where_condition">
 		<trim prefix="WHERE" prefixOverrides="AND | OR">
@@ -74,6 +81,7 @@
 		,t.latitude
 		,t.price
 		,t.summary
+		,t.pic
 		,t.detail
 		,t.status
 		,t.create_datetime
@@ -104,10 +112,13 @@
 		,t.latitude
 		,t.price
 		,t.summary
+		,t.pic
 		,t.status
 		,t.create_datetime
+		,tdealer.pic dealer_pic
+		,tdealer.name dealer_name
 		FROM
-		tp_demand t
+		tp_demand t LEFT JOIN tp_dealer tdealer ON t.dealer_code = tdealer.code
 		<include refid="where_condition" />
 		<trim prefix="ORDER BY ">
 			<if test="order != null and order != '' ">
@@ -143,6 +154,7 @@
 		,latitude
 		,price
 		,summary
+		,pic
 		,detail
 		,status
 		,create_datetime
@@ -163,6 +175,7 @@
 		,#{latitude}
 		,#{price}
 		,#{summary}
+		,#{pic}
 		,#{detail}
 		,#{status}
 		,#{createDatetime}
@@ -185,6 +198,7 @@
 		,latitude = #{latitude}
 		,price = #{price}
 		,summary = #{summary}
+		,pic = #{pic}
 		,detail = #{detail}
 		,updater = #{updater}
 		,update_datetime = #{updateDatetime}

@@ -14,11 +14,50 @@
 		<result column="update_datetime" property="updateDatetime" />
 		<result column="remark" property="remark" />
 		<result column="give_integral" property="giveIntegral" />
+		
+		<association property="dealer" javaType="dealer">   
+            <result column="dealer_pic" property="pic" />
+		    <result column="dealer_name" property="name" />
+        </association>
+        
+        <association property="demand" javaType="demand">   
+            <result column="demand_summary" property="summary" />
+		    <result column="demand_start_datetime" property="startDatetime" />
+		    <result column="demand_end_datetime" property="endDatetime" />
+		    <result column="demand_province" property="province" />
+		    <result column="demand_city" property="city" />
+		    <result column="demand_area" property="area" />
+		    <result column="demand_address" property="address" />
+		    <result column="demand_price" property="price" />
+        </association>
+		
 	</resultMap>
 	<sql id="where_condition">
 		<trim prefix="WHERE" prefixOverrides="AND | OR">
 			<if test="code != null and code != '' ">
 				AND t.code = #{code}
+			</if>
+			<if test="type != null and type != '' ">
+				AND t.type = #{type}
+			</if>
+			<if test="demandCode != null and demandCode != '' ">
+				AND t.demand_code = #{demandCode}
+			</if>
+			<if test="dealerCode != null and dealerCode != '' ">
+				AND t.dealer_code = #{dealerCode}
+			</if>
+			<if test="receiver != null and receiver != '' ">
+				AND t.receiver = #{receiver}
+			</if>
+			<if test="status != null and status != '' ">
+				AND t.status = #{status}
+			</if>
+			<if test="statusList != null and statusList != '' ">
+				AND t.status in
+				<foreach item="item" index="index" collection="statusList"
+					open="(" separator="," close=")">
+					#{item}
+				</foreach>
 			</if>
 		</trim>
 	</sql>
@@ -35,8 +74,19 @@
 		,t.update_datetime
 		,t.remark
 		,t.give_integral
+		,tdealer.pic dealer_pic
+		,tdealer.name dealer_name
+		,tdemand.summary demand_summary
+		,tdemand.start_datetime demand_start_datetime
+		,tdemand.end_datetime demand_end_datetime
+		,tdemand.province demand_province
+		,tdemand.city demand_city
+		,tdemand.area demand_area
+		,tdemand.address demand_address
+		,tdemand.price demand_price
 		FROM
-		tp_demand_order t
+		tp_demand_order t LEFT JOIN tp_demand tdemand ON t.demand_code = tdemand.code 
+		                  LEFT JOIN tp_dealer tdealer ON tdemand.dealer_code = tdealer.code
 		<include refid="where_condition" />
 		<trim prefix="ORDER BY ">
 			<if test="order != null and order != '' ">

@@ -50,6 +50,9 @@ public class Demand extends ABaseDO {
     // 简述
     private String summary;
 
+    // 图片（必填）
+    private String pic;
+
     // 详述
     private String detail;
 
@@ -67,6 +70,8 @@ public class Demand extends ABaseDO {
 
     // 备注
     private String remark;
+
+    private Dealer dealer;
 
     public void setCode(String code) {
         this.code = code;
@@ -148,6 +153,14 @@ public class Demand extends ABaseDO {
         return summary;
     }
 
+    public String getPic() {
+        return pic;
+    }
+
+    public void setPic(String pic) {
+        this.pic = pic;
+    }
+
     public void setDetail(String detail) {
         this.detail = detail;
     }
@@ -210,6 +223,14 @@ public class Demand extends ABaseDO {
 
     public String getRemark() {
         return remark;
+    }
+
+    public Dealer getDealer() {
+        return dealer;
+    }
+
+    public void setDealer(Dealer dealer) {
+        this.dealer = dealer;
     }
 
 }

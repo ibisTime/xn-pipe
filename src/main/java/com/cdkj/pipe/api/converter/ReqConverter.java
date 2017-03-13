@@ -76,6 +76,7 @@ public class ReqConverter {
         demand.setLatitude(req.getLatitude());
         demand.setPrice(req.getPrice());
         demand.setSummary(req.getSummary());
+        demand.setPic(req.getPic());
         demand.setDetail(req.getDetail());
         demand.setUpdater(req.getUpdater());
         demand.setRemark(req.getRemark());
@@ -97,6 +98,7 @@ public class ReqConverter {
         demand.setLatitude(req.getLatitude());
         demand.setPrice(req.getPrice());
         demand.setSummary(req.getSummary());
+        demand.setPic(req.getPic());
         demand.setDetail(req.getDetail());
         demand.setUpdater(req.getUpdater());
         demand.setRemark(req.getRemark());

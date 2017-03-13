@@ -1,6 +1,7 @@
 package com.cdkj.pipe.domain;
 
 import java.util.Date;
+import java.util.List;
 
 import com.cdkj.pipe.dao.base.ABaseDO;
 
@@ -46,6 +47,14 @@ public class DemandOrder extends ABaseDO {
 
     // 赠送积分
     private Long giveIntegral;
+
+    /******查询条件*******/
+    // 状态list
+    private List<String> statusList;
+
+    private Demand demand;
+
+    private Dealer dealer;
 
     public void setCode(String code) {
         this.code = code;
@@ -133,6 +142,30 @@ public class DemandOrder extends ABaseDO {
 
     public void setGiveIntegral(Long giveIntegral) {
         this.giveIntegral = giveIntegral;
+    }
+
+    public List<String> getStatusList() {
+        return statusList;
+    }
+
+    public void setStatusList(List<String> statusList) {
+        this.statusList = statusList;
+    }
+
+    public Demand getDemand() {
+        return demand;
+    }
+
+    public void setDemand(Demand demand) {
+        this.demand = demand;
+    }
+
+    public Dealer getDealer() {
+        return dealer;
+    }
+
+    public void setDealer(Dealer dealer) {
+        this.dealer = dealer;
     }
 
 }
