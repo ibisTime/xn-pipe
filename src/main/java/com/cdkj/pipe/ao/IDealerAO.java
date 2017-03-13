@@ -28,4 +28,6 @@ public interface IDealerAO {
 
     public Dealer getDealer(String code);
 
+    public Dealer getDealerByUserId(String userId);
+
 }

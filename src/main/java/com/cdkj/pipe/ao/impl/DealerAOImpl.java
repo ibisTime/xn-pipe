@@ -2,6 +2,7 @@ package com.cdkj.pipe.ao.impl;
 
 import java.util.List;
 
+import org.apache.commons.collections.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -89,6 +90,17 @@ public class DealerAOImpl implements IDealerAO {
     @Override
     public Dealer getDealer(String code) {
         return dealerBO.getDealer(code);
+    }
+
+    @Override
+    public Dealer getDealerByUserId(String userId) {
+        Dealer condition = new Dealer();
+        condition.setUserId(userId);
+        List<Dealer> results = dealerBO.queryDealerList(condition);
+        if (CollectionUtils.isEmpty(results)) {
+            throw new BizException("xn0000", "对应的经销商不存在");
+        }
+        return results.get(0);
     }
 
 }
