@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cdkj.pipe.ao.IDealerAO;
-import com.cdkj.pipe.api.converter.DealerConverter;
+import com.cdkj.pipe.api.converter.ReqConverter;
 import com.cdkj.pipe.bo.IDealerBO;
 import com.cdkj.pipe.bo.IUserBO;
 import com.cdkj.pipe.bo.base.Paginable;
@@ -31,7 +31,7 @@ public class DealerAOImpl implements IDealerAO {
         String userId = userBO.doSaveDealer(req.getLoginName(),
             req.getUpdater());
         // 新增经销商
-        Dealer dealer = DealerConverter.converter(req);
+        Dealer dealer = ReqConverter.converter(req);
         dealer.setUserId(userId);
         return dealerBO.saveDealer(dealer);
     }
@@ -41,7 +41,7 @@ public class DealerAOImpl implements IDealerAO {
         if (!dealerBO.isDealerExist(req.getCode())) {
             throw new BizException("xn0000", "经销商编号不存在");
         }
-        Dealer dealer = DealerConverter.converter(req);
+        Dealer dealer = ReqConverter.converter(req);
         return dealerBO.platEdit(dealer);
     }
 

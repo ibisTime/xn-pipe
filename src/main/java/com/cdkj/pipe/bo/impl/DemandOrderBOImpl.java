@@ -1,5 +1,6 @@
 package com.cdkj.pipe.bo.impl;
 
+import java.util.Date;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
@@ -8,8 +9,11 @@ import org.springframework.stereotype.Component;
 
 import com.cdkj.pipe.bo.IDemandOrderBO;
 import com.cdkj.pipe.bo.base.PaginableBOImpl;
+import com.cdkj.pipe.core.EGeneratePrefix;
+import com.cdkj.pipe.core.OrderNoGenerater;
 import com.cdkj.pipe.dao.IDemandOrderDAO;
 import com.cdkj.pipe.domain.DemandOrder;
+import com.cdkj.pipe.enums.EDemandOrderStatus;
 import com.cdkj.pipe.exception.BizException;
 
 @Component
@@ -30,13 +34,25 @@ public class DemandOrderBOImpl extends PaginableBOImpl<DemandOrder> implements
     }
 
     @Override
-    public String saveDemandOrder(DemandOrder data) {
+    public String saveDemandOrder(String type, String demandCode,
+            String dealerCode, String receiver, String remark) {
         String code = null;
-        if (data != null) {
-            // code = OrderNoGenerater.generateM(EGeneratePrefix.CT.getCode());
-            data.setCode(code);
-            demandOrderDAO.insert(data);
-        }
+        DemandOrder data = new DemandOrder();
+        Date now = new Date();
+        code = OrderNoGenerater.generateM(EGeneratePrefix.DEMAND_ORDER
+            .getCode());
+        data.setCode(code);
+        data.setType(type);
+        data.setDemandCode(demandCode);
+        data.setDealerCode(dealerCode);
+        data.setReceiver(receiver);
+        data.setReceiveDatetime(now);
+        data.setStatus(EDemandOrderStatus.ING.getCode());
+        data.setUpdater(receiver);
+        data.setUpdateDatetime(now);
+        data.setRemark(remark);
+        data.setGiveIntegral(0L);
+        demandOrderDAO.insert(data);
         return code;
     }
 

@@ -5,27 +5,19 @@ import java.util.List;
 import com.cdkj.pipe.bo.base.IPaginableBO;
 import com.cdkj.pipe.domain.DemandOrder;
 
-
-
 public interface IDemandOrderBO extends IPaginableBO<DemandOrder> {
 
+    public boolean isDemandOrderExist(String code);
 
-	public boolean isDemandOrderExist(String code);
+    public String saveDemandOrder(String type, String demandCode,
+            String dealerCode, String receiver, String remark);
 
+    public int removeDemandOrder(String code);
 
-	public String saveDemandOrder(DemandOrder data);
+    public int refreshDemandOrder(DemandOrder data);
 
+    public List<DemandOrder> queryDemandOrderList(DemandOrder condition);
 
-	public int removeDemandOrder(String code);
-
-
-	public int refreshDemandOrder(DemandOrder data);
-
-
-	public List<DemandOrder> queryDemandOrderList(DemandOrder condition);
-
-
-	public DemandOrder getDemandOrder(String code);
-
+    public DemandOrder getDemandOrder(String code);
 
 }

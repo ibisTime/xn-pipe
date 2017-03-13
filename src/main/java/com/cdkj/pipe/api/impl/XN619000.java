@@ -13,6 +13,7 @@ import com.cdkj.pipe.api.AProcessor;
 import com.cdkj.pipe.common.JsonUtil;
 import com.cdkj.pipe.core.StringValidater;
 import com.cdkj.pipe.dto.req.XN619000Req;
+import com.cdkj.pipe.dto.res.PKCodeRes;
 import com.cdkj.pipe.exception.BizException;
 import com.cdkj.pipe.exception.ParaException;
 import com.cdkj.pipe.spring.SpringContextHolder;
@@ -31,7 +32,7 @@ public class XN619000 extends AProcessor {
 
     @Override
     public Object doBusiness() throws BizException {
-        return dealerAO.addDealer(req);
+        return new PKCodeRes(dealerAO.addDealer(req));
     }
 
     @Override

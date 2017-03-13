@@ -11,49 +11,41 @@ import com.cdkj.pipe.bo.base.Paginable;
 import com.cdkj.pipe.domain.DemandOrder;
 import com.cdkj.pipe.exception.BizException;
 
-
-
-
 @Service
 public class DemandOrderAOImpl implements IDemandOrderAO {
 
-	@Autowired
-	private IDemandOrderBO demandOrderBO;
+    @Autowired
+    private IDemandOrderBO demandOrderBO;
 
-	@Override
-	public String addDemandOrder(DemandOrder data) {
-		return demandOrderBO.saveDemandOrder(data);
-	}
+    @Override
+    public int editDemandOrder(DemandOrder data) {
+        if (!demandOrderBO.isDemandOrderExist(data.getCode())) {
+            throw new BizException("xn0000", "记录编号不存在");
+        }
+        return demandOrderBO.refreshDemandOrder(data);
+    }
 
-	@Override
-	public int editDemandOrder(DemandOrder data) {
-		if (!demandOrderBO.isDemandOrderExist(data.getCode())) {
-			throw new BizException("xn0000", "记录编号不存在");
-		}
-		return demandOrderBO.refreshDemandOrder(data);
-	}
+    @Override
+    public int dropDemandOrder(String code) {
+        if (!demandOrderBO.isDemandOrderExist(code)) {
+            throw new BizException("xn0000", "记录编号不存在");
+        }
+        return demandOrderBO.removeDemandOrder(code);
+    }
 
-	@Override
-	public int dropDemandOrder(String code) {
-		if (!demandOrderBO.isDemandOrderExist(code)) {
-			throw new BizException("xn0000", "记录编号不存在");
-		}
-		return demandOrderBO.removeDemandOrder(code);
-	}
+    @Override
+    public Paginable<DemandOrder> queryDemandOrderPage(int start, int limit,
+            DemandOrder condition) {
+        return demandOrderBO.getPaginable(start, limit, condition);
+    }
 
-	@Override
-	public Paginable<DemandOrder> queryDemandOrderPage(int start, int limit,
-			DemandOrder condition) {
-		return demandOrderBO.getPaginable(start, limit, condition);
-	}
+    @Override
+    public List<DemandOrder> queryDemandOrderList(DemandOrder condition) {
+        return demandOrderBO.queryDemandOrderList(condition);
+    }
 
-	@Override
-	public List<DemandOrder> queryDemandOrderList(DemandOrder condition) {
-		return demandOrderBO.queryDemandOrderList(condition);
-	}
-
-	@Override
-	public DemandOrder getDemandOrder(String code) {
-		return demandOrderBO.getDemandOrder(code);
-	}
+    @Override
+    public DemandOrder getDemandOrder(String code) {
+        return demandOrderBO.getDemandOrder(code);
+    }
 }

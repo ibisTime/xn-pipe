@@ -4,23 +4,36 @@ import java.util.List;
 
 import com.cdkj.pipe.bo.base.Paginable;
 import com.cdkj.pipe.domain.Demand;
-
-
+import com.cdkj.pipe.dto.req.XN619020Req;
+import com.cdkj.pipe.dto.req.XN619022Req;
 
 public interface IDemandAO {
-	static final String DEFAULT_ORDER_COLUMN = "code";
+    static final String DEFAULT_ORDER_COLUMN = "code";
 
+    public String addDemand(XN619020Req req);
 
-	public String addDemand(Demand data);
+    public int dropDemand(String code);
 
-	public int dropDemand(String code);
+    public int editDemand(XN619022Req req);
 
-	public int editDemand(Demand data);
+    public int putOn(String code, String updater, String remark);
 
-	public Paginable<Demand> queryDemandPage(int start, int limit, Demand condition);
+    public int putOff(String code, String updater, String remark);
 
-	public List<Demand> queryDemandList(Demand condition);
+    /**
+     * 水电工直接接活
+     * @param code
+     * @param userId 
+     * @create: 2017年3月13日 上午12:48:27 haiqingzheng
+     * @history:
+     */
+    public void takeDirectly(String code, String userId);
 
-	public Demand getDemand(String code);
+    public Paginable<Demand> queryDemandPage(int start, int limit,
+            Demand condition);
+
+    public List<Demand> queryDemandList(Demand condition);
+
+    public Demand getDemand(String code);
 
 }

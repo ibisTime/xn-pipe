@@ -1,5 +1,7 @@
 package com.cdkj.pipe.domain;
 
+import java.util.Date;
+
 import com.cdkj.pipe.dao.base.ABaseDO;
 
 /**
@@ -19,10 +21,10 @@ public class Demand extends ABaseDO {
     private String dealerCode;
 
     // 开始时间
-    private String startDatetime;
+    private Date startDatetime;
 
     // 结束时间
-    private String endDatetime;
+    private Date endDatetime;
 
     // 省
     private String province;
@@ -55,13 +57,13 @@ public class Demand extends ABaseDO {
     private String status;
 
     // 创建时间
-    private String createDatetime;
+    private Date createDatetime;
 
     // 更新人
     private String updater;
 
     // 更新时间
-    private String updateDatetime;
+    private Date updateDatetime;
 
     // 备注
     private String remark;
@@ -80,22 +82,6 @@ public class Demand extends ABaseDO {
 
     public String getDealerCode() {
         return dealerCode;
-    }
-
-    public void setStartDatetime(String startDatetime) {
-        this.startDatetime = startDatetime;
-    }
-
-    public String getStartDatetime() {
-        return startDatetime;
-    }
-
-    public void setEndDatetime(String endDatetime) {
-        this.endDatetime = endDatetime;
-    }
-
-    public String getEndDatetime() {
-        return endDatetime;
     }
 
     public void setProvince(String province) {
@@ -178,14 +164,6 @@ public class Demand extends ABaseDO {
         return status;
     }
 
-    public void setCreateDatetime(String createDatetime) {
-        this.createDatetime = createDatetime;
-    }
-
-    public String getCreateDatetime() {
-        return createDatetime;
-    }
-
     public void setUpdater(String updater) {
         this.updater = updater;
     }
@@ -194,12 +172,36 @@ public class Demand extends ABaseDO {
         return updater;
     }
 
-    public void setUpdateDatetime(String updateDatetime) {
-        this.updateDatetime = updateDatetime;
+    public Date getStartDatetime() {
+        return startDatetime;
     }
 
-    public String getUpdateDatetime() {
+    public void setStartDatetime(Date startDatetime) {
+        this.startDatetime = startDatetime;
+    }
+
+    public Date getEndDatetime() {
+        return endDatetime;
+    }
+
+    public void setEndDatetime(Date endDatetime) {
+        this.endDatetime = endDatetime;
+    }
+
+    public Date getCreateDatetime() {
+        return createDatetime;
+    }
+
+    public void setCreateDatetime(Date createDatetime) {
+        this.createDatetime = createDatetime;
+    }
+
+    public Date getUpdateDatetime() {
         return updateDatetime;
+    }
+
+    public void setUpdateDatetime(Date updateDatetime) {
+        this.updateDatetime = updateDatetime;
     }
 
     public void setRemark(String remark) {
