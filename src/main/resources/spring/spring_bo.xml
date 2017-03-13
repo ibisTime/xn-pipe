@@ -44,4 +44,8 @@
 	<bean id="newsBO" class="com.cdkj.pipe.bo.impl.NewsBOImpl">
 		<property name="paginableDAO" ref="newsDAOImpl" />
 	</bean>
+	
+	<bean id="commentBO" class="com.cdkj.pipe.bo.impl.CommentBOImpl">
+		<property name="paginableDAO" ref="commentDAOImpl" />
+	</bean>
 </beans>

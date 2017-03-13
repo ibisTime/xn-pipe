@@ -10,5 +10,6 @@
 		<typeAlias alias="assign" type="com.cdkj.pipe.domain.Assign" />
 		<typeAlias alias="demandOrder" type="com.cdkj.pipe.domain.DemandOrder" />
 		<typeAlias alias="news" type="com.cdkj.pipe.domain.News" />
+		<typeAlias alias="comment" type="com.cdkj.pipe.domain.Comment" />
 	</typeAliases>
 </configuration>
