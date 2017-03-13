@@ -63,6 +63,7 @@ public class DealerBOImpl extends PaginableBOImpl<Dealer> implements IDealerBO {
         Dealer data = new Dealer();
         data.setCode(code);
         data.setUpdater(updater);
+        data.setUpdateDatetime(new Date());
         data.setRemark(remark);
         data.setStatus(EDealerStatus.PUT_ON.getCode());
         return dealerDAO.update_putOnOff(data);
@@ -73,6 +74,7 @@ public class DealerBOImpl extends PaginableBOImpl<Dealer> implements IDealerBO {
         Dealer data = new Dealer();
         data.setCode(code);
         data.setUpdater(updater);
+        data.setUpdateDatetime(new Date());
         data.setRemark(remark);
         data.setStatus(EDealerStatus.PUT_OFF.getCode());
         return dealerDAO.update_putOnOff(data);

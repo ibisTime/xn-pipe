@@ -112,8 +112,7 @@
 	<update id="update_demand" parameterType="demand">
 		UPDATE tp_demand
 		SET
-		dealer_code = #{dealerCode}
-		,start_datetime = #{startDatetime}
+		start_datetime = #{startDatetime}
 		,end_datetime = #{endDatetime}
 		,province = #{province}
 		,city = #{city}
@@ -124,7 +123,6 @@
 		,price = #{price}
 		,summary = #{summary}
 		,detail = #{detail}
-		,status = #{status}
 		,updater = #{updater}
 		,update_datetime = #{updateDatetime}
 		,remark = #{remark}

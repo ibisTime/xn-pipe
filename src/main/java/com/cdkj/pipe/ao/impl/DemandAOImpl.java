@@ -80,6 +80,9 @@ public class DemandAOImpl implements IDemandAO {
     @Transactional
     public void takeDirectly(String code, String userId) {
         Demand demand = demandBO.getDemand(code);
+        if (!EDemandStatus.PUT_ON.getCode().equals(demand.getStatus())) {
+            throw new BizException("xn0000", "需求状态不允许接单操作");
+        }
         // 修改需求状态
         demandBO.take(code, userId);
         // 形成需求订单

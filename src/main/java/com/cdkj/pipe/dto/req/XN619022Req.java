@@ -18,9 +18,6 @@ public class XN619022Req {
     // 需求编号
     private String code;
 
-    // 经销商编号（必填）
-    private String dealerCode;
-
     // 开始时间（必填）
     private String startDatetime;
 
@@ -66,14 +63,6 @@ public class XN619022Req {
 
     public void setCode(String code) {
         this.code = code;
-    }
-
-    public String getDealerCode() {
-        return dealerCode;
-    }
-
-    public void setDealerCode(String dealerCode) {
-        this.dealerCode = dealerCode;
     }
 
     public String getStartDatetime() {

@@ -74,6 +74,7 @@ public class DemandBOImpl extends PaginableBOImpl<Demand> implements IDemandBO {
         Demand data = new Demand();
         data.setCode(code);
         data.setUpdater(updater);
+        data.setUpdateDatetime(new Date());
         data.setRemark(remark);
         data.setStatus(EDealerStatus.PUT_ON.getCode());
         return demandDAO.updatePutOnOff(data);
@@ -84,6 +85,7 @@ public class DemandBOImpl extends PaginableBOImpl<Demand> implements IDemandBO {
         Demand data = new Demand();
         data.setCode(code);
         data.setUpdater(updater);
+        data.setUpdateDatetime(new Date());
         data.setRemark(remark);
         data.setStatus(EDealerStatus.PUT_OFF.getCode());
         return demandDAO.updatePutOnOff(data);
