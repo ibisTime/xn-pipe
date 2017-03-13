@@ -168,4 +168,23 @@ CREATE TABLE `tsys_dict` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+-- ----------------------------
+--  Table structure for `tp_comment`
+-- ----------------------------
+DROP TABLE IF EXISTS `tp_comment`;
+CREATE TABLE `tp_comment` (
+  `code` varchar(32) NOT NULL COMMENT '编号',
+  `type` varchar(4) DEFAULT NULL COMMENT '类型(1 水电工)',
+  `content` text CHARACTER SET utf8mb4 COMMENT '内容',
+  `parent_code` varchar(32) DEFAULT NULL COMMENT '上级编号',
+  `status` varchar(4) DEFAULT NULL COMMENT '状态',
+  `commentator` varchar(32) DEFAULT NULL COMMENT '评论人',
+  `comm_datetime` datetime DEFAULT NULL COMMENT '评论时间',
+  `approver` varchar(32) DEFAULT NULL COMMENT '审核人',
+  `approve_datetime` datetime DEFAULT NULL COMMENT '审核时间',
+  `remark` text COMMENT '备注',
+  `entity_code` varchar(32) DEFAULT NULL COMMENT '针对实体',
+  PRIMARY KEY (`code`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 SET FOREIGN_KEY_CHECKS = 1;

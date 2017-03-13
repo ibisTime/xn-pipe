@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdkj.pipe.dao.ICommentDAO">
+	<resultMap id="comment_DB_Result" type="comment">
+		<result column="code" property="code" />
+		<result column="type" property="type" />
+		<result column="content" property="content" />
+		<result column="parent_code" property="parentCode" />
+		<result column="status" property="status" />
+		<result column="commentator" property="commentator" />
+		
+		<result column="comm_datetime" property="commDatetime" />
+		<result column="approver" property="approver" />
+		<result column="approve_datetime" property="approveDatetime" />
+		<result column="remark" property="remark" />
+		<result column="entity_code" property="entityCode" />
+	</resultMap>
+	<sql id="where_condition">
+		<trim prefix="WHERE" prefixOverrides="AND | OR">
+			<if test="code != null and code != '' ">
+				AND t.code = #{code}
+			</if>	
+			<if test="type != null and type != '' ">
+				AND t.type = #{type}
+			</if>
+			<if test="parentCode != null and parentCode != '' ">
+				AND t.parent_code = #{parentCode}
+			</if>
+			<if test="status != null and status != '' ">
+				AND t.status = #{status}
+			</if>	
+			<if test="entityCode != null and entityCode != '' ">
+				AND t.entity_code = #{entityCode}
+			</if>
+		</trim>
+	</sql>
+	<select id="select_comment" parameterType="comment" resultMap="comment_DB_Result">
+		SELECT
+		code
+		,type
+		,content
+		,parent_code
+		,status
+		
+		,commentator
+		,comm_datetime
+		,approver
+		,approve_datetime
+		
+		,remark
+		,entity_code
+		FROM
+		tp_comment t 
+		<include refid="where_condition" />
+		<trim prefix="ORDER BY ">
+			<if test="order != null and order != '' ">
+				${order}
+			</if>
+		</trim>	
+	</select>
+
+	<select id="select_comment_count" parameterType="comment" resultType="java.lang.Long">
+		SELECT count(1) FROM tp_comment t 
+		<include refid="where_condition" />
+	</select>
+	
+	<insert id="insert_comment" parameterType="comment">
+		INSERT INTO tp_comment(
+		code
+		,type
+		,content
+		,parent_code
+		,status
+		
+		,commentator
+		,comm_datetime
+		,entity_code
+		)
+		VALUES(
+		#{code}
+		,#{type}
+		,#{content}
+		,#{parentCode}
+		,#{status}
+		
+		,#{commentator}
+		,#{commDatetime}
+		,#{entityCode}
+		)
+	</insert>
+
+	<delete id="delete_comment" parameterType="comment">
+		DELETE FROM tp_comment
+		WHERE code = #{code}
+	</delete>
+	
+	<update id="update_approveComment" parameterType="comment">
+		UPDATE tp_comment SET
+		status = #{status}
+		,approver=#{approver}
+		,approve_datetime=#{approveDatetime}
+		,remark=#{remark}
+		WHERE code = #{code}
+	</update>
+</mapper>
