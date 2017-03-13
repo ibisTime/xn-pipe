@@ -106,4 +106,24 @@ public class DemandOrderBOImpl extends PaginableBOImpl<DemandOrder> implements
         return data;
     }
 
+    @Override
+    public void userCancel(DemandOrder order, String userId) {
+        order.setStatus(EDemandOrderStatus.USER_CANCEL.getCode());
+        order.setUpdater(userId);
+        order.setUpdateDatetime(new Date());
+        order.setRemark("水电工原因取消");
+        demandOrderDAO.updateComplete(order);
+
+    }
+
+    @Override
+    public void dealerCancel(DemandOrder order, String dealerCode) {
+        order.setStatus(EDemandOrderStatus.DEALER_CACEL.getCode());
+        order.setUpdater(dealerCode);
+        order.setUpdateDatetime(new Date());
+        order.setRemark("经销商原因取消");
+        demandOrderDAO.updateComplete(order);
+
+    }
+
 }

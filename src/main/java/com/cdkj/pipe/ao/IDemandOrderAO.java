@@ -11,6 +11,10 @@ public interface IDemandOrderAO {
     public void complete(String code, String evaluate, Long giveIntegral,
             String updater, String remark);
 
+    public void userCancel(String code, String userId);
+
+    public void dealerCancel(String code, String dealerCode);
+
     public Paginable<DemandOrder> queryDemandOrderPage(int start, int limit,
             DemandOrder condition);
 

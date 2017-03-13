@@ -124,6 +124,28 @@ public class DemandBOImpl extends PaginableBOImpl<Demand> implements IDemandBO {
     }
 
     @Override
+    public void cancel(String code, String userId) {
+        Demand data = new Demand();
+        data.setStatus(EDemandStatus.CANCEL.getCode());
+        data.setCode(code);
+        data.setUpdater(userId);
+        data.setUpdateDatetime(new Date());
+        data.setRemark("用户接单");
+        demandDAO.updateCancel(data);
+    }
+
+    @Override
+    public void complete(String code, String userId) {
+        Demand data = new Demand();
+        data.setStatus(EDemandStatus.FINISH.getCode());
+        data.setCode(code);
+        data.setUpdater(userId);
+        data.setUpdateDatetime(new Date());
+        data.setRemark("用户接单");
+        demandDAO.updateComplete(data);
+    }
+
+    @Override
     public Paginable<Demand> queryRangeDemandPage(int start, int limit,
             Demand condition) {
         long totalCount = demandDAO.selectRangeDemandTotalCount(condition);
@@ -136,4 +158,5 @@ public class DemandBOImpl extends PaginableBOImpl<Demand> implements IDemandBO {
         page.setList(dataList);
         return page;
     }
+
 }

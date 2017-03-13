@@ -8,6 +8,8 @@
  */
 package com.cdkj.pipe.dto.req;
 
+import java.util.List;
+
 /** 
  * @author: haiqingzheng 
  * @since: 2017年3月12日 下午2:34:07 
@@ -37,6 +39,9 @@ public class XN619071Req extends APageReq {
 
     // 状态（选填）
     private String status;
+
+    // 状态list（选填）
+    private List<String> statusList;
 
     public String getCode() {
         return code;
@@ -84,6 +89,14 @@ public class XN619071Req extends APageReq {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public List<String> getStatusList() {
+        return statusList;
+    }
+
+    public void setStatusList(List<String> statusList) {
+        this.statusList = statusList;
     }
 
 }

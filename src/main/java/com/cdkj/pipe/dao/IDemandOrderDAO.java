@@ -7,4 +7,8 @@ public interface IDemandOrderDAO extends IBaseDAO<DemandOrder> {
     String NAMESPACE = IDemandOrderDAO.class.getName().concat(".");
 
     public int updateComplete(DemandOrder data);
+
+    public int updateUserCancel(DemandOrder data);
+
+    public int updateDealerCancel(DemandOrder data);
 }

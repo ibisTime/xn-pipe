@@ -8,9 +8,12 @@
  */
 package com.cdkj.pipe.api.impl;
 
+import org.apache.commons.lang3.StringUtils;
+
 import com.cdkj.pipe.ao.IDemandOrderAO;
 import com.cdkj.pipe.api.AProcessor;
 import com.cdkj.pipe.common.JsonUtil;
+import com.cdkj.pipe.domain.DemandOrder;
 import com.cdkj.pipe.dto.req.XN619071Req;
 import com.cdkj.pipe.exception.BizException;
 import com.cdkj.pipe.exception.ParaException;
@@ -34,8 +37,20 @@ public class XN619071 extends AProcessor {
      */
     @Override
     public Object doBusiness() throws BizException {
-        // TODO Auto-generated method stub
-        return null;
+        DemandOrder condition = new DemandOrder();
+        condition.setCode(req.getCode());
+        condition.setType(req.getType());
+        condition.setDemandCode(req.getDemandCode());
+        condition.setDealerCode(req.getDealerCode());
+        condition.setReceiver(req.getReceiver());
+        condition.setStatus(req.getStatus());
+        condition.setStatusList(req.getStatusList());
+        String orderColumn = req.getOrderColumn();
+        if (StringUtils.isBlank(orderColumn)) {
+            orderColumn = IDemandOrderAO.DEFAULT_ORDER_COLUMN;
+        }
+        condition.setOrder(orderColumn, req.getOrderDir());
+        return demandOrderAO.queryDemandOrderList(condition);
     }
 
     /** 

@@ -22,6 +22,11 @@
 		<result column="updater" property="updater" />
 		<result column="update_datetime" property="updateDatetime" />
 		<result column="remark" property="remark" />
+		
+		<association property="dealer" javaType="dealer">   
+            <result column="dealer_pic" property="pic" />
+		    <result column="dealer_name" property="name" />
+        </association>
 	</resultMap>
 	<resultMap id="demandList_DB_Result" type="demand">
 		<result column="code" property="code" />
@@ -88,8 +93,10 @@
 		,t.updater
 		,t.update_datetime
 		,t.remark
+		,tdealer.pic dealer_pic
+		,tdealer.name dealer_name
 		FROM
-		tp_demand t
+		tp_demand t LEFT JOIN tp_dealer tdealer ON t.dealer_code = tdealer.code
 		<include refid="where_condition" />
 		<trim prefix="ORDER BY ">
 			<if test="order != null and order != '' ">
@@ -223,6 +230,26 @@
 	</update>
 	
 	<update id="update_take" parameterType="dealer">
+		UPDATE tp_demand
+		SET
+		status = #{status}
+		,updater = #{updater}
+		,update_datetime = #{updateDatetime}
+		,remark = #{remark}
+		WHERE code = #{code}
+	</update>
+	
+	<update id="update_cancel" parameterType="dealer">
+		UPDATE tp_demand
+		SET
+		status = #{status}
+		,updater = #{updater}
+		,update_datetime = #{updateDatetime}
+		,remark = #{remark}
+		WHERE code = #{code}
+	</update>
+	
+	<update id="update_complete" parameterType="dealer">
 		UPDATE tp_demand
 		SET
 		status = #{status}

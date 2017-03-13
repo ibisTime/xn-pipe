@@ -14,6 +14,10 @@ public interface IDemandDAO extends IBaseDAO<Demand> {
 
     public int updateTake(Demand data);
 
+    public int updateCancel(Demand data);
+
+    public int updateComplete(Demand data);
+
     public Long selectRangeDemandTotalCount(Demand condition);
 
     public List<Demand> selectRangeDemandList(Demand condition, int start,
