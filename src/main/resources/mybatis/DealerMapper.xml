@@ -50,6 +50,9 @@
 			<if test="status != null and status != '' ">
 				AND t.status = #{status}
 			</if>
+			<if test="userId != null and userId != '' ">
+				AND t.userId = #{userId}
+			</if>
 		</trim>
 	</sql>
 	<select id="select_dealer" parameterType="dealer" resultMap="dealer_DB_Result">
