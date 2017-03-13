@@ -19,8 +19,8 @@ import java.util.Map;
  */
 public enum EDemandStatus {
 
-    NEW("0", "新增"), PUT_ON("1", "已上架"), PUT_OFF("2", "已下架"), ASSIGN("2", "已派单"), RECEIVE(
-            "3", "已接单"), CANCEL("4", "已取消"), FINISH("5", "已完成");
+    NEW("0", "未上架"), PUT_ON("1", "已上架"), PUT_OFF("2", "已下架"), ASSIGN("3", "已派单"), RECEIVE(
+            "4", "已接单"), CANCEL("5", "已取消"), FINISH("6", "已完成");
 
     public static Map<String, EDemandStatus> getBizTypeMap() {
         Map<String, EDemandStatus> map = new HashMap<String, EDemandStatus>();
