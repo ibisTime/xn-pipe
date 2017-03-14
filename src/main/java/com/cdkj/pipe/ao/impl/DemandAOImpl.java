@@ -8,14 +8,21 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.cdkj.pipe.ao.IDemandAO;
 import com.cdkj.pipe.api.converter.ReqConverter;
+import com.cdkj.pipe.bo.IAssignBO;
 import com.cdkj.pipe.bo.IDemandBO;
 import com.cdkj.pipe.bo.IDemandOrderBO;
+import com.cdkj.pipe.bo.IHearBO;
+import com.cdkj.pipe.bo.ISYSConfigBO;
+import com.cdkj.pipe.bo.ISmsOutBO;
 import com.cdkj.pipe.bo.base.Paginable;
+import com.cdkj.pipe.core.StringValidater;
 import com.cdkj.pipe.domain.Demand;
+import com.cdkj.pipe.domain.Hear;
 import com.cdkj.pipe.dto.req.XN619020Req;
 import com.cdkj.pipe.dto.req.XN619022Req;
 import com.cdkj.pipe.enums.EDemandOrderType;
 import com.cdkj.pipe.enums.EDemandStatus;
+import com.cdkj.pipe.enums.EHearStatus;
 import com.cdkj.pipe.exception.BizException;
 
 @Service
@@ -26,6 +33,18 @@ public class DemandAOImpl implements IDemandAO {
 
     @Autowired
     private IDemandOrderBO demandOrderBO;
+
+    @Autowired
+    private ISYSConfigBO sysConfigBO;
+
+    @Autowired
+    private IAssignBO assignBO;
+
+    @Autowired
+    private IHearBO hearBO;
+
+    @Autowired
+    private ISmsOutBO smsOutBO;
 
     @Override
     public String addDemand(XN619020Req req) {
@@ -88,6 +107,27 @@ public class DemandAOImpl implements IDemandAO {
         // 形成需求订单
         demandOrderBO.saveDemandOrder(EDemandOrderType.RECEIVE.getCode(), code,
             demand.getDealerCode(), userId, "订单进行中");
+        // 短信通知经销商
+        // smsOutBO.sentContent(userId, content);
+    }
+
+    @Override
+    @Transactional
+    public void assgin(String code, String updater, String userId) {
+        Demand demand = demandBO.getDemand(code);
+        if (!EDemandStatus.PUT_ON.getCode().equals(demand.getStatus())) {
+            throw new BizException("xn0000", "需求状态不允许派单操作");
+        }
+        Hear hear = hearBO.getHear(userId);
+        if (!EHearStatus.ING.getCode().equals(hear.getStatus())) {
+            throw new BizException("xn0000", "水电工已经不处于听单状态");
+        }
+        // 修改需求状态
+        demandBO.assign(code, updater);
+        // 形成派单记录
+        assignBO.saveAssign(demand, userId);
+        // 修改水电工听单状态
+        hearBO.assign(userId);
     }
 
     @Override
@@ -109,6 +149,8 @@ public class DemandAOImpl implements IDemandAO {
     @Override
     public Paginable<Demand> queryRangeDemandPage(int start, int limit,
             Demand condition) {
+        condition.setDistance(StringValidater.toDouble(sysConfigBO
+            .getConfigValue("distance")));
         return demandBO.queryRangeDemandPage(start, limit, condition);
     }
 

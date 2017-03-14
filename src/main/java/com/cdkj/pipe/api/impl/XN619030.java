@@ -43,6 +43,7 @@ public class XN619030 extends AProcessor {
         condition.setArea(req.getArea());
         condition.setSummary(req.getSummary());
         condition.setStatus(req.getStatus());
+        condition.setDealerCode(req.getDealerCode());
         String orderColumn = req.getOrderColumn();
         if (StringUtils.isBlank(orderColumn)) {
             orderColumn = IDemandAO.DEFAULT_ORDER_COLUMN;

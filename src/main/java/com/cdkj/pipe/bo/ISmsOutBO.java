@@ -20,4 +20,7 @@ public interface ISmsOutBO {
      * @history:
      */
     void qunSent(List<String> userList, String notice);
+
+    public void sendSmsOut(String mobile, String content, String bizType,
+            String systemCode);
 }

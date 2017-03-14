@@ -5,27 +5,28 @@ import java.util.List;
 import com.cdkj.pipe.bo.base.IPaginableBO;
 import com.cdkj.pipe.domain.Hear;
 
-
-
 public interface IHearBO extends IPaginableBO<Hear> {
 
+    public boolean isHearExist(String code);
 
-	public boolean isHearExist(String code);
+    public String saveHear(Hear data);
 
+    public int removeHear(String code);
 
-	public String saveHear(Hear data);
+    public int refreshHear(Hear data);
 
+    public List<Hear> queryHearList(Hear condition);
 
-	public int removeHear(String code);
+    public Hear getHear(String userId);
 
+    public void startHear(String userId, String content);
 
-	public int refreshHear(Hear data);
+    public void stopHear(String userId);
 
+    public void assign(String userId);
 
-	public List<Hear> queryHearList(Hear condition);
+    public void assignReceive(String userId);
 
-
-	public Hear getHear(String code);
-
+    public void assignReject(String userId);
 
 }

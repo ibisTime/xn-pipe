@@ -9,8 +9,11 @@
 	</resultMap>
 	<sql id="where_condition">
 		<trim prefix="WHERE" prefixOverrides="AND | OR">
-			<if test="code != null and code != '' ">
-				AND t.code = #{code}
+			<if test="userId != null and userId != '' ">
+				AND t.user_id = #{userId}
+			</if>
+			<if test="status != null and status != '' ">
+				AND t.status = #{status}
 			</if>
 		</trim>
 	</sql>
@@ -49,12 +52,40 @@
 		)
 	</insert>
 
-	<update id="update_hear" parameterType="hear">
+	<update id="update_startHear" parameterType="hear">
 		UPDATE tp_hear
 		SET
 		content = #{content}
 		,status = #{status}
-		WHERE code = #{code}
+		WHERE user_id = #{userId}
+	</update>
+	
+	<update id="update_stopHear" parameterType="hear">
+		UPDATE tp_hear
+		SET
+		status = #{status}
+		WHERE user_id = #{userId}
+	</update>
+	
+	<update id="update_assign" parameterType="hear">
+		UPDATE tp_hear
+		SET
+		status = #{status}
+		WHERE user_id = #{userId}
+	</update>
+	
+	<update id="update_assignReceive" parameterType="hear">
+		UPDATE tp_hear
+		SET
+		status = #{status}
+		WHERE user_id = #{userId}
+	</update>
+	
+	<update id="update_assignReject" parameterType="hear">
+		UPDATE tp_hear
+		SET
+		status = #{status}
+		WHERE user_id = #{userId}
 	</update>
 
 

@@ -73,6 +73,8 @@ public class Demand extends ABaseDO {
 
     private Dealer dealer;
 
+    private Double distance;
+
     public void setCode(String code) {
         this.code = code;
     }
@@ -231,6 +233,14 @@ public class Demand extends ABaseDO {
 
     public void setDealer(Dealer dealer) {
         this.dealer = dealer;
+    }
+
+    public Double getDistance() {
+        return distance;
+    }
+
+    public void setDistance(Double distance) {
+        this.distance = distance;
     }
 
 }

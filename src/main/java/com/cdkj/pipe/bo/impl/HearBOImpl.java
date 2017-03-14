@@ -10,7 +10,7 @@ import com.cdkj.pipe.bo.IHearBO;
 import com.cdkj.pipe.bo.base.PaginableBOImpl;
 import com.cdkj.pipe.dao.IHearDAO;
 import com.cdkj.pipe.domain.Hear;
-import com.cdkj.pipe.exception.BizException;
+import com.cdkj.pipe.enums.EHearStatus;
 
 @Component
 public class HearBOImpl extends PaginableBOImpl<Hear> implements IHearBO {
@@ -65,16 +65,55 @@ public class HearBOImpl extends PaginableBOImpl<Hear> implements IHearBO {
     }
 
     @Override
-    public Hear getHear(String code) {
+    public Hear getHear(String userId) {
         Hear data = null;
-        if (StringUtils.isNotBlank(code)) {
+        if (StringUtils.isNotBlank(userId)) {
             Hear condition = new Hear();
-            // condition.setCode(code);
+            condition.setUserId(userId);
             data = hearDAO.select(condition);
-            if (data == null) {
-                throw new BizException("xn0000", "记录不存在");
-            }
         }
         return data;
     }
+
+    @Override
+    public void startHear(String userId, String content) {
+        Hear data = new Hear();
+        data.setUserId(userId);
+        data.setContent(content);
+        data.setStatus(EHearStatus.ING.getCode());
+        hearDAO.updateStartHear(data);
+    }
+
+    @Override
+    public void stopHear(String userId) {
+        Hear data = new Hear();
+        data.setUserId(userId);
+        data.setStatus(EHearStatus.STOP.getCode());
+        hearDAO.updateStopHear(data);
+    }
+
+    @Override
+    public void assign(String userId) {
+        Hear data = new Hear();
+        data.setUserId(userId);
+        data.setStatus(EHearStatus.ASSIGN.getCode());
+        hearDAO.updateStopHear(data);
+    }
+
+    @Override
+    public void assignReceive(String userId) {
+        Hear data = new Hear();
+        data.setUserId(userId);
+        data.setStatus(EHearStatus.STOP.getCode());
+        hearDAO.updateStopHear(data);
+    }
+
+    @Override
+    public void assignReject(String userId) {
+        Hear data = new Hear();
+        data.setUserId(userId);
+        data.setStatus(EHearStatus.ING.getCode());
+        hearDAO.updateStopHear(data);
+    }
+
 }

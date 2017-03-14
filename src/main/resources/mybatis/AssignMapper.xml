@@ -12,8 +12,14 @@
 	</resultMap>
 	<sql id="where_condition">
 		<trim prefix="WHERE" prefixOverrides="AND | OR">
-			<if test="code != null and code != '' ">
-				AND t.code = #{code}
+			<if test="id != null and id != '' ">
+				AND t.id = #{id}
+			</if>
+			<if test="userId != null and userId != '' ">
+				AND t.user_id = #{userId}
+			</if>
+			<if test="status != null and status != '' ">
+				AND t.status = #{status}
 			</if>
 		</trim>
 	</sql>
@@ -44,16 +50,14 @@
 	<insert id="insert_assign" parameterType="assign">
 		INSERT INTO
 		tp_assign(
-		id
-		,user_id
+		user_id
 		,demand_code
 		,dealer_code
 		,create_datetime
 		,status
 		)
 		VALUES(
-		#{id}
-		,#{userId}
+		#{userId}
 		,#{demandCode}
 		,#{dealerCode}
 		,#{createDatetime}
@@ -69,7 +73,21 @@
 		,dealer_code = #{dealerCode}
 		,create_datetime = #{createDatetime}
 		,status = #{status}
-		WHERE code = #{code}
+		WHERE id = #{id}
+	</update>
+	
+	<update id="update_assignReceive" parameterType="assign">
+		UPDATE tp_assign
+		SET
+		status = #{status}
+		WHERE id = #{id}
+	</update>
+	
+	<update id="update_assignReject" parameterType="assign">
+		UPDATE tp_assign
+		SET
+		status = #{status}
+		WHERE id = #{id}
 	</update>
 
 

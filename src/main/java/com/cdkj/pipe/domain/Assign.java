@@ -1,5 +1,7 @@
 package com.cdkj.pipe.domain;
 
+import java.util.Date;
+
 import com.cdkj.pipe.dao.base.ABaseDO;
 
 /**
@@ -10,72 +12,72 @@ import com.cdkj.pipe.dao.base.ABaseDO;
 */
 public class Assign extends ABaseDO {
 
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	// ID主键
-	private String id;
+    // ID主键
+    private Long id;
 
-	// 水电工编号
-	private String userId;
+    // 水电工编号
+    private String userId;
 
-	// 需求编号
-	private String demandCode;
+    // 需求编号
+    private String demandCode;
 
-	// 经销商编号
-	private String dealerCode;
+    // 经销商编号
+    private String dealerCode;
 
-	// 指派时间
-	private String createDatetime;
+    // 指派时间
+    private Date createDatetime;
 
-	// 状态
-	private String status;
+    // 状态
+    private String status;
 
-	public void setId(String id) {
-		this.id = id;
-	}
+    public Long getId() {
+        return id;
+    }
 
-	public String getId() {
-		return id;
-	}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	public void setUserId(String userId) {
-		this.userId = userId;
-	}
+    public String getUserId() {
+        return userId;
+    }
 
-	public String getUserId() {
-		return userId;
-	}
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
 
-	public void setDemandCode(String demandCode) {
-		this.demandCode = demandCode;
-	}
+    public String getDemandCode() {
+        return demandCode;
+    }
 
-	public String getDemandCode() {
-		return demandCode;
-	}
+    public void setDemandCode(String demandCode) {
+        this.demandCode = demandCode;
+    }
 
-	public void setDealerCode(String dealerCode) {
-		this.dealerCode = dealerCode;
-	}
+    public String getDealerCode() {
+        return dealerCode;
+    }
 
-	public String getDealerCode() {
-		return dealerCode;
-	}
+    public void setDealerCode(String dealerCode) {
+        this.dealerCode = dealerCode;
+    }
 
-	public void setCreateDatetime(String createDatetime) {
-		this.createDatetime = createDatetime;
-	}
+    public Date getCreateDatetime() {
+        return createDatetime;
+    }
 
-	public String getCreateDatetime() {
-		return createDatetime;
-	}
+    public void setCreateDatetime(Date createDatetime) {
+        this.createDatetime = createDatetime;
+    }
 
-	public void setStatus(String status) {
-		this.status = status;
-	}
+    public String getStatus() {
+        return status;
+    }
 
-	public String getStatus() {
-		return status;
-	}
+    public void setStatus(String status) {
+        this.status = status;
+    }
 
 }

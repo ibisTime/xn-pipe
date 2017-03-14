@@ -5,22 +5,40 @@ import java.util.List;
 import com.cdkj.pipe.bo.base.Paginable;
 import com.cdkj.pipe.domain.Assign;
 
-
-
 public interface IAssignAO {
-	static final String DEFAULT_ORDER_COLUMN = "code";
 
+    static final String DEFAULT_ORDER_COLUMN = "id";
 
-	public String addAssign(Assign data);
+    public Paginable<Assign> queryAssignPage(int start, int limit,
+            Assign condition);
 
-	public int dropAssign(String code);
+    public List<Assign> queryAssignList(Assign condition);
 
-	public int editAssign(Assign data);
+    public Assign getAssign(String code);
 
-	public Paginable<Assign> queryAssignPage(int start, int limit, Assign condition);
+    /**
+     * 查询水电工当前指派订单
+     * @param userId
+     * @return 
+     * @create: 2017年3月14日 下午2:22:02 haiqingzheng
+     * @history:
+     */
+    public Assign getCurrentAssign(String userId);
 
-	public List<Assign> queryAssignList(Assign condition);
+    /**
+     * 接单
+     * @param userId 
+     * @create: 2017年3月14日 下午2:22:23 haiqingzheng
+     * @history:
+     */
+    public void reveive(String userId);
 
-	public Assign getAssign(String code);
+    /**
+     * 拒单
+     * @param userId 
+     * @create: 2017年3月14日 下午2:22:32 haiqingzheng
+     * @history:
+     */
+    public void reject(String userId);
 
 }

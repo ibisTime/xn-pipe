@@ -1,21 +1,20 @@
 /**
- * @Title XN619027Req.java 
+ * @Title XN619050Req.java 
  * @Package com.cdkj.pipe.dto.req 
  * @Description 
  * @author leo(haiqing)  
- * @date 2017年3月12日 上午11:49:28 
+ * @date 2017年3月13日 下午8:13:58 
  * @version V1.0   
  */
 package com.cdkj.pipe.dto.req;
 
 /** 
  * @author: haiqingzheng 
- * @since: 2017年3月12日 上午11:49:28 
+ * @since: 2017年3月13日 下午8:13:58 
  * @history:
  */
-public class XN619027Req {
+public class XN619050Req {
 
-    // 水电工编号
     private String userId;
 
     public String getUserId() {
