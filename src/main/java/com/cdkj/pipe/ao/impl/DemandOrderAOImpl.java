@@ -62,11 +62,12 @@ public class DemandOrderAOImpl implements IDemandOrderAO {
     public void userCancel(String code, String userId) {
         DemandOrder demandOrder = demandOrderBO.getDemandOrder(code);
         if (!EDemandOrderStatus.ING.getCode().equals(demandOrder.getStatus())) {
-            throw new BizException("xn0000", "当前订单状态不允许进行去取消操作");
+            throw new BizException("xn0000", "当前订单状态不允许进行取消操作");
         }
-        // 修改订单状态
-        demandBO.cancel(code, userId);
         // 修改需求状态
+        demandBO.cancel(demandOrder.getDemandCode(), userId);
+
+        // 修改订单状态
         demandOrderBO.userCancel(demandOrder, userId);
     }
 
@@ -75,10 +76,11 @@ public class DemandOrderAOImpl implements IDemandOrderAO {
     public void dealerCancel(String code, String dealerCode) {
         DemandOrder demandOrder = demandOrderBO.getDemandOrder(code);
         if (!EDemandOrderStatus.ING.getCode().equals(demandOrder.getStatus())) {
-            throw new BizException("xn0000", "当前订单状态不允许进行去取消操作");
+            throw new BizException("xn0000", "当前订单状态不允许进行取消操作");
         }
         // 修改需求状态
-        demandBO.cancel(code, dealerCode);
+        demandBO.cancel(demandOrder.getDemandCode(), dealerCode);
+
         // 修改订单状态
         demandOrderBO.dealerCancel(demandOrder, dealerCode);
     }
