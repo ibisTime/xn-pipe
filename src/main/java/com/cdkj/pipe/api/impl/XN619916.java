@@ -4,29 +4,29 @@ import com.cdkj.pipe.ao.ISYSConfigAO;
 import com.cdkj.pipe.api.AProcessor;
 import com.cdkj.pipe.common.JsonUtil;
 import com.cdkj.pipe.core.StringValidater;
-import com.cdkj.pipe.dto.req.XN618917Req;
+import com.cdkj.pipe.dto.req.XN619916Req;
 import com.cdkj.pipe.exception.BizException;
 import com.cdkj.pipe.exception.ParaException;
 import com.cdkj.pipe.spring.SpringContextHolder;
 
 /**
- * 根据key获取value值
+ * 详情查询系统参数
  * @author: xieyj 
- * @since: 2016年9月17日 下午1:56:04 
+ * @since: 2016年9月17日 下午1:55:26 
  * @history:
  */
-public class XN618917 extends AProcessor {
+public class XN619916 extends AProcessor {
     private ISYSConfigAO sysConfigAO = SpringContextHolder
         .getBean(ISYSConfigAO.class);
 
-    private XN618917Req req = null;
+    private XN619916Req req = null;
 
     /** 
      * @see com.cdkj.tour.api.IProcessor#doBusiness()
      */
     @Override
     public Object doBusiness() throws BizException {
-        return sysConfigAO.getSYSConfig(req.getCkey());
+        return sysConfigAO.getSYSConfig(StringValidater.toLong(req.getId()));
     }
 
     /** 
@@ -34,8 +34,8 @@ public class XN618917 extends AProcessor {
      */
     @Override
     public void doCheck(String inputparams) throws ParaException {
-        req = JsonUtil.json2Bean(inputparams, XN618917Req.class);
-        StringValidater.validateBlank(req.getCkey());
+        req = JsonUtil.json2Bean(inputparams, XN619916Req.class);
+        StringValidater.validateBlank(req.getId());
     }
 
 }

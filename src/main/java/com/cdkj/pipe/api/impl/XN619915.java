@@ -7,7 +7,7 @@ import com.cdkj.pipe.api.AProcessor;
 import com.cdkj.pipe.common.JsonUtil;
 import com.cdkj.pipe.core.StringValidater;
 import com.cdkj.pipe.domain.SYSConfig;
-import com.cdkj.pipe.dto.req.XN618915Req;
+import com.cdkj.pipe.dto.req.XN619915Req;
 import com.cdkj.pipe.exception.BizException;
 import com.cdkj.pipe.exception.ParaException;
 import com.cdkj.pipe.spring.SpringContextHolder;
@@ -18,11 +18,11 @@ import com.cdkj.pipe.spring.SpringContextHolder;
  * @since: 2016年9月17日 下午1:55:07 
  * @history:
  */
-public class XN618915 extends AProcessor {
+public class XN619915 extends AProcessor {
     private ISYSConfigAO sysConfigAO = SpringContextHolder
         .getBean(ISYSConfigAO.class);
 
-    private XN618915Req req = null;
+    private XN619915Req req = null;
 
     @Override
     public Object doBusiness() throws BizException {
@@ -41,7 +41,7 @@ public class XN618915 extends AProcessor {
 
     @Override
     public void doCheck(String inputparams) throws ParaException {
-        req = JsonUtil.json2Bean(inputparams, XN618915Req.class);
+        req = JsonUtil.json2Bean(inputparams, XN619915Req.class);
         StringValidater.validateBlank(req.getStart(), req.getLimit());
     }
 }

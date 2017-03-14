@@ -2,12 +2,15 @@ package com.cdkj.pipe.dto.req;
 
 /**
  * @author: xieyj 
- * @since: 2016年9月17日 下午4:09:34 
+ * @since: 2016年9月17日 下午4:09:29 
  * @history:
  */
-public class XN618911Req {
-    // 编号
-    private Long id;
+public class XN619910Req {
+    // 类型(必填)
+    private String type;
+
+    // key值（必填）
+    private String ckey;
 
     // 值（必填）
     private String cvalue;
@@ -18,12 +21,20 @@ public class XN618911Req {
     // 备注（选填）
     private String remark;
 
-    public Long getId() {
-        return id;
+    public String getType() {
+        return type;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getCkey() {
+        return ckey;
+    }
+
+    public void setCkey(String ckey) {
+        this.ckey = ckey;
     }
 
     public String getCvalue() {
