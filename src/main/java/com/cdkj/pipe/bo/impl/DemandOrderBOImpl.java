@@ -112,7 +112,7 @@ public class DemandOrderBOImpl extends PaginableBOImpl<DemandOrder> implements
         order.setUpdater(userId);
         order.setUpdateDatetime(new Date());
         order.setRemark("水电工原因取消");
-        demandOrderDAO.updateComplete(order);
+        demandOrderDAO.updateUserCancel(order);
 
     }
 
@@ -122,7 +122,7 @@ public class DemandOrderBOImpl extends PaginableBOImpl<DemandOrder> implements
         order.setUpdater(dealerCode);
         order.setUpdateDatetime(new Date());
         order.setRemark("经销商原因取消");
-        demandOrderDAO.updateComplete(order);
+        demandOrderDAO.updateDealerCancel(order);
 
     }
 

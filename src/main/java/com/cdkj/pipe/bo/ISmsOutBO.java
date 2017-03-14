@@ -21,6 +21,5 @@ public interface ISmsOutBO {
      */
     void qunSent(List<String> userList, String notice);
 
-    public void sendSmsOut(String mobile, String content, String bizType,
-            String systemCode);
+    public void sendSmsOut(String mobile, String content, String systemCode);
 }

@@ -44,8 +44,7 @@ public class SmsOutBOImpl implements ISmsOutBO {
     }
 
     @Override
-    public void sendSmsOut(String mobile, String content, String bizType,
-            String systemCode) {
+    public void sendSmsOut(String mobile, String content, String systemCode) {
         try {
             XN804080Req req = new XN804080Req();
             req.setMobile(mobile);

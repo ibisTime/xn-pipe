@@ -9,6 +9,22 @@
 		<result column="dealer_code" property="dealerCode" />
 		<result column="create_datetime" property="createDatetime" />
 		<result column="status" property="status" />
+		
+		<association property="dealer" javaType="dealer">   
+		    <result column="dealer_name" property="name" />
+        </association>
+        
+        <association property="demand" javaType="demand">   
+            <result column="demand_summary" property="summary" />
+            <result column="demand_pic" property="pic" />
+		    <result column="demand_start_datetime" property="startDatetime" />
+		    <result column="demand_end_datetime" property="endDatetime" />
+		    <result column="demand_province" property="province" />
+		    <result column="demand_city" property="city" />
+		    <result column="demand_area" property="area" />
+		    <result column="demand_address" property="address" />
+		    <result column="demand_price" property="price" />
+        </association>
 	</resultMap>
 	<sql id="where_condition">
 		<trim prefix="WHERE" prefixOverrides="AND | OR">
@@ -31,8 +47,19 @@
 		,t.dealer_code
 		,t.create_datetime
 		,t.status
+		,tdealer.name dealer_name
+		,tdemand.summary demand_summary
+		,tdemand.pic demand_pic
+		,tdemand.start_datetime demand_start_datetime
+		,tdemand.end_datetime demand_end_datetime
+		,tdemand.province demand_province
+		,tdemand.city demand_city
+		,tdemand.area demand_area
+		,tdemand.address demand_address
+		,tdemand.price demand_price
 		FROM
-		tp_assign t
+		tp_assign t LEFT JOIN tp_demand tdemand ON t.demand_code = tdemand.code 
+		            LEFT JOIN tp_dealer tdealer ON tdemand.dealer_code = tdealer.code
 		<include refid="where_condition" />
 		<trim prefix="ORDER BY ">
 			<if test="order != null and order != '' ">

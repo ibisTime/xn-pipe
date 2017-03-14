@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.cdkj.pipe.ao.IDemandAO;
 import com.cdkj.pipe.api.converter.ReqConverter;
 import com.cdkj.pipe.bo.IAssignBO;
+import com.cdkj.pipe.bo.IDealerBO;
 import com.cdkj.pipe.bo.IDemandBO;
 import com.cdkj.pipe.bo.IDemandOrderBO;
 import com.cdkj.pipe.bo.IHearBO;
@@ -16,6 +17,7 @@ import com.cdkj.pipe.bo.ISYSConfigBO;
 import com.cdkj.pipe.bo.ISmsOutBO;
 import com.cdkj.pipe.bo.base.Paginable;
 import com.cdkj.pipe.core.StringValidater;
+import com.cdkj.pipe.domain.Dealer;
 import com.cdkj.pipe.domain.Demand;
 import com.cdkj.pipe.domain.Hear;
 import com.cdkj.pipe.dto.req.XN619020Req;
@@ -23,6 +25,7 @@ import com.cdkj.pipe.dto.req.XN619022Req;
 import com.cdkj.pipe.enums.EDemandOrderType;
 import com.cdkj.pipe.enums.EDemandStatus;
 import com.cdkj.pipe.enums.EHearStatus;
+import com.cdkj.pipe.enums.ESystemCode;
 import com.cdkj.pipe.exception.BizException;
 
 @Service
@@ -30,6 +33,9 @@ public class DemandAOImpl implements IDemandAO {
 
     @Autowired
     private IDemandBO demandBO;
+
+    @Autowired
+    private IDealerBO dealerBO;
 
     @Autowired
     private IDemandOrderBO demandOrderBO;
@@ -108,7 +114,9 @@ public class DemandAOImpl implements IDemandAO {
         demandOrderBO.saveDemandOrder(EDemandOrderType.RECEIVE.getCode(), code,
             demand.getDealerCode(), userId, "订单进行中");
         // 短信通知经销商
-        // smsOutBO.sentContent(userId, content);
+        Dealer dealer = dealerBO.getDealer(demand.getDealerCode());
+        smsOutBO.sendSmsOut(dealer.getMobile(), "您最新发布的需求已经被接单，请及时登录后台查看详情！",
+            ESystemCode.QNSDGZS.getCode());
     }
 
     @Override

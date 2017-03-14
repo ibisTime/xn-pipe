@@ -32,6 +32,26 @@ public class Assign extends ABaseDO {
     // 状态
     private String status;
 
+    private Demand demand;
+
+    private Dealer dealer;
+
+    public Demand getDemand() {
+        return demand;
+    }
+
+    public void setDemand(Demand demand) {
+        this.demand = demand;
+    }
+
+    public Dealer getDealer() {
+        return dealer;
+    }
+
+    public void setDealer(Dealer dealer) {
+        this.dealer = dealer;
+    }
+
     public Long getId() {
         return id;
     }
