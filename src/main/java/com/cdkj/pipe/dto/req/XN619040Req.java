@@ -18,11 +18,22 @@ public class XN619040Req {
     // 水电工编号
     private String userId;
 
+    // 找活范围
+    private String content;
+
     public String getUserId() {
         return userId;
     }
 
     public void setUserId(String userId) {
         this.userId = userId;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
     }
 }

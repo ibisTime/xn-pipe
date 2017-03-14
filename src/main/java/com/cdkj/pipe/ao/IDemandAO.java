@@ -29,6 +29,15 @@ public interface IDemandAO {
      */
     public void takeDirectly(String code, String userId);
 
+    /**
+     * 派单
+     * @param code
+     * @param userId 
+     * @create: 2017年3月14日 下午12:27:35 haiqingzheng
+     * @history:
+     */
+    public void assgin(String code, String userId);
+
     public Paginable<Demand> queryDemandPage(int start, int limit,
             Demand condition);
 

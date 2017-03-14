@@ -8,9 +8,12 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.cdkj.pipe.ao.IDemandAO;
 import com.cdkj.pipe.api.converter.ReqConverter;
+import com.cdkj.pipe.bo.IAssignBO;
 import com.cdkj.pipe.bo.IDemandBO;
 import com.cdkj.pipe.bo.IDemandOrderBO;
+import com.cdkj.pipe.bo.ISYSConfigBO;
 import com.cdkj.pipe.bo.base.Paginable;
+import com.cdkj.pipe.core.StringValidater;
 import com.cdkj.pipe.domain.Demand;
 import com.cdkj.pipe.dto.req.XN619020Req;
 import com.cdkj.pipe.dto.req.XN619022Req;
@@ -26,6 +29,12 @@ public class DemandAOImpl implements IDemandAO {
 
     @Autowired
     private IDemandOrderBO demandOrderBO;
+
+    @Autowired
+    private ISYSConfigBO sysConfigBO;
+
+    @Autowired
+    private IAssignBO assignBO;
 
     @Override
     public String addDemand(XN619020Req req) {
@@ -91,6 +100,12 @@ public class DemandAOImpl implements IDemandAO {
     }
 
     @Override
+    public void assgin(String code, String userId) {
+        // TODO Auto-generated method stub
+
+    }
+
+    @Override
     public Paginable<Demand> queryDemandPage(int start, int limit,
             Demand condition) {
         return demandBO.getPaginable(start, limit, condition);
@@ -109,6 +124,8 @@ public class DemandAOImpl implements IDemandAO {
     @Override
     public Paginable<Demand> queryRangeDemandPage(int start, int limit,
             Demand condition) {
+        condition.setDistance(StringValidater.toDouble(sysConfigBO
+            .getConfigValue("distance")));
         return demandBO.queryRangeDemandPage(start, limit, condition);
     }
 

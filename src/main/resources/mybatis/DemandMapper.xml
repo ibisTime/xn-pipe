@@ -44,6 +44,7 @@
 		<result column="summary" property="summary" />
 		<result column="status" property="status" />
 		<result column="create_datetime" property="createDatetime" />
+		<result column="distance" property="distance" />
 		
 		<association property="dealer" javaType="dealer">   
             <result column="dealer_pic" property="pic" />
@@ -54,6 +55,9 @@
 		<trim prefix="WHERE" prefixOverrides="AND | OR">
 			<if test="code != null and code != '' ">
 				AND t.code = #{code}
+			</if>
+			<if test="dealerCode != null and dealerCode != '' ">
+				AND t.dealer_code = #{dealerCode}
 			</if>
 			<if test="province != null and province != '' ">
 				AND t.province = #{province}
@@ -70,6 +74,9 @@
 			<if test="status != null and status != '' ">
 				AND t.status = #{status}
 			</if>
+			<!-- <if test="distance != null and distance != '' ">
+				<![CDATA[ having distance <= #{distance}]]>
+			</if> -->
 		</trim>
 	</sql>
 	<select id="select_demand" parameterType="demand" resultMap="demand_DB_Result">
@@ -124,6 +131,7 @@
 		,t.create_datetime
 		,tdealer.pic dealer_pic
 		,tdealer.name dealer_name
+		<!-- ,ROUND(6378.138*2*ASIN(SQRT(POW(SIN((#{latitude}*PI()/180-t.latitude*PI()/180)/2),2)+COS(#{latitude}*PI()/180)*COS(t.latitude*PI()/180)*POW(SIN((#{longitude}*PI()/180-t.longitude*PI()/180)/2),2)))*1000) as distance -->
 		FROM
 		tp_demand t LEFT JOIN tp_dealer tdealer ON t.dealer_code = tdealer.code
 		<include refid="where_condition" />

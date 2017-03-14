@@ -15,22 +15,11 @@ package com.cdkj.pipe.dto.req;
  */
 public class XN619025Req {
 
-    // 经销商编号
-    private String dealerCode;
-
     // 需求编号
     private String code;
 
     // 水电工编号
     private String userId;
-
-    public String getDealerCode() {
-        return dealerCode;
-    }
-
-    public void setDealerCode(String dealerCode) {
-        this.dealerCode = dealerCode;
-    }
 
     public String getCode() {
         return code;

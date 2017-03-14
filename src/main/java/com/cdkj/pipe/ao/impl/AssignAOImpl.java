@@ -53,4 +53,9 @@ public class AssignAOImpl implements IAssignAO {
     public Assign getAssign(String code) {
         return assignBO.getAssign(code);
     }
+
+    @Override
+    public Assign getCurrentAssign(String userId) {
+        return assignBO.getCurrentAssign(userId);
+    }
 }

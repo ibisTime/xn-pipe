@@ -6,9 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cdkj.pipe.ao.IHearAO;
+import com.cdkj.pipe.bo.IAssignBO;
 import com.cdkj.pipe.bo.IHearBO;
-import com.cdkj.pipe.bo.base.Paginable;
+import com.cdkj.pipe.bo.IUserBO;
 import com.cdkj.pipe.domain.Hear;
+import com.cdkj.pipe.enums.EHearStatus;
 import com.cdkj.pipe.exception.BizException;
 
 @Service
@@ -17,39 +19,51 @@ public class HearAOImpl implements IHearAO {
     @Autowired
     private IHearBO hearBO;
 
-    @Override
-    public String addHear(Hear data) {
-        return hearBO.saveHear(data);
-    }
+    @Autowired
+    private IAssignBO assignBO;
+
+    @Autowired
+    private IUserBO userBO;
 
     @Override
-    public int editHear(Hear data) {
-        // if (!hearBO.isHearExist(data.getCode())) {
-        // throw new BizException("xn0000", "记录编号不存在");
-        // }
-        return hearBO.refreshHear(data);
-    }
-
-    @Override
-    public int dropHear(String code) {
-        if (!hearBO.isHearExist(code)) {
-            throw new BizException("xn0000", "记录编号不存在");
+    public Hear getHear(String userId) {
+        Hear hear = hearBO.getHear(userId);
+        if (hear == null) {
+            hear = new Hear();
+            hear.setUserId(userId);
+            hear.setStatus(EHearStatus.STOP.getCode());
+            hearBO.saveHear(hear);
         }
-        return hearBO.removeHear(code);
+        return hear;
     }
 
     @Override
-    public Paginable<Hear> queryHearPage(int start, int limit, Hear condition) {
-        return hearBO.getPaginable(start, limit, condition);
+    public void startHear(String userId, String content) {
+        Hear hear = this.getHear(userId);
+        if (!EHearStatus.STOP.getCode().equals(hear.getStatus())) {
+            throw new BizException("xn0000", "当前用户状态不是停止状态，无法进行听单");
+        }
+        hearBO.startHear(userId, content);
     }
 
     @Override
-    public List<Hear> queryHearList(Hear condition) {
-        return hearBO.queryHearList(condition);
+    public void stopHear(String userId) {
+        Hear hear = this.getHear(userId);
+        if (!EHearStatus.ING.getCode().equals(hear.getStatus())) {
+            throw new BizException("xn0000", "当前用户状态不是听单状态，无法停止听单");
+        }
+        hearBO.stopHear(userId);
     }
 
     @Override
-    public Hear getHear(String code) {
-        return hearBO.getHear(code);
+    public List<Hear> queryNearbyUser(String longitude, String latitude) {
+        Hear condition = new Hear();
+        condition.setStatus(EHearStatus.ING.getCode());
+        List<Hear> userList = hearBO.queryHearList(condition);
+        for (Hear hear : userList) {
+            hear.setUser(userBO.getRemoteUser(hear.getUserId(),
+                hear.getUserId()));
+        }
+        return userList;
     }
 }
