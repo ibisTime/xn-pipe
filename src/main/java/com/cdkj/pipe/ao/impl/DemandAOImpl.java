@@ -117,7 +117,7 @@ public class DemandAOImpl implements IDemandAO {
             throw new BizException("xn0000", "水电工已经不处于听单状态");
         }
         // 修改需求状态
-        demandBO.assgin(code, updater);
+        demandBO.assign(code, updater);
         // 形成派单记录
         assignBO.saveAssign(demand, userId);
         // 修改水电工听单状态
