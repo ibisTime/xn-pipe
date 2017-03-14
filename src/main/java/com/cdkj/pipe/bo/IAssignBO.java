@@ -4,12 +4,13 @@ import java.util.List;
 
 import com.cdkj.pipe.bo.base.IPaginableBO;
 import com.cdkj.pipe.domain.Assign;
+import com.cdkj.pipe.domain.Demand;
 
 public interface IAssignBO extends IPaginableBO<Assign> {
 
     public boolean isAssignExist(String code);
 
-    public String saveAssign(Assign data);
+    public void saveAssign(Demand demand, String userId);
 
     public int removeAssign(String code);
 
@@ -20,5 +21,9 @@ public interface IAssignBO extends IPaginableBO<Assign> {
     public Assign getAssign(String code);
 
     public Assign getCurrentAssign(String userId);
+
+    public void assignReceive(Assign assign);
+
+    public void assignReject(Assign assign);
 
 }

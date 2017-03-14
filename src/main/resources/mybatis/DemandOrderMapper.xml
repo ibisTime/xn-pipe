@@ -22,6 +22,7 @@
         
         <association property="demand" javaType="demand">   
             <result column="demand_summary" property="summary" />
+            <result column="demand_pic" property="pic" />
 		    <result column="demand_start_datetime" property="startDatetime" />
 		    <result column="demand_end_datetime" property="endDatetime" />
 		    <result column="demand_province" property="province" />
@@ -77,6 +78,7 @@
 		,tdealer.pic dealer_pic
 		,tdealer.name dealer_name
 		,tdemand.summary demand_summary
+		,tdemand.pic demand_pic
 		,tdemand.start_datetime demand_start_datetime
 		,tdemand.end_datetime demand_end_datetime
 		,tdemand.province demand_province

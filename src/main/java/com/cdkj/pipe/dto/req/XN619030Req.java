@@ -20,6 +20,9 @@ public class XN619030Req extends APageReq {
      */
     private static final long serialVersionUID = -3144876227808924204L;
 
+    // 经销商编号
+    private String dealerCode;
+
     // 省（选填）
     private String province;
 
@@ -34,6 +37,14 @@ public class XN619030Req extends APageReq {
 
     // 状态（选填）
     private String status;
+
+    public String getDealerCode() {
+        return dealerCode;
+    }
+
+    public void setDealerCode(String dealerCode) {
+        this.dealerCode = dealerCode;
+    }
 
     public String getProvince() {
         return province;

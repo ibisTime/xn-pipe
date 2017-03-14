@@ -14,6 +14,12 @@ public interface IDemandDAO extends IBaseDAO<Demand> {
 
     public int updateTake(Demand data);
 
+    public int updateAssign(Demand data);
+
+    public int updateAssignReceive(Demand data);
+
+    public int updateAssignReject(Demand data);
+
     public int updateCancel(Demand data);
 
     public int updateComplete(Demand data);

@@ -18,6 +18,9 @@ public class XN619025Req {
     // 需求编号
     private String code;
 
+    // 操作人
+    private String updater;
+
     // 水电工编号
     private String userId;
 
@@ -35,5 +38,13 @@ public class XN619025Req {
 
     public void setUserId(String userId) {
         this.userId = userId;
+    }
+
+    public String getUpdater() {
+        return updater;
+    }
+
+    public void setUpdater(String updater) {
+        this.updater = updater;
     }
 }

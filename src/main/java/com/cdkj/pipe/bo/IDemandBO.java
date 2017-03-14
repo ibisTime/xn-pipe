@@ -22,6 +22,12 @@ public interface IDemandBO extends IPaginableBO<Demand> {
 
     public int take(String code, String userId);
 
+    public void assign(String code, String updater);
+
+    public void assignReceive(String code, String userId);
+
+    public void assignReject(String code, String userId);
+
     public void cancel(String code, String userId);
 
     public void complete(String code, String userId);

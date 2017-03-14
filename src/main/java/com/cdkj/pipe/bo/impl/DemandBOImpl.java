@@ -124,13 +124,46 @@ public class DemandBOImpl extends PaginableBOImpl<Demand> implements IDemandBO {
     }
 
     @Override
+    public void assign(String code, String updater) {
+        Demand data = new Demand();
+        data.setStatus(EDemandStatus.ASSIGN.getCode());
+        data.setCode(code);
+        data.setUpdater(updater);
+        data.setUpdateDatetime(new Date());
+        data.setRemark("已派单，等待水电工处理");
+        demandDAO.updateAssign(data);
+    }
+
+    @Override
+    public void assignReceive(String code, String userId) {
+        Demand data = new Demand();
+        data.setStatus(EDemandStatus.RECEIVE.getCode());
+        data.setCode(code);
+        data.setUpdater(userId);
+        data.setUpdateDatetime(new Date());
+        data.setRemark("经销商派单，用户已接单");
+        demandDAO.updateAssignReceive(data);
+    }
+
+    @Override
+    public void assignReject(String code, String userId) {
+        Demand data = new Demand();
+        data.setStatus(EDemandStatus.PUT_ON.getCode());
+        data.setCode(code);
+        data.setUpdater(userId);
+        data.setUpdateDatetime(new Date());
+        data.setRemark("经销商派单，用户拒绝接单");
+        demandDAO.updateAssignReceive(data);
+    }
+
+    @Override
     public void cancel(String code, String userId) {
         Demand data = new Demand();
         data.setStatus(EDemandStatus.CANCEL.getCode());
         data.setCode(code);
         data.setUpdater(userId);
         data.setUpdateDatetime(new Date());
-        data.setRemark("用户接单");
+        data.setRemark("需求订单被取消");
         demandDAO.updateCancel(data);
     }
 
@@ -141,7 +174,7 @@ public class DemandBOImpl extends PaginableBOImpl<Demand> implements IDemandBO {
         data.setCode(code);
         data.setUpdater(userId);
         data.setUpdateDatetime(new Date());
-        data.setRemark("用户接单");
+        data.setRemark("需求订单已完成");
         demandDAO.updateComplete(data);
     }
 

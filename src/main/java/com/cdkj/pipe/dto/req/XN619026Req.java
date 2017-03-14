@@ -15,19 +15,8 @@ package com.cdkj.pipe.dto.req;
  */
 public class XN619026Req {
 
-    // 需求编号
-    private String code;
-
     // 水电工编号
     private String userId;
-
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
-    }
 
     public String getUserId() {
         return userId;

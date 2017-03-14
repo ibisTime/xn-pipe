@@ -247,6 +247,36 @@
 		WHERE code = #{code}
 	</update>
 	
+	<update id="update_assign" parameterType="dealer">
+		UPDATE tp_demand
+		SET
+		status = #{status}
+		,updater = #{updater}
+		,update_datetime = #{updateDatetime}
+		,remark = #{remark}
+		WHERE code = #{code}
+	</update>
+	
+	<update id="update_assignReceive" parameterType="dealer">
+		UPDATE tp_demand
+		SET
+		status = #{status}
+		,updater = #{updater}
+		,update_datetime = #{updateDatetime}
+		,remark = #{remark}
+		WHERE code = #{code}
+	</update>
+	
+	<update id="update_assignReject" parameterType="dealer">
+		UPDATE tp_demand
+		SET
+		status = #{status}
+		,updater = #{updater}
+		,update_datetime = #{updateDatetime}
+		,remark = #{remark}
+		WHERE code = #{code}
+	</update>
+	
 	<update id="update_cancel" parameterType="dealer">
 		UPDATE tp_demand
 		SET

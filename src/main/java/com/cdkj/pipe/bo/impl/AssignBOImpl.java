@@ -1,5 +1,6 @@
 package com.cdkj.pipe.bo.impl;
 
+import java.util.Date;
 import java.util.List;
 
 import org.apache.commons.collections.CollectionUtils;
@@ -11,6 +12,7 @@ import com.cdkj.pipe.bo.IAssignBO;
 import com.cdkj.pipe.bo.base.PaginableBOImpl;
 import com.cdkj.pipe.dao.IAssignDAO;
 import com.cdkj.pipe.domain.Assign;
+import com.cdkj.pipe.domain.Demand;
 import com.cdkj.pipe.enums.EAssignStatus;
 import com.cdkj.pipe.exception.BizException;
 
@@ -31,14 +33,14 @@ public class AssignBOImpl extends PaginableBOImpl<Assign> implements IAssignBO {
     }
 
     @Override
-    public String saveAssign(Assign data) {
-        String code = null;
-        if (data != null) {
-            // code = OrderNoGenerater.generateM(EGeneratePrefix.CT.getCode());
-            // data.setCode(code);
-            assignDAO.insert(data);
-        }
-        return code;
+    public void saveAssign(Demand demand, String userId) {
+        Assign data = new Assign();
+        data.setUserId(userId);
+        data.setDemandCode(demand.getCode());
+        data.setDealerCode(demand.getDealerCode());
+        data.setCreateDatetime(new Date());
+        data.setStatus(EAssignStatus.WAITING.getCode());
+        assignDAO.insert(data);
     }
 
     @Override
@@ -90,5 +92,17 @@ public class AssignBOImpl extends PaginableBOImpl<Assign> implements IAssignBO {
             throw new BizException("xn0000", "不存在待处理的指派订单");
         }
         return results.get(0);
+    }
+
+    @Override
+    public void assignReceive(Assign assign) {
+        assign.setStatus(EAssignStatus.RECEIVE.getCode());
+        assignDAO.updateAssignReceive(assign);
+    }
+
+    @Override
+    public void assignReject(Assign assign) {
+        assign.setStatus(EAssignStatus.REJECT.getCode());
+        assignDAO.updateAssignReject(assign);
     }
 }

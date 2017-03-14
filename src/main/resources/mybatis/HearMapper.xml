@@ -66,6 +66,27 @@
 		status = #{status}
 		WHERE user_id = #{userId}
 	</update>
+	
+	<update id="update_assign" parameterType="hear">
+		UPDATE tp_hear
+		SET
+		status = #{status}
+		WHERE user_id = #{userId}
+	</update>
+	
+	<update id="update_assignReceive" parameterType="hear">
+		UPDATE tp_hear
+		SET
+		status = #{status}
+		WHERE user_id = #{userId}
+	</update>
+	
+	<update id="update_assignReject" parameterType="hear">
+		UPDATE tp_hear
+		SET
+		status = #{status}
+		WHERE user_id = #{userId}
+	</update>
 
 
 </mapper>

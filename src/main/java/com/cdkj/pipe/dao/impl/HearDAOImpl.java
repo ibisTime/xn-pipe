@@ -55,4 +55,19 @@ public class HearDAOImpl extends AMybatisTemplate implements IHearDAO {
         return super.update(NAMESPACE.concat("update_stopHear"), data);
     }
 
+    @Override
+    public int updateAssign(Hear data) {
+        return super.update(NAMESPACE.concat("update_assign"), data);
+    }
+
+    @Override
+    public int updateAssignReceive(Hear data) {
+        return super.update(NAMESPACE.concat("update_assignReceive"), data);
+    }
+
+    @Override
+    public int updateAssignReject(Hear data) {
+        return super.update(NAMESPACE.concat("update_assignReject"), data);
+    }
+
 }

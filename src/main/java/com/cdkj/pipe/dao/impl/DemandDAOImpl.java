@@ -61,6 +61,21 @@ public class DemandDAOImpl extends AMybatisTemplate implements IDemandDAO {
     }
 
     @Override
+    public int updateAssign(Demand data) {
+        return super.update(NAMESPACE.concat("update_assign"), data);
+    }
+
+    @Override
+    public int updateAssignReceive(Demand data) {
+        return super.update(NAMESPACE.concat("update_assignReceive"), data);
+    }
+
+    @Override
+    public int updateAssignReject(Demand data) {
+        return super.update(NAMESPACE.concat("update_assignReject"), data);
+    }
+
+    @Override
     public int updateCancel(Demand data) {
         return super.update(NAMESPACE.concat("update_cancel"), data);
     }

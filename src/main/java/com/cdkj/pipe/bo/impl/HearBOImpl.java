@@ -91,4 +91,29 @@ public class HearBOImpl extends PaginableBOImpl<Hear> implements IHearBO {
         data.setStatus(EHearStatus.STOP.getCode());
         hearDAO.updateStopHear(data);
     }
+
+    @Override
+    public void assign(String userId) {
+        Hear data = new Hear();
+        data.setUserId(userId);
+        data.setStatus(EHearStatus.ASSIGN.getCode());
+        hearDAO.updateStopHear(data);
+    }
+
+    @Override
+    public void assignReceive(String userId) {
+        Hear data = new Hear();
+        data.setUserId(userId);
+        data.setStatus(EHearStatus.STOP.getCode());
+        hearDAO.updateStopHear(data);
+    }
+
+    @Override
+    public void assignReject(String userId) {
+        Hear data = new Hear();
+        data.setUserId(userId);
+        data.setStatus(EHearStatus.ING.getCode());
+        hearDAO.updateStopHear(data);
+    }
+
 }

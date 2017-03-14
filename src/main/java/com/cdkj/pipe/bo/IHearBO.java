@@ -23,4 +23,10 @@ public interface IHearBO extends IPaginableBO<Hear> {
 
     public void stopHear(String userId);
 
+    public void assign(String userId);
+
+    public void assignReceive(String userId);
+
+    public void assignReject(String userId);
+
 }
