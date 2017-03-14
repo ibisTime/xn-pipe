@@ -6,7 +6,9 @@ import org.apache.log4j.Logger;
 import org.springframework.stereotype.Component;
 
 import com.cdkj.pipe.bo.ISmsOutBO;
+import com.cdkj.pipe.dto.req.XN804080Req;
 import com.cdkj.pipe.dto.req.XN805905Req;
+import com.cdkj.pipe.dto.res.PKCodeRes;
 import com.cdkj.pipe.http.BizConnecter;
 import com.cdkj.pipe.http.JsonUtils;
 
@@ -40,4 +42,21 @@ public class SmsOutBOImpl implements ISmsOutBO {
             this.sentContent(userId, notice);
         }
     }
+
+    @Override
+    public void sendSmsOut(String mobile, String content, String bizType,
+            String systemCode) {
+        try {
+            XN804080Req req = new XN804080Req();
+            req.setMobile(mobile);
+            req.setContent(content);
+            req.setType("M");
+            req.setSystemCode(systemCode);
+            BizConnecter.getBizData("804080", JsonUtils.object2Json(req),
+                PKCodeRes.class);
+        } catch (Exception e) {
+            logger.error("调用短信发送服务异常");
+        }
+    }
+
 }

@@ -13,6 +13,7 @@ import com.cdkj.pipe.bo.IDemandBO;
 import com.cdkj.pipe.bo.IDemandOrderBO;
 import com.cdkj.pipe.bo.IHearBO;
 import com.cdkj.pipe.bo.ISYSConfigBO;
+import com.cdkj.pipe.bo.ISmsOutBO;
 import com.cdkj.pipe.bo.base.Paginable;
 import com.cdkj.pipe.core.StringValidater;
 import com.cdkj.pipe.domain.Demand;
@@ -41,6 +42,9 @@ public class DemandAOImpl implements IDemandAO {
 
     @Autowired
     private IHearBO hearBO;
+
+    @Autowired
+    private ISmsOutBO smsOutBO;
 
     @Override
     public String addDemand(XN619020Req req) {
@@ -103,6 +107,8 @@ public class DemandAOImpl implements IDemandAO {
         // 形成需求订单
         demandOrderBO.saveDemandOrder(EDemandOrderType.RECEIVE.getCode(), code,
             demand.getDealerCode(), userId, "订单进行中");
+        // 短信通知经销商
+        // smsOutBO.sentContent(userId, content);
     }
 
     @Override
