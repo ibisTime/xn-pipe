@@ -1,0 +1,9 @@
+truncate tp_assign;
+truncate tp_comment;
+truncate tp_dealer;
+truncate tp_demand;
+truncate tp_demand_order;
+truncate tp_hear;
+truncate tp_news;
+truncate tsys_config;
+truncate tsys_dict;
