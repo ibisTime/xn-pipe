@@ -92,7 +92,13 @@ public class DemandOrderAOImpl implements IDemandOrderAO {
     @Override
     public Paginable<DemandOrder> queryDemandOrderPage(int start, int limit,
             DemandOrder condition) {
-        return demandOrderBO.getPaginable(start, limit, condition);
+        Paginable<DemandOrder> results = demandOrderBO.getPaginable(start,
+            limit, condition);
+        for (DemandOrder order : results.getList()) {
+            order.setUser(userBO.getRemoteUser(order.getReceiver(),
+                order.getReceiver()));
+        }
+        return results;
     }
 
     @Override
