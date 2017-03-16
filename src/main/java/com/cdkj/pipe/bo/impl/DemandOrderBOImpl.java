@@ -126,4 +126,12 @@ public class DemandOrderBOImpl extends PaginableBOImpl<DemandOrder> implements
 
     }
 
+    @Override
+    public Long getTakeCountToday(String userId) {
+        DemandOrder condition = new DemandOrder();
+        condition.setReceiver(userId);
+        condition.setReceiveDatetime(new Date());
+        return this.getTotalCount(condition);
+    }
+
 }

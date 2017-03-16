@@ -27,4 +27,13 @@ public interface IDemandOrderBO extends IPaginableBO<DemandOrder> {
 
     public DemandOrder getDemandOrder(String code);
 
+    /**
+     * 今日接单次数
+     * @param userId
+     * @return 
+     * @create: 2017年3月16日 下午3:04:07 haiqingzheng
+     * @history:
+     */
+    public Long getTakeCountToday(String userId);
+
 }

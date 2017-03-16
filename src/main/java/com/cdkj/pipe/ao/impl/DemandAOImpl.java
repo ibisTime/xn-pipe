@@ -16,6 +16,7 @@ import com.cdkj.pipe.bo.IHearBO;
 import com.cdkj.pipe.bo.ISYSConfigBO;
 import com.cdkj.pipe.bo.ISmsOutBO;
 import com.cdkj.pipe.bo.base.Paginable;
+import com.cdkj.pipe.common.SysConstants;
 import com.cdkj.pipe.core.StringValidater;
 import com.cdkj.pipe.domain.Dealer;
 import com.cdkj.pipe.domain.Demand;
@@ -112,6 +113,17 @@ public class DemandAOImpl implements IDemandAO {
         Demand demand = demandBO.getDemand(code);
         if (!EDemandStatus.PUT_ON.getCode().equals(demand.getStatus())) {
             throw new BizException("xn0000", "需求状态不允许接单操作");
+        }
+        // 取得系统参数
+        Long limit = 1L;
+        try {
+            limit = StringValidater.toLong(sysConfigBO.getConfig(
+                SysConstants.LIMIT).getCvalue());
+        } catch (Exception e) {
+
+        }
+        if (demandOrderBO.getTakeCountToday(userId) >= limit) {
+            throw new BizException("xn0000", "今日接单次数已达上限");
         }
         // 修改需求状态
         demandBO.take(code, userId);

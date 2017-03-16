@@ -51,6 +51,9 @@
 			<if test="receiver != null and receiver != '' ">
 				AND t.receiver = #{receiver}
 			</if>
+			<if test="receiveDatetime != null and receiveDatetime != '' ">
+				AND date_format(t.receive_datetime, '%Y%m%d') = date_format(#{receiveDatetime}, '%Y%m%d');
+			</if>
 			<if test="status != null and status != '' ">
 				AND t.status = #{status}
 			</if>
@@ -104,7 +107,7 @@
 		SELECT count(1) FROM tp_demand_order t
 		<include refid="where_condition" />
 	</select>
-
+	
 	<insert id="insert_demandOrder" parameterType="demandOrder">
 		INSERT INTO
 		tp_demand_order(
@@ -181,6 +184,5 @@
 		,remark = #{remark}
 		WHERE code = #{code}
 	</update>
-
 
 </mapper>
