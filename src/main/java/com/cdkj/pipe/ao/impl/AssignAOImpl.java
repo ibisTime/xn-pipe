@@ -8,13 +8,17 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.cdkj.pipe.ao.IAssignAO;
 import com.cdkj.pipe.bo.IAssignBO;
+import com.cdkj.pipe.bo.IDealerBO;
 import com.cdkj.pipe.bo.IDemandBO;
 import com.cdkj.pipe.bo.IDemandOrderBO;
 import com.cdkj.pipe.bo.IHearBO;
+import com.cdkj.pipe.bo.ISmsOutBO;
 import com.cdkj.pipe.bo.base.Paginable;
 import com.cdkj.pipe.domain.Assign;
+import com.cdkj.pipe.domain.Dealer;
 import com.cdkj.pipe.domain.Demand;
 import com.cdkj.pipe.enums.EDemandOrderType;
+import com.cdkj.pipe.enums.ESystemCode;
 
 @Service
 public class AssignAOImpl implements IAssignAO {
@@ -24,6 +28,12 @@ public class AssignAOImpl implements IAssignAO {
 
     @Autowired
     private IDemandBO demandBO;
+
+    @Autowired
+    private IDealerBO dealerBO;
+
+    @Autowired
+    private ISmsOutBO smsOutBO;
 
     @Autowired
     private IDemandOrderBO demandOrderBO;
@@ -71,6 +81,11 @@ public class AssignAOImpl implements IAssignAO {
         // 形成需求订单
         demandOrderBO.saveDemandOrder(EDemandOrderType.RECEIVE.getCode(),
             assign.getDemandCode(), demand.getDealerCode(), userId, "订单进行中");
+
+        // 短信通知经销商
+        Dealer dealer = dealerBO.getDealer(demand.getDealerCode());
+        smsOutBO.sendSmsOut(dealer.getMobile(),
+            "恭喜您，您的需求派单已经被接单，请及时登录网站后台查看详情！", ESystemCode.QNSDGZS.getCode());
     }
 
     @Override
@@ -85,5 +100,10 @@ public class AssignAOImpl implements IAssignAO {
 
         // 修改需求状态
         demandBO.assignReject(assign.getDemandCode(), userId);
+
+        // 短信通知经销商
+        Dealer dealer = dealerBO.getDealer(assign.getDealerCode());
+        smsOutBO.sendSmsOut(dealer.getMobile(),
+            "很抱歉，您的需求派单已经被拒绝，请及时登录网站后台查看详情！", ESystemCode.QNSDGZS.getCode());
     }
 }

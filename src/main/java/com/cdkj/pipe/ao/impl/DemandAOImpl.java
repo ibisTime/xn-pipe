@@ -22,6 +22,7 @@ import com.cdkj.pipe.domain.Demand;
 import com.cdkj.pipe.domain.Hear;
 import com.cdkj.pipe.dto.req.XN619020Req;
 import com.cdkj.pipe.dto.req.XN619022Req;
+import com.cdkj.pipe.enums.EDealerStatus;
 import com.cdkj.pipe.enums.EDemandOrderType;
 import com.cdkj.pipe.enums.EDemandStatus;
 import com.cdkj.pipe.enums.EHearStatus;
@@ -55,6 +56,10 @@ public class DemandAOImpl implements IDemandAO {
     @Override
     public String addDemand(XN619020Req req) {
         Demand data = ReqConverter.converter(req);
+        Dealer dealer = dealerBO.getDealer(req.getDealerCode());
+        if (!EDealerStatus.PUT_ON.getCode().equals(dealer.getStatus())) {
+            throw new BizException("xn0000", "很抱歉，您还未上架或已被下架，请联系平台管理人员！");
+        }
         return demandBO.saveDemand(data);
     }
 
@@ -83,8 +88,9 @@ public class DemandAOImpl implements IDemandAO {
     public int putOn(String code, String updater, String remark) {
         Demand demand = demandBO.getDemand(code);
         if (!EDemandStatus.NEW.getCode().equals(demand.getStatus())
-                && !EDemandStatus.PUT_OFF.getCode().equals(demand.getStatus())) {
-            throw new BizException("xn0000", "只有未发布或者已下架的需求可以发布");
+                && !EDemandStatus.PUT_OFF.getCode().equals(demand.getStatus())
+                && !EDemandStatus.CANCEL.getCode().equals(demand.getStatus())) {
+            throw new BizException("xn0000", "只有未发布、已下架、已取消的需求可以发布上架");
         } else {
             return demandBO.putOn(code, updater, remark);
         }
@@ -136,6 +142,8 @@ public class DemandAOImpl implements IDemandAO {
         assignBO.saveAssign(demand, userId);
         // 修改水电工听单状态
         hearBO.assign(userId);
+        // 短信通知水电工
+        smsOutBO.sentContent(userId, "亲，您有一个新订单了，请登录微信端及时处理！");
     }
 
     @Override

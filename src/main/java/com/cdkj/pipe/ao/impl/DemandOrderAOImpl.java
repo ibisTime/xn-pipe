@@ -11,6 +11,7 @@ import com.cdkj.pipe.bo.IAccountBO;
 import com.cdkj.pipe.bo.ICommentBO;
 import com.cdkj.pipe.bo.IDemandBO;
 import com.cdkj.pipe.bo.IDemandOrderBO;
+import com.cdkj.pipe.bo.IUserBO;
 import com.cdkj.pipe.bo.base.Paginable;
 import com.cdkj.pipe.domain.DemandOrder;
 import com.cdkj.pipe.enums.EBizType;
@@ -33,6 +34,9 @@ public class DemandOrderAOImpl implements IDemandOrderAO {
 
     @Autowired
     private ICommentBO commentBO;
+
+    @Autowired
+    private IUserBO userBO;
 
     @Override
     @Transactional
@@ -98,7 +102,12 @@ public class DemandOrderAOImpl implements IDemandOrderAO {
 
     @Override
     public DemandOrder getDemandOrder(String code) {
-        return demandOrderBO.getDemandOrder(code);
+        DemandOrder demandOrder = demandOrderBO.getDemandOrder(code);
+        if (null != demandOrder) {
+            demandOrder.setUser(userBO.getRemoteUser(demandOrder.getReceiver(),
+                demandOrder.getReceiver()));
+        }
+        return demandOrder;
     }
 
     private void doGivePresent(String userId, Long giveIntegral) {
