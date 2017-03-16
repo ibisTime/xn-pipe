@@ -33,7 +33,6 @@ public class SmsOutBOImpl implements ISmsOutBO {
         } catch (Exception e) {
             logger.error("调用短信发送服务异常");
         }
-
     }
 
     @Override

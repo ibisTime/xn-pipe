@@ -18,7 +18,6 @@ import com.cdkj.pipe.domain.Assign;
 import com.cdkj.pipe.domain.Dealer;
 import com.cdkj.pipe.domain.Demand;
 import com.cdkj.pipe.enums.EDemandOrderType;
-import com.cdkj.pipe.enums.ESystemCode;
 
 @Service
 public class AssignAOImpl implements IAssignAO {
@@ -82,10 +81,10 @@ public class AssignAOImpl implements IAssignAO {
         demandOrderBO.saveDemandOrder(EDemandOrderType.RECEIVE.getCode(),
             assign.getDemandCode(), demand.getDealerCode(), userId, "订单进行中");
 
-        // 短信通知经销商
+        // 短信通知经销商（上线前停用）
         Dealer dealer = dealerBO.getDealer(demand.getDealerCode());
-        smsOutBO.sendSmsOut(dealer.getMobile(),
-            "恭喜您，您的需求派单已经被接单，请及时登录网站后台查看详情！", ESystemCode.QNSDGZS.getCode());
+        // smsOutBO.sendSmsOut(dealer.getMobile(),
+        // "恭喜您，您的需求派单已经被接单，请及时登录网站后台查看详情！", ESystemCode.QNSDGZS.getCode());
     }
 
     @Override
@@ -101,9 +100,9 @@ public class AssignAOImpl implements IAssignAO {
         // 修改需求状态
         demandBO.assignReject(assign.getDemandCode(), userId);
 
-        // 短信通知经销商
+        // 短信通知经销商（上线前停用）
         Dealer dealer = dealerBO.getDealer(assign.getDealerCode());
-        smsOutBO.sendSmsOut(dealer.getMobile(),
-            "很抱歉，您的需求派单已经被拒绝，请及时登录网站后台查看详情！", ESystemCode.QNSDGZS.getCode());
+        // smsOutBO.sendSmsOut(dealer.getMobile(),
+        // "很抱歉，您的需求派单已经被拒绝，请及时登录网站后台查看详情！", ESystemCode.QNSDGZS.getCode());
     }
 }
