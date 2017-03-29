@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.cdkj.pipe.ao.IDemandOrderAO;
 import com.cdkj.pipe.bo.IAccountBO;
 import com.cdkj.pipe.bo.ICommentBO;
+import com.cdkj.pipe.bo.IDealerBO;
 import com.cdkj.pipe.bo.IDemandBO;
 import com.cdkj.pipe.bo.IDemandOrderBO;
 import com.cdkj.pipe.bo.IUserBO;
@@ -17,7 +18,6 @@ import com.cdkj.pipe.domain.DemandOrder;
 import com.cdkj.pipe.enums.EBizType;
 import com.cdkj.pipe.enums.ECurrency;
 import com.cdkj.pipe.enums.EDemandOrderStatus;
-import com.cdkj.pipe.enums.ESystemUser;
 import com.cdkj.pipe.exception.BizException;
 
 @Service
@@ -28,6 +28,9 @@ public class DemandOrderAOImpl implements IDemandOrderAO {
 
     @Autowired
     private IDemandBO demandBO;
+
+    @Autowired
+    private IDealerBO dealerBO;
 
     @Autowired
     private IAccountBO accountBO;
@@ -46,19 +49,20 @@ public class DemandOrderAOImpl implements IDemandOrderAO {
         if (!EDemandOrderStatus.ING.getCode().equals(demandOrder.getStatus())) {
             throw new BizException("xn0000", "当前订单状态不允许进行完成操作");
         }
-        // 添加水电工评价
-        commentBO.saveComment(null, evaluate, null,
-            demandOrder.getDealerCode(), demandOrder.getReceiver());
-
-        // 赠送相应积分
-        doGivePresent(demandOrder.getReceiver(), giveIntegral);
-
         // 修改订单状态
         demandOrderBO.complete(demandOrder, evaluate, giveIntegral, updater,
             remark);
 
         // 修改需求状态
         demandBO.complete(code, updater);
+
+        // 添加水电工评价
+        commentBO.saveComment(null, evaluate, null,
+            demandOrder.getDealerCode(), demandOrder.getReceiver());
+
+        // 赠送相应积分
+        doGivePresent(demandOrder.getDealerCode(), demandOrder.getReceiver(),
+            giveIntegral);
     }
 
     @Override
@@ -116,10 +120,13 @@ public class DemandOrderAOImpl implements IDemandOrderAO {
         return demandOrder;
     }
 
-    private void doGivePresent(String userId, Long giveIntegral) {
+    private void doGivePresent(String dealerCode, String userId,
+            Long giveIntegral) {
         if (giveIntegral > 0) {
-            accountBO.doTransferAmount(ESystemUser.SYS_USER.getCode(), userId,
-                giveIntegral, ECurrency.XNB, "", EBizType.AJ_WCDDSJF);
+            String fromUserId = dealerBO.getDealerUserId(dealerCode);
+            accountBO.doTransferAmountRemote(fromUserId, userId, ECurrency.JF,
+                giveIntegral, EBizType.AJ_WCDDSJF,
+                EBizType.AJ_WCDDSJF.getValue(), EBizType.AJ_WCDDSJF.getValue());
         }
     }
 

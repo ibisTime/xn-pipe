@@ -8,6 +8,7 @@
  */
 package com.cdkj.pipe.bo;
 
+import com.cdkj.pipe.domain.Account;
 import com.cdkj.pipe.dto.res.XN802182Res;
 import com.cdkj.pipe.enums.EBizType;
 import com.cdkj.pipe.enums.ECurrency;
@@ -19,20 +20,11 @@ import com.cdkj.pipe.enums.ECurrency;
  */
 public interface IAccountBO {
 
-    /**
-     * 账户之间转账
-     * @param fromUserId 从谁
-     * @param toUserId 到谁
-     * @param amount 支付多少钱
-     * @param currency 什么币种
-     * @param payGroup 支付组号
-     * @param bizType 因为什么
-     * @return 
-     * @create: 2017年2月26日 下午2:11:24 myb858
-     * @history:
-     */
-    public XN802182Res doTransferAmount(String fromUserId, String toUserId,
-            Long amount, ECurrency currency, String payGroup, EBizType bizType);
+    public Account getRemoteAccount(String userId, ECurrency currency);
+
+    public void doTransferAmountRemote(String fromUserId, String toUserId,
+            ECurrency currency, Long amount, EBizType bizType,
+            String fromBizNote, String toBizNote);
 
     /**
      * 微信H5支付

@@ -112,4 +112,10 @@ public class DealerBOImpl extends PaginableBOImpl<Dealer> implements IDealerBO {
         return data;
     }
 
+    @Override
+    public String getDealerUserId(String code) {
+        Dealer dealer = getDealer(code);
+        return dealer.getUserId();
+    }
+
 }

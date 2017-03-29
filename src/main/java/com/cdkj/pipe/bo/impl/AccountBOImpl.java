@@ -1,5 +1,8 @@
 package com.cdkj.pipe.bo.impl;
 
+import java.util.List;
+
+import org.apache.commons.collections.CollectionUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -8,8 +11,11 @@ import com.cdkj.pipe.bo.IAccountBO;
 import com.cdkj.pipe.bo.ISYSConfigBO;
 import com.cdkj.pipe.bo.IUserBO;
 import com.cdkj.pipe.common.JsonUtil;
+import com.cdkj.pipe.domain.Account;
+import com.cdkj.pipe.dto.req.XN002000Req;
+import com.cdkj.pipe.dto.req.XN002100Req;
 import com.cdkj.pipe.dto.req.XN802182Req;
-import com.cdkj.pipe.dto.req.XN802517Req;
+import com.cdkj.pipe.dto.res.XN002000Res;
 import com.cdkj.pipe.dto.res.XN802182Res;
 import com.cdkj.pipe.enums.EBizType;
 import com.cdkj.pipe.enums.ECurrency;
@@ -18,6 +24,8 @@ import com.cdkj.pipe.enums.ESystemUser;
 import com.cdkj.pipe.exception.BizException;
 import com.cdkj.pipe.http.BizConnecter;
 import com.cdkj.pipe.http.JsonUtils;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 @Component
 public class AccountBOImpl implements IAccountBO {
@@ -28,6 +36,38 @@ public class AccountBOImpl implements IAccountBO {
 
     @Autowired
     private IUserBO userBO;
+
+    @Override
+    public Account getRemoteAccount(String userId, ECurrency currency) {
+        XN002000Req req = new XN002000Req();
+        req.setUserId(userId);
+        req.setCurrency(currency.getCode());
+        String jsonStr = BizConnecter.getBizData("002000",
+            JsonUtils.object2Json(req));
+        Gson gson = new Gson();
+        List<XN002000Res> list = gson.fromJson(jsonStr,
+            new TypeToken<List<XN002000Res>>() {
+            }.getType());
+        if (CollectionUtils.isEmpty(list)) {
+            throw new BizException("xn000000", "用户[" + userId + "]账户不存在");
+        }
+        XN002000Res res = list.get(0);
+        Account account = new Account();
+        account.setAccountNumber(res.getAccountNumber());
+        account.setUserId(res.getUserId());
+        account.setRealName(res.getRealName());
+        account.setType(res.getType());
+        account.setStatus(res.getStatus());
+
+        account.setCurrency(res.getCurrency());
+        account.setAmount(res.getAmount());
+        account.setFrozenAmount(res.getFrozenAmount());
+        account.setCreateDatetime(res.getCreateDatetime());
+        account.setLastOrder(res.getLastOrder());
+
+        account.setSystemCode(res.getSystemCode());
+        return account;
+    }
 
     @Override
     public XN802182Res doWeiXinPayH5(String userId, Long amount,
@@ -53,24 +93,21 @@ public class AccountBOImpl implements IAccountBO {
     }
 
     @Override
-    public XN802182Res doTransferAmount(String fromUserId, String toUserId,
-            Long amount, ECurrency currency, String payGroup, EBizType bizType) {
+    public void doTransferAmountRemote(String fromUserId, String toUserId,
+            ECurrency currency, Long amount, EBizType bizType,
+            String fromBizNote, String toBizNote) {
         if (amount != null && amount != 0) {
-            XN802517Req req = new XN802517Req();
-            req.setSystemCode(ESystemCode.QNSDGZS.getCode());
-            req.setCompanyCode(ESystemCode.QNSDGZS.getCode());
+            XN002100Req req = new XN002100Req();
             req.setFromUserId(fromUserId);
             req.setToUserId(toUserId);
-            req.setTransAmount(String.valueOf(amount));
-
             req.setCurrency(currency.getCode());
-            req.setPayGroup(payGroup);
+            req.setTransAmount(String.valueOf(amount));
             req.setBizType(bizType.getCode());
-            req.setBizNote(bizType.getValue());
-            BizConnecter.getBizData("802517", JsonUtils.object2Json(req),
+            req.setFromBizNote(fromBizNote);
+            req.setToBizNote(toBizNote);
+            BizConnecter.getBizData("002100", JsonUtils.object2Json(req),
                 Object.class);
         }
-        return null;
     }
 
     @Override

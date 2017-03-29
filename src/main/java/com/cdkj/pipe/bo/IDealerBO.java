@@ -24,4 +24,6 @@ public interface IDealerBO extends IPaginableBO<Dealer> {
 
     public Dealer getDealer(String code);
 
+    public String getDealerUserId(String code);
+
 }
