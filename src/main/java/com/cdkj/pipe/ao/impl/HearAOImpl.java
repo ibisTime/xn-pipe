@@ -61,8 +61,7 @@ public class HearAOImpl implements IHearAO {
         condition.setStatus(EHearStatus.ING.getCode());
         List<Hear> userList = hearBO.queryHearList(condition);
         for (Hear hear : userList) {
-            hear.setUser(userBO.getRemoteUser(hear.getUserId(),
-                hear.getUserId()));
+            hear.setUser(userBO.getRemoteUser(hear.getUserId()));
         }
         return userList;
     }

@@ -99,8 +99,7 @@ public class DemandOrderAOImpl implements IDemandOrderAO {
         Paginable<DemandOrder> results = demandOrderBO.getPaginable(start,
             limit, condition);
         for (DemandOrder order : results.getList()) {
-            order.setUser(userBO.getRemoteUser(order.getReceiver(),
-                order.getReceiver()));
+            order.setUser(userBO.getRemoteUser(order.getReceiver()));
         }
         return results;
     }
@@ -114,8 +113,8 @@ public class DemandOrderAOImpl implements IDemandOrderAO {
     public DemandOrder getDemandOrder(String code) {
         DemandOrder demandOrder = demandOrderBO.getDemandOrder(code);
         if (null != demandOrder) {
-            demandOrder.setUser(userBO.getRemoteUser(demandOrder.getReceiver(),
-                demandOrder.getReceiver()));
+            demandOrder
+                .setUser(userBO.getRemoteUser(demandOrder.getReceiver()));
         }
         return demandOrder;
     }

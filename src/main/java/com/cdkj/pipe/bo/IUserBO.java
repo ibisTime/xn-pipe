@@ -1,19 +1,12 @@
 package com.cdkj.pipe.bo;
 
-import com.cdkj.pipe.dto.res.XN805901Res;
+import com.cdkj.pipe.domain.User;
 import com.cdkj.pipe.dto.res.XN805930Res;
 import com.cdkj.pipe.dto.res.XN805931Res;
 
 public interface IUserBO {
-    /**
-     * 获取远程用户信息
-     * @param tokenId
-     * @param userId
-     * @return 
-     * @create: 2016年5月30日 下午3:00:44 xieyj
-     * @history:
-     */
-    public XN805901Res getRemoteUser(String tokenId, String userId);
+
+    public User getRemoteUser(String userId);
 
     // 新增经销商
     public String doSaveDealer(String loginName, String updater);

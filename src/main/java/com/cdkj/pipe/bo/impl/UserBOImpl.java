@@ -4,15 +4,16 @@ import org.springframework.stereotype.Component;
 
 import com.cdkj.pipe.bo.IUserBO;
 import com.cdkj.pipe.common.PropertiesUtil;
+import com.cdkj.pipe.domain.User;
+import com.cdkj.pipe.dto.req.XN001400Req;
 import com.cdkj.pipe.dto.req.XN805052Req;
 import com.cdkj.pipe.dto.req.XN805172Req;
-import com.cdkj.pipe.dto.req.XN805901Req;
 import com.cdkj.pipe.dto.req.XN805906Req;
 import com.cdkj.pipe.dto.req.XN805920Req;
 import com.cdkj.pipe.dto.req.XN805930Req;
 import com.cdkj.pipe.dto.req.XN805931Req;
+import com.cdkj.pipe.dto.res.XN001400Res;
 import com.cdkj.pipe.dto.res.XN805042Res;
-import com.cdkj.pipe.dto.res.XN805901Res;
 import com.cdkj.pipe.dto.res.XN805921Res;
 import com.cdkj.pipe.dto.res.XN805930Res;
 import com.cdkj.pipe.dto.res.XN805931Res;
@@ -25,16 +26,24 @@ import com.cdkj.pipe.http.JsonUtils;
 public class UserBOImpl implements IUserBO {
 
     @Override
-    public XN805901Res getRemoteUser(String tokenId, String userId) {
-        XN805901Req req = new XN805901Req();
-        req.setTokenId(tokenId);
+    public User getRemoteUser(String userId) {
+        XN001400Req req = new XN001400Req();
+        req.setTokenId(userId);
         req.setUserId(userId);
-        XN805901Res res = BizConnecter.getBizData("805901",
-            JsonUtils.object2Json(req), XN805901Res.class);
+        XN001400Res res = BizConnecter.getBizData("001400",
+            JsonUtils.object2Json(req), XN001400Res.class);
         if (res == null) {
             throw new BizException("XN000000", "编号为" + userId + "的用户不存在");
         }
-        return res;
+        User user = new User();
+        user.setUserId(res.getUserId());
+        user.setLoginName(res.getLoginName());
+        user.setNickname(res.getNickname());
+        user.setPhoto(res.getPhoto());
+        user.setMobile(res.getMobile());
+        user.setIdentityFlag(res.getIdentityFlag());
+        user.setUserReferee(res.getUserReferee());
+        return user;
     }
 
     @Override
