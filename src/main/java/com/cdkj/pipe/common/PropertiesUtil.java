@@ -33,22 +33,8 @@ public class PropertiesUtil {
 
         public static String ACCOUNT_URL = props.getProperty("ACCOUNT_URL");
 
-        public static String USER_DB = props.getProperty("USER_DB");
-
         public static String DEALER_ROLECODE = props
             .getProperty("DEALER_ROLECODE");
-
-        public static String SYS_INIT_PWD_STRENGTH = props
-            .getProperty("SYS_INIT_PWD_STRENGTH");
-
-        public static String SYS_INIT_LOGIN_PWD = props
-            .getProperty("SYS_INIT_LOGIN_PWD");
-
-        public static String SYS_INIT_TRADE_PWD = props
-            .getProperty("SYS_INIT_TRADE_PWD");
-
-        public static String CUSTOMER_TELEPHONE = props
-            .getProperty("CUSTOMER_TELEPHONE");
 
     }
 }
