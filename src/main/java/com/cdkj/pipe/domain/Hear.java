@@ -1,6 +1,7 @@
 package com.cdkj.pipe.domain;
 
 import com.cdkj.pipe.dao.base.ABaseDO;
+import com.cdkj.pipe.dto.res.XN001400Res;
 
 /**
 * 听单
@@ -21,7 +22,7 @@ public class Hear extends ABaseDO {
     // 状态
     private String status;
 
-    private User user;
+    private XN001400Res user;
 
     public void setUserId(String userId) {
         this.userId = userId;
@@ -47,11 +48,11 @@ public class Hear extends ABaseDO {
         return status;
     }
 
-    public User getUser() {
+    public XN001400Res getUser() {
         return user;
     }
 
-    public void setUser(User user) {
+    public void setUser(XN001400Res user) {
         this.user = user;
     }
 

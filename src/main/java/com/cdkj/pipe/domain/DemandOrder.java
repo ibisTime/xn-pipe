@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import com.cdkj.pipe.dao.base.ABaseDO;
+import com.cdkj.pipe.dto.res.XN001400Res;
 
 /**
 * 需求订单
@@ -56,7 +57,7 @@ public class DemandOrder extends ABaseDO {
 
     private Dealer dealer;
 
-    private User user;
+    private XN001400Res user;
 
     public void setCode(String code) {
         this.code = code;
@@ -170,12 +171,11 @@ public class DemandOrder extends ABaseDO {
         this.dealer = dealer;
     }
 
-    public User getUser() {
+    public XN001400Res getUser() {
         return user;
     }
 
-    public void setUser(User user) {
+    public void setUser(XN001400Res user) {
         this.user = user;
     }
-
 }

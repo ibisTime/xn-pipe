@@ -4,7 +4,6 @@ import org.springframework.stereotype.Component;
 
 import com.cdkj.pipe.bo.IUserBO;
 import com.cdkj.pipe.common.PropertiesUtil;
-import com.cdkj.pipe.domain.User;
 import com.cdkj.pipe.dto.req.XN001400Req;
 import com.cdkj.pipe.dto.req.XN805052Req;
 import com.cdkj.pipe.dto.req.XN805172Req;
@@ -26,7 +25,7 @@ import com.cdkj.pipe.http.JsonUtils;
 public class UserBOImpl implements IUserBO {
 
     @Override
-    public User getRemoteUser(String userId) {
+    public XN001400Res getRemoteUser(String userId) {
         XN001400Req req = new XN001400Req();
         req.setTokenId(userId);
         req.setUserId(userId);
@@ -35,15 +34,7 @@ public class UserBOImpl implements IUserBO {
         if (res == null) {
             throw new BizException("XN000000", "编号为" + userId + "的用户不存在");
         }
-        User user = new User();
-        user.setUserId(res.getUserId());
-        user.setLoginName(res.getLoginName());
-        user.setNickname(res.getNickname());
-        user.setPhoto(res.getPhoto());
-        user.setMobile(res.getMobile());
-        user.setIdentityFlag(res.getIdentityFlag());
-        user.setUserReferee(res.getUserReferee());
-        return user;
+        return res;
     }
 
     @Override

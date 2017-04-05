@@ -1,12 +1,12 @@
 package com.cdkj.pipe.bo;
 
-import com.cdkj.pipe.domain.User;
+import com.cdkj.pipe.dto.res.XN001400Res;
 import com.cdkj.pipe.dto.res.XN805930Res;
 import com.cdkj.pipe.dto.res.XN805931Res;
 
 public interface IUserBO {
 
-    public User getRemoteUser(String userId);
+    public XN001400Res getRemoteUser(String userId);
 
     // 新增经销商
     public String doSaveDealer(String loginName, String updater);
