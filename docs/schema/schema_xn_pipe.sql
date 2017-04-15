@@ -21,13 +21,14 @@ SET FOREIGN_KEY_CHECKS = 0;
 DROP TABLE IF EXISTS `tp_assign`;
 CREATE TABLE `tp_assign` (
   `id` bigint(32) NOT NULL AUTO_INCREMENT COMMENT 'ID',
-  `userId` varchar(32) DEFAULT NULL COMMENT '用户编号',
+  `user_id` varchar(32) DEFAULT NULL COMMENT '用户编号',
   `demand_code` varchar(32) DEFAULT NULL COMMENT '需求编号',
   `dealer_code` varchar(32) DEFAULT NULL COMMENT '经销商编号',
   `create_datetime` datetime DEFAULT NULL,
   `status` varchar(4) DEFAULT NULL COMMENT '状态',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+
 
 -- ----------------------------
 --  Table structure for `tp_dealer`
@@ -74,6 +75,7 @@ CREATE TABLE `tp_demand` (
   `latitude` varchar(64) DEFAULT NULL COMMENT '纬度',
   `price` varchar(255) DEFAULT NULL COMMENT '价格',
   `summary` varchar(255) DEFAULT NULL COMMENT '简述',
+  `pic` text COMMENT '需求图片',
   `detail` text COMMENT '详细描述',
   `status` varchar(4) DEFAULT NULL COMMENT '状态',
   `create_datetime` datetime DEFAULT NULL COMMENT '创建时间',
@@ -82,6 +84,8 @@ CREATE TABLE `tp_demand` (
   `remark` varchar(255) DEFAULT NULL COMMENT '备注',
   PRIMARY KEY (`code`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
 
 -- ----------------------------
 --  Table structure for `tp_demand_order`

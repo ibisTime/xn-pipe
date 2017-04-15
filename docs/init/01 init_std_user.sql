@@ -373,7 +373,7 @@ LIMIT 0, 10000
 */
 INSERT INTO `tsys_config` (`ckey`,`cvalue`,`note`,`updater`,`update_datetime`,`remark`,`system_code`) VALUES ('aboutus','关于我们','<p>全能水电工助手：关于我们</p>','admin',now(),NULL,'CD-CGD000006');
 INSERT INTO `tsys_config` (`ckey`,`cvalue`,`note`,`updater`,`update_datetime`,`remark`,`system_code`) VALUES ('license','软件许可协议','<p>全能水电工助手：软件许可协议</p>','admin',now(),NULL,'CD-CGD000006');
-INSERT INTO `tsys_config` (`ckey`,`cvalue`,`note`,`updater`,`update_datetime`,`remark`,`system_code`) VALUES ('telephone','服务热线','400-xxx-0989','admin',now(),NULL,'CD-CGD000006');
+INSERT INTO `tsys_config` (`ckey`,`cvalue`,`note`,`updater`,`update_datetime`,`remark`,`system_code`) VALUES ('telephone','服务热线','400-826-6222','admin',now(),'13516700987   0575-87628333','CD-CGD000006');
 
 /*
 -- Query: SELECT code,type,account,password,remark,company_code,system_code FROM tstd_cpassword WHERE system_code = 'CD-CGD000006'
