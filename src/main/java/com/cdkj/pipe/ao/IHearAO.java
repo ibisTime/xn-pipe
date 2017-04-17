@@ -13,6 +13,7 @@ public interface IHearAO {
 
     public void stopHear(String userId);
 
-    public List<Hear> queryNearbyUser(String longitude, String latitude);
+    public List<Hear> queryNearbyUser(String longitude, String latitude,
+            String status);
 
 }

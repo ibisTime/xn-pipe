@@ -21,6 +21,9 @@ public class XN619051Req {
     // 纬度（选填）
     private String longitude;
 
+    // 状态（选填）
+    private String status;
+
     public String getLongitude() {
         return longitude;
     }
@@ -35,5 +38,13 @@ public class XN619051Req {
 
     public void setLatitude(String latitude) {
         this.latitude = latitude;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

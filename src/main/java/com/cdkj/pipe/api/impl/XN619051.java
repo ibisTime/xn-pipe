@@ -33,7 +33,8 @@ public class XN619051 extends AProcessor {
      */
     @Override
     public Object doBusiness() throws BizException {
-        return hearAO.queryNearbyUser(req.getLatitude(), req.getLongitude());
+        return hearAO.queryNearbyUser(req.getLatitude(), req.getLongitude(),
+            req.getStatus());
     }
 
     /** 

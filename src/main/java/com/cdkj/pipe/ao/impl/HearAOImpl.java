@@ -63,9 +63,10 @@ public class HearAOImpl implements IHearAO {
     }
 
     @Override
-    public List<Hear> queryNearbyUser(String longitude, String latitude) {
+    public List<Hear> queryNearbyUser(String longitude, String latitude,
+            String status) {
         Hear condition = new Hear();
-        condition.setStatus(EHearStatus.ING.getCode());
+        condition.setStatus(status);
         condition.setLatitude(latitude);
         condition.setLongitude(longitude);
         if (StringUtils.isNotBlank(longitude)
