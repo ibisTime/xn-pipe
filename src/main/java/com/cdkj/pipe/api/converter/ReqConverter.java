@@ -65,9 +65,9 @@ public class ReqConverter {
         Demand demand = new Demand();
         demand.setDealerCode(req.getDealerCode());
         demand.setStartDatetime(DateUtil.strToDate(req.getStartDatetime(),
-            DateUtil.DATA_TIME_PATTERN_1));
+            DateUtil.FRONT_DATE_FORMAT_STRING));
         demand.setEndDatetime(DateUtil.strToDate(req.getEndDatetime(),
-            DateUtil.DATA_TIME_PATTERN_1));
+            DateUtil.FRONT_DATE_FORMAT_STRING));
         demand.setProvince(req.getProvince());
         demand.setCity(req.getCity());
         demand.setArea(req.getArea());
@@ -87,9 +87,9 @@ public class ReqConverter {
         Demand demand = new Demand();
         demand.setCode(req.getCode());
         demand.setStartDatetime(DateUtil.strToDate(req.getStartDatetime(),
-            DateUtil.DATA_TIME_PATTERN_1));
+            DateUtil.FRONT_DATE_FORMAT_STRING));
         demand.setEndDatetime(DateUtil.strToDate(req.getEndDatetime(),
-            DateUtil.DATA_TIME_PATTERN_1));
+            DateUtil.FRONT_DATE_FORMAT_STRING));
         demand.setProvince(req.getProvince());
         demand.setCity(req.getCity());
         demand.setArea(req.getArea());
