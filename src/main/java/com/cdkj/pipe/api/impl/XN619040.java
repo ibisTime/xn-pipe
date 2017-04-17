@@ -35,7 +35,8 @@ public class XN619040 extends AProcessor {
      */
     @Override
     public Object doBusiness() throws BizException {
-        hearAO.startHear(req.getUserId(), req.getContent());
+        hearAO.startHear(req.getUserId(), req.getLatitude(),
+            req.getLongitude(), req.getContent());
         return new BooleanRes(true);
     }
 
@@ -45,7 +46,8 @@ public class XN619040 extends AProcessor {
     @Override
     public void doCheck(String inputparams) throws ParaException {
         req = JsonUtil.json2Bean(inputparams, XN619040Req.class);
-        StringValidater.validateBlank(req.getUserId(), req.getContent());
+        StringValidater.validateBlank(req.getUserId(), req.getLatitude(),
+            req.getLongitude(), req.getContent());
     }
 
 }

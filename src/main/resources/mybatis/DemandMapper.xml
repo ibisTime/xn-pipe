@@ -74,9 +74,9 @@
 			<if test="status != null and status != '' ">
 				AND t.status = #{status}
 			</if>
-			<!-- <if test="distance != null and distance != '' ">
+			<if test="distance != null and distance != '' ">
 				<![CDATA[ having distance <= #{distance}]]>
-			</if> -->
+			</if>
 		</trim>
 	</sql>
 	<select id="select_demand" parameterType="demand" resultMap="demand_DB_Result">
@@ -131,7 +131,7 @@
 		,t.create_datetime
 		,tdealer.pic dealer_pic
 		,tdealer.name dealer_name
-		<!-- ,ROUND(6378.138*2*ASIN(SQRT(POW(SIN((#{latitude}*PI()/180-t.latitude*PI()/180)/2),2)+COS(#{latitude}*PI()/180)*COS(t.latitude*PI()/180)*POW(SIN((#{longitude}*PI()/180-t.longitude*PI()/180)/2),2)))*1000) as distance -->
+		,ROUND(6378.138*2*ASIN(SQRT(POW(SIN((#{latitude}*PI()/180-t.latitude*PI()/180)/2),2)+COS(#{latitude}*PI()/180)*COS(t.latitude*PI()/180)*POW(SIN((#{longitude}*PI()/180-t.longitude*PI()/180)/2),2)))*1000) as distance
 		FROM
 		tp_demand t LEFT JOIN tp_dealer tdealer ON t.dealer_code = tdealer.code
 		<include refid="where_condition" />
@@ -150,8 +150,10 @@
 	
 	<select id="select_rangeDemand_count" parameterType="demand"
 		resultType="java.lang.Long">
-		SELECT count(1) FROM tp_demand t
-		<include refid="where_condition" />
+		SELECT count(1) FROM 
+		(SELECT ROUND(6378.138*2*ASIN(SQRT(POW(SIN((#{latitude}*PI()/180-t.latitude*PI()/180)/2),2)+COS(#{latitude}*PI()/180)*COS(t.latitude*PI()/180)*POW(SIN((#{longitude}*PI()/180-t.longitude*PI()/180)/2),2)))*1000) as distance 
+		 FROM tp_demand t
+		<include refid="where_condition" />) as demandTable
 	</select>
 
 	<insert id="insert_demand" parameterType="demand">

@@ -10,6 +10,8 @@ package com.cdkj.pipe.api.impl;
 
 import com.cdkj.pipe.ao.IHearAO;
 import com.cdkj.pipe.api.AProcessor;
+import com.cdkj.pipe.common.JsonUtil;
+import com.cdkj.pipe.dto.req.XN619051Req;
 import com.cdkj.pipe.exception.BizException;
 import com.cdkj.pipe.exception.ParaException;
 import com.cdkj.pipe.spring.SpringContextHolder;
@@ -24,12 +26,14 @@ public class XN619051 extends AProcessor {
 
     private IHearAO hearAO = SpringContextHolder.getBean(IHearAO.class);
 
+    private XN619051Req req = null;
+
     /** 
      * @see com.cdkj.pipe.api.IProcessor#doBusiness()
      */
     @Override
     public Object doBusiness() throws BizException {
-        return hearAO.queryNearbyUser("", "");
+        return hearAO.queryNearbyUser(req.getLatitude(), req.getLongitude());
     }
 
     /** 
@@ -37,8 +41,7 @@ public class XN619051 extends AProcessor {
      */
     @Override
     public void doCheck(String inputparams) throws ParaException {
-        // TODO Auto-generated method stub
-
+        req = JsonUtil.json2Bean(inputparams, XN619051Req.class);
     }
 
 }

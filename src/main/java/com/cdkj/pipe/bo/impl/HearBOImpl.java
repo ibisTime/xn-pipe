@@ -76,9 +76,12 @@ public class HearBOImpl extends PaginableBOImpl<Hear> implements IHearBO {
     }
 
     @Override
-    public void startHear(String userId, String content) {
+    public void startHear(String userId, String longitude, String latitude,
+            String content) {
         Hear data = new Hear();
         data.setUserId(userId);
+        data.setLatitude(latitude);
+        data.setLongitude(longitude);
         data.setContent(content);
         data.setStatus(EHearStatus.ING.getCode());
         hearDAO.updateStartHear(data);

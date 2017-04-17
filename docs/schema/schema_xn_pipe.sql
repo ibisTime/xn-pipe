@@ -112,10 +112,13 @@ CREATE TABLE `tp_demand_order` (
 DROP TABLE IF EXISTS `tp_hear`;
 CREATE TABLE `tp_hear` (
   `user_id` varchar(32) NOT NULL COMMENT '用户编号',
+  `latitude` varchar(64) DEFAULT NULL COMMENT '经度',
+  `longitude` varchar(64) DEFAULT NULL COMMENT '维度',
   `content` varchar(32) DEFAULT NULL COMMENT '找活内容（1,2,3,4,5,6）',
   `status` varchar(4) DEFAULT NULL COMMENT '状态',
   PRIMARY KEY (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 
 -- ----------------------------
 --  Table structure for `tp_news`

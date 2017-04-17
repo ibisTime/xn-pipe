@@ -16,11 +16,20 @@ public class Hear extends ABaseDO {
     // 用户编号
     private String userId;
 
+    // 用户经度
+    private String latitude;
+
+    // 用户纬度
+    private String longitude;
+
     // 找活内容
     private String content;
 
     // 状态
     private String status;
+
+    // 搜索距离
+    private Double distance;
 
     private XN001400Res user;
 
@@ -30,6 +39,22 @@ public class Hear extends ABaseDO {
 
     public String getUserId() {
         return userId;
+    }
+
+    public String getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(String latitude) {
+        this.latitude = latitude;
+    }
+
+    public String getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(String longitude) {
+        this.longitude = longitude;
     }
 
     public void setContent(String content) {
@@ -54,6 +79,14 @@ public class Hear extends ABaseDO {
 
     public void setUser(XN001400Res user) {
         this.user = user;
+    }
+
+    public Double getDistance() {
+        return distance;
+    }
+
+    public void setDistance(Double distance) {
+        this.distance = distance;
     }
 
 }

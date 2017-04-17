@@ -27,6 +27,7 @@ import com.cdkj.pipe.enums.EDealerStatus;
 import com.cdkj.pipe.enums.EDemandOrderType;
 import com.cdkj.pipe.enums.EDemandStatus;
 import com.cdkj.pipe.enums.EHearStatus;
+import com.cdkj.pipe.enums.ESystemCode;
 import com.cdkj.pipe.exception.BizException;
 
 @Service
@@ -130,10 +131,10 @@ public class DemandAOImpl implements IDemandAO {
         // 形成需求订单
         demandOrderBO.saveDemandOrder(EDemandOrderType.RECEIVE.getCode(), code,
             demand.getDealerCode(), userId, "订单进行中");
-        // 短信通知经销商（上线前停用）
+        // 短信通知经销商
         Dealer dealer = dealerBO.getDealer(demand.getDealerCode());
-        // smsOutBO.sendSmsOut(dealer.getMobile(), "您最新发布的需求已经被接单，请及时登录后台查看详情！",
-        // ESystemCode.QNSDGZS.getCode());
+        smsOutBO.sendSmsOut(dealer.getMobile(), "您最新发布的需求已经被接单，请及时登录后台查看详情！",
+            ESystemCode.QNSDGZS.getCode());
     }
 
     @Override
@@ -154,7 +155,7 @@ public class DemandAOImpl implements IDemandAO {
         // 修改水电工听单状态
         hearBO.assign(userId);
         // 短信通知水电工（上线前停用）
-        // smsOutBO.sentContent(userId, "亲，您有一个新订单了，请登录微信端及时处理！");
+        smsOutBO.sentContent(userId, "亲，您有一个新订单了，请登录微信端及时处理！");
     }
 
     @Override

@@ -4,6 +4,8 @@
 <mapper namespace="com.cdkj.pipe.dao.IHearDAO">
 	<resultMap id="hear_DB_Result" type="hear">
 		<result column="user_id" property="userId" />
+		<result column="latitude" property="latitude" />
+		<result column="longitude" property="longitude" />
 		<result column="content" property="content" />
 		<result column="status" property="status" />
 	</resultMap>
@@ -15,13 +17,19 @@
 			<if test="status != null and status != '' ">
 				AND t.status = #{status}
 			</if>
+			<if test="distance != null and distance != '' ">
+				<![CDATA[ having distance <= #{distance}]]>
+			</if>
 		</trim>
 	</sql>
 	<select id="select_hear" parameterType="hear" resultMap="hear_DB_Result">
 		SELECT
 		t.user_id
+		,t.latitude
+		,t.longitude
 		,t.content
 		,t.status
+		,ROUND(6378.138*2*ASIN(SQRT(POW(SIN((#{latitude}*PI()/180-t.latitude*PI()/180)/2),2)+COS(#{latitude}*PI()/180)*COS(t.latitude*PI()/180)*POW(SIN((#{longitude}*PI()/180-t.longitude*PI()/180)/2),2)))*1000) as distance
 		FROM
 		tp_hear t
 		<include refid="where_condition" />
@@ -34,20 +42,26 @@
 
 	<select id="select_hear_count" parameterType="hear"
 		resultType="java.lang.Long">
-		SELECT count(1) FROM tp_hear t
-		<include refid="where_condition" />
+		SELECT count(1) FROM 
+		(SELECT ROUND(6378.138*2*ASIN(SQRT(POW(SIN((#{latitude}*PI()/180-t.latitude*PI()/180)/2),2)+COS(#{latitude}*PI()/180)*COS(t.latitude*PI()/180)*POW(SIN((#{longitude}*PI()/180-t.longitude*PI()/180)/2),2)))*1000) as distance 
+		 FROM tp_hear t
+		<include refid="where_condition" />) as hearTable
 	</select>
 
 	<insert id="insert_hear" parameterType="hear">
 		INSERT INTO
 		tp_hear(
 		user_id
+		,latitude
+		,longitude
 		,content
 		,status
 		)
 		VALUES(
 		#{userId}
 		,#{content}
+		,#{latitude}
+		,#{longitude}
 		,#{status}
 		)
 	</insert>
@@ -55,7 +69,9 @@
 	<update id="update_startHear" parameterType="hear">
 		UPDATE tp_hear
 		SET
-		content = #{content}
+		latitude = #{latitude}
+		,longitude = #{longitude}
+		,content = #{content}
 		,status = #{status}
 		WHERE user_id = #{userId}
 	</update>

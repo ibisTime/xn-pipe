@@ -19,7 +19,8 @@ public interface IHearBO extends IPaginableBO<Hear> {
 
     public Hear getHear(String userId);
 
-    public void startHear(String userId, String content);
+    public void startHear(String userId, String longitude, String latitude,
+            String content);
 
     public void stopHear(String userId);
 
