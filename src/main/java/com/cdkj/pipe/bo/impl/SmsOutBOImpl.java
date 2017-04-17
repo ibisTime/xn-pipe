@@ -26,7 +26,7 @@ public class SmsOutBOImpl implements ISmsOutBO {
         try {
             XN001200Req req = new XN001200Req();
             req.setTokenId(userId);
-            req.setOwnerId(userId);
+            req.setUserId(userId);
             req.setContent(content);
             BizConnecter.getBizData("001200", JsonUtils.object2Json(req),
                 Object.class);
