@@ -17,10 +17,10 @@
 			<if test="status != null and status != '' ">
 				AND t.status = #{status}
 			</if>
-			<if test="distance != null and distance != '' ">
-				<![CDATA[ having distance <= #{distance}]]>
-			</if>
 		</trim>
+		<if test="distance != null and distance != '' ">
+				<![CDATA[ having distance <= #{distance}]]>
+		</if>
 	</sql>
 	<select id="select_hear" parameterType="hear" resultMap="hear_DB_Result">
 		SELECT

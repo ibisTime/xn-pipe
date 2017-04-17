@@ -13,7 +13,9 @@ package com.cdkj.pipe.dto.req;
  * @since: 2017年4月17日 下午1:42:43 
  * @history:
  */
-public class XN619051Req {
+public class XN619051Req extends APageReq {
+
+    private static final long serialVersionUID = -6467000563380752304L;
 
     // 经度（选填）
     private String latitude;

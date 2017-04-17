@@ -1,7 +1,5 @@
 package com.cdkj.pipe.ao.impl;
 
-import java.util.List;
-
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,6 +9,7 @@ import com.cdkj.pipe.bo.IAssignBO;
 import com.cdkj.pipe.bo.IHearBO;
 import com.cdkj.pipe.bo.ISYSConfigBO;
 import com.cdkj.pipe.bo.IUserBO;
+import com.cdkj.pipe.bo.base.Paginable;
 import com.cdkj.pipe.core.StringValidater;
 import com.cdkj.pipe.domain.Hear;
 import com.cdkj.pipe.enums.EHearStatus;
@@ -63,19 +62,14 @@ public class HearAOImpl implements IHearAO {
     }
 
     @Override
-    public List<Hear> queryNearbyUser(String longitude, String latitude,
-            String status) {
-        Hear condition = new Hear();
-        condition.setStatus(status);
-        condition.setLatitude(latitude);
-        condition.setLongitude(longitude);
-        if (StringUtils.isNotBlank(longitude)
-                && StringUtils.isNotBlank(latitude)) {
+    public Paginable<Hear> queryNearbyUser(int start, int limit, Hear condition) {
+        if (StringUtils.isNotBlank(condition.getLatitude())
+                && StringUtils.isNotBlank(condition.getLongitude())) {
             condition.setDistance(StringValidater.toDouble(sysConfigBO
                 .getConfigValue("distance")));
         }
-        List<Hear> userList = hearBO.queryHearList(condition);
-        for (Hear hear : userList) {
+        Paginable<Hear> userList = hearBO.getPaginable(start, limit, condition);
+        for (Hear hear : userList.getList()) {
             hear.setUser(userBO.getRemoteUser(hear.getUserId()));
         }
         return userList;
