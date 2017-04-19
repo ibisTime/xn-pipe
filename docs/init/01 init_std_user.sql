@@ -389,8 +389,8 @@ LIMIT 0, 10000
 
 -- Date: 2017-03-14 15:29
 */
-INSERT INTO `tstd_cpassword` (`code`,`type`,`account`,`password`,`remark`,`company_code`,`system_code`) VALUES ('GD001','2','ACCESS_KEY','1g9V4PXN7L2GaGdkP65DErSJXGjM95Zb2h73NN69','','CD-CGD000006','CD-CGD000006');
-INSERT INTO `tstd_cpassword` (`code`,`type`,`account`,`password`,`remark`,`company_code`,`system_code`) VALUES ('GD002','2','SECRET_KEY','DSBRfaHMCMp3-ZIx0DfhMfPo9vCdA9jXoBqxFqWG','','CD-CGD000006','CD-CGD000006');
-INSERT INTO `tstd_cpassword` (`code`,`type`,`account`,`password`,`remark`,`company_code`,`system_code`) VALUES ('GD003','2','bucket','juniupic','','CD-CGD000006','CD-CGD000006');
+INSERT INTO `tstd_cpassword` (`code`,`type`,`account`,`password`,`remark`,`company_code`,`system_code`) VALUES ('GD001','2','ACCESS_KEY','u8dSTT3kg9u3YVsoi-AiMFrDB7QqM6hH2xT-RbdA','','CD-CGD000006','CD-CGD000006');
+INSERT INTO `tstd_cpassword` (`code`,`type`,`account`,`password`,`remark`,`company_code`,`system_code`) VALUES ('GD002','2','SECRET_KEY','8Udu6ouA_E8TPGFLXrYp-jO7nnHZww_xyqECyp4c','','CD-CGD000006','CD-CGD000006');
+INSERT INTO `tstd_cpassword` (`code`,`type`,`account`,`password`,`remark`,`company_code`,`system_code`) VALUES ('GD003','2','bucket','qngd','','CD-CGD000006','CD-CGD000006');
 INSERT INTO `tstd_cpassword` (`code`,`type`,`account`,`password`,`remark`,`company_code`,`system_code`) VALUES ('GD004','3','ACCESS_KEY','wxa1dd2295c1df9b1f','','CD-CGD000006','CD-CGD000006');
 INSERT INTO `tstd_cpassword` (`code`,`type`,`account`,`password`,`remark`,`company_code`,`system_code`) VALUES ('GD005','3','SECRET_KEY','cce9c6d8c138f6a0120b59917be3d789','','CD-CGD000006','CD-CGD000006');
