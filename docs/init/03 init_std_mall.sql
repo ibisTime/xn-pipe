@@ -1,21 +1,16 @@
-/*
--- Query: SELECT * FROM std_mall_200.tmall_category where type = '2' and system_code = 'CD-CGD000006'
--- Date: 2017-04-15 16:06
-*/
-INSERT INTO `tmall_category` (`code`,`type`,`parent_code`,`name`,`pic`,`order_no`,`status`,`company_code`,`system_code`) VALUES ('FL201704111335064520','2','0','酒店','s2_1491894506086.png',20,'1','CD-CGD000006','CD-CGD000006');
-INSERT INTO `tmall_category` (`code`,`type`,`parent_code`,`name`,`pic`,`order_no`,`status`,`company_code`,`system_code`) VALUES ('FL201704111335200381','2','0','汽车','s1_1491894481508.png',10,'1','CD-CGD000006','CD-CGD000006');
-INSERT INTO `tmall_category` (`code`,`type`,`parent_code`,`name`,`pic`,`order_no`,`status`,`company_code`,`system_code`) VALUES ('FL201704111508389548','2','0','旅游','s3_1491894541790.png',30,'1','CD-CGD000006','CD-CGD000006');
-INSERT INTO `tmall_category` (`code`,`type`,`parent_code`,`name`,`pic`,`order_no`,`status`,`company_code`,`system_code`) VALUES ('FL201704111509012373','2','0','建材家居','s4_1491894571767.jpg',40,'1','CD-CGD000006','CD-CGD000006');
-INSERT INTO `tmall_category` (`code`,`type`,`parent_code`,`name`,`pic`,`order_no`,`status`,`company_code`,`system_code`) VALUES ('FL201704111509460442','2','0','餐饮','s5_1491894615434.png',50,'1','CD-CGD000006','CD-CGD000006');
-INSERT INTO `tmall_category` (`code`,`type`,`parent_code`,`name`,`pic`,`order_no`,`status`,`company_code`,`system_code`) VALUES ('FL201704131256210378','2','0','甜点水果','s6_1492059412385.jpg',60,'1','CD-CGD000006','CD-CGD000006');
-INSERT INTO `tmall_category` (`code`,`type`,`parent_code`,`name`,`pic`,`order_no`,`status`,`company_code`,`system_code`) VALUES ('FL201704131256384067','2','0','生活服务','s7_1492059428972.jpg',70,'1','CD-CGD000006','CD-CGD000006');
-INSERT INTO `tmall_category` (`code`,`type`,`parent_code`,`name`,`pic`,`order_no`,`status`,`company_code`,`system_code`) VALUES ('FL201704131256527294','2','0','休闲娱乐','s8_1492059441466.png',80,'1','CD-CGD000006','CD-CGD000006');
-INSERT INTO `tmall_category` (`code`,`type`,`parent_code`,`name`,`pic`,`order_no`,`status`,`company_code`,`system_code`) VALUES ('FL201704131257050206','2','0','电影','s9_1492059455010.png',90,'1','CD-CGD000006','CD-CGD000006');
-INSERT INTO `tmall_category` (`code`,`type`,`parent_code`,`name`,`pic`,`order_no`,`status`,`company_code`,`system_code`) VALUES ('FL201704131257247180','2','0','教育培训','s10_1492059475401.jpg',100,'1','CD-CGD000006','CD-CGD000006');
 
+INSERT INTO `tmall_category` (`code`,`type`,`parent_code`,`name`,`pic`,`order_no`,`status`,`company_code`,`system_code`) VALUES ('FL201704111335064520','2','0','酒店','s2_1492249328342.png',20,'1','CD-CGD000006','CD-CGD000006');
+INSERT INTO `tmall_category` (`code`,`type`,`parent_code`,`name`,`pic`,`order_no`,`status`,`company_code`,`system_code`) VALUES ('FL201704111335200381','2','0','汽车','s1_1492249319671.png',10,'1','CD-CGD000006','CD-CGD000006');
+INSERT INTO `tmall_category` (`code`,`type`,`parent_code`,`name`,`pic`,`order_no`,`status`,`company_code`,`system_code`) VALUES ('FL201704111508389548','2','0','旅游','s3_1492249336787.png',30,'1','CD-CGD000006','CD-CGD000006');
+INSERT INTO `tmall_category` (`code`,`type`,`parent_code`,`name`,`pic`,`order_no`,`status`,`company_code`,`system_code`) VALUES ('FL201704111509012373','2','0','建材家居','s4_1492249344973.jpg',40,'1','CD-CGD000006','CD-CGD000006');
+INSERT INTO `tmall_category` (`code`,`type`,`parent_code`,`name`,`pic`,`order_no`,`status`,`company_code`,`system_code`) VALUES ('FL201704111509460442','2','0','餐饮','s5_1492249353954.png',50,'1','CD-CGD000006','CD-CGD000006');
+INSERT INTO `tmall_category` (`code`,`type`,`parent_code`,`name`,`pic`,`order_no`,`status`,`company_code`,`system_code`) VALUES ('FL201704131256210378','2','0','甜点水果','s6_1492249364035.jpg',60,'1','CD-CGD000006','CD-CGD000006');
+INSERT INTO `tmall_category` (`code`,`type`,`parent_code`,`name`,`pic`,`order_no`,`status`,`company_code`,`system_code`) VALUES ('FL201704131256384067','2','0','生活服务','s7_1492249373487.jpg',70,'1','CD-CGD000006','CD-CGD000006');
+INSERT INTO `tmall_category` (`code`,`type`,`parent_code`,`name`,`pic`,`order_no`,`status`,`company_code`,`system_code`) VALUES ('FL201704131256527294','2','0','休闲娱乐','s8_1492249384042.png',80,'1','CD-CGD000006','CD-CGD000006');
+INSERT INTO `tmall_category` (`code`,`type`,`parent_code`,`name`,`pic`,`order_no`,`status`,`company_code`,`system_code`) VALUES ('FL201704131257050206','2','0','电影','s9_1492249392665.png',90,'1','CD-CGD000006','CD-CGD000006');
+INSERT INTO `tmall_category` (`code`,`type`,`parent_code`,`name`,`pic`,`order_no`,`status`,`company_code`,`system_code`) VALUES ('FL201704131257247180','2','0','教育培训','s10_1492249401248.jpg',100,'1','CD-CGD000006','CD-CGD000006');
 
-
-INSERT INTO `tsys_config` (`type`,`ckey`,`cvalue`,`updater`,`update_datetime`,`remark`,`company_code`,`system_code`) VALUES ('R','STORE_RMB2JF','1.6','admin',now(),'积分消费比例 1人民币等于多少积分','CD-CGD000006','CD-CGD000006');
+INSERT INTO `tsys_config` (`type`,`ckey`,`cvalue`,`updater`,`update_datetime`,`remark`,`company_code`,`system_code`) VALUES ('R','STORE_RMB2JF','1','admin',now(),'积分消费比例 1人民币等于多少积分','CD-CGD000006','CD-CGD000006');
 
 /*
 -- Query: SELECT `type`,`parent_key`,`dkey`,`dvalue`,`updater`,`update_datetime`,`remark`,`company_code`,`system_code` FROM tsys_dict where system_code = 'CD-CGD000006'
