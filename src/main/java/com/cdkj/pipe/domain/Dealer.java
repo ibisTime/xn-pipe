@@ -74,6 +74,8 @@ public class Dealer extends ABaseDO {
     // 关联用户ID
     private String userId;
 
+    private Double distance;
+
     public void setCode(String code) {
         this.code = code;
     }
@@ -232,6 +234,14 @@ public class Dealer extends ABaseDO {
 
     public String getUserId() {
         return userId;
+    }
+
+    public Double getDistance() {
+        return distance;
+    }
+
+    public void setDistance(Double distance) {
+        this.distance = distance;
     }
 
 }

@@ -30,4 +30,7 @@ public interface IDealerAO {
 
     public Dealer getDealerByUserId(String userId);
 
+    public Paginable<Dealer> queryRangeDealerPage(int start, int limit,
+            Dealer condition);
+
 }

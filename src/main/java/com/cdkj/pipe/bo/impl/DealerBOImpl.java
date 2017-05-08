@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.cdkj.pipe.bo.IDealerBO;
+import com.cdkj.pipe.bo.base.Page;
+import com.cdkj.pipe.bo.base.Paginable;
 import com.cdkj.pipe.bo.base.PaginableBOImpl;
 import com.cdkj.pipe.core.EGeneratePrefix;
 import com.cdkj.pipe.core.OrderNoGenerater;
@@ -116,6 +118,20 @@ public class DealerBOImpl extends PaginableBOImpl<Dealer> implements IDealerBO {
     public String getDealerUserId(String code) {
         Dealer dealer = getDealer(code);
         return dealer.getUserId();
+    }
+
+    @Override
+    public Paginable<Dealer> queryRangeDealerPage(int start, int limit,
+            Dealer condition) {
+        long totalCount = dealerDAO.selectRangeDealerTotalCount(condition);
+
+        Paginable<Dealer> page = new Page<Dealer>(start, limit, totalCount);
+
+        List<Dealer> dataList = dealerDAO.selectRangeDealerList(condition,
+            page.getStart(), page.getPageSize());
+
+        page.setList(dataList);
+        return page;
     }
 
 }

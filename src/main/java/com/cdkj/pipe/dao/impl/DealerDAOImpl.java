@@ -60,4 +60,17 @@ public class DealerDAOImpl extends AMybatisTemplate implements IDealerDAO {
         return super.update(NAMESPACE.concat("update_putOnOff"), data);
     }
 
+    @Override
+    public Long selectRangeDealerTotalCount(Dealer condition) {
+        return super.selectTotalCount(
+            NAMESPACE.concat("select_rangeDealer_count"), condition);
+    }
+
+    @Override
+    public List<Dealer> selectRangeDealerList(Dealer condition, int start,
+            int count) {
+        return super.selectList(NAMESPACE.concat("select_rangeDealer"), start,
+            count, condition, Dealer.class);
+    }
+
 }

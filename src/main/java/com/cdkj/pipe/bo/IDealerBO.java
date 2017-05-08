@@ -3,6 +3,7 @@ package com.cdkj.pipe.bo;
 import java.util.List;
 
 import com.cdkj.pipe.bo.base.IPaginableBO;
+import com.cdkj.pipe.bo.base.Paginable;
 import com.cdkj.pipe.domain.Dealer;
 
 public interface IDealerBO extends IPaginableBO<Dealer> {
@@ -25,5 +26,8 @@ public interface IDealerBO extends IPaginableBO<Dealer> {
     public Dealer getDealer(String code);
 
     public String getDealerUserId(String code);
+
+    public Paginable<Dealer> queryRangeDealerPage(int start, int limit,
+            Dealer condition);
 
 }

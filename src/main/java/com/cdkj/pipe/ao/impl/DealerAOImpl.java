@@ -9,8 +9,10 @@ import org.springframework.stereotype.Service;
 import com.cdkj.pipe.ao.IDealerAO;
 import com.cdkj.pipe.api.converter.ReqConverter;
 import com.cdkj.pipe.bo.IDealerBO;
+import com.cdkj.pipe.bo.ISYSConfigBO;
 import com.cdkj.pipe.bo.IUserBO;
 import com.cdkj.pipe.bo.base.Paginable;
+import com.cdkj.pipe.core.StringValidater;
 import com.cdkj.pipe.domain.Dealer;
 import com.cdkj.pipe.dto.req.XN619000Req;
 import com.cdkj.pipe.dto.req.XN619001Req;
@@ -25,6 +27,9 @@ public class DealerAOImpl implements IDealerAO {
 
     @Autowired
     private IUserBO userBO;
+
+    @Autowired
+    private ISYSConfigBO sysConfigBO;
 
     @Override
     public String addDealer(XN619000Req req) {
@@ -101,6 +106,14 @@ public class DealerAOImpl implements IDealerAO {
             throw new BizException("xn0000", "对应的经销商不存在");
         }
         return results.get(0);
+    }
+
+    @Override
+    public Paginable<Dealer> queryRangeDealerPage(int start, int limit,
+            Dealer condition) {
+        condition.setDistance(StringValidater.toDouble(sysConfigBO
+            .getConfigValue("distance")));
+        return dealerBO.queryRangeDealerPage(start, limit, condition);
     }
 
 }
