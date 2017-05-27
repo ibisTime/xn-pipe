@@ -1,6 +1,7 @@
 package com.cdkj.pipe.domain;
 
 import java.util.Date;
+import java.util.List;
 
 import com.cdkj.pipe.dao.base.ABaseDO;
 
@@ -16,6 +17,9 @@ public class Demand extends ABaseDO {
 
     // 需求编号
     private String code;
+
+    // 需求类型
+    private String type;
 
     // 经销商编号
     private String dealerCode;
@@ -71,9 +75,14 @@ public class Demand extends ABaseDO {
     // 备注
     private String remark;
 
+    // *************dp properties **************
+
     private Dealer dealer;
 
     private Double distance;
+
+    // 状态list
+    private List<String> statusList;
 
     public void setCode(String code) {
         this.code = code;
@@ -81,6 +90,14 @@ public class Demand extends ABaseDO {
 
     public String getCode() {
         return code;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 
     public void setDealerCode(String dealerCode) {
@@ -241,6 +258,14 @@ public class Demand extends ABaseDO {
 
     public void setDistance(Double distance) {
         this.distance = distance;
+    }
+
+    public List<String> getStatusList() {
+        return statusList;
+    }
+
+    public void setStatusList(List<String> statusList) {
+        this.statusList = statusList;
     }
 
 }

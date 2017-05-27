@@ -62,4 +62,9 @@ public class DemandOrderDAOImpl extends AMybatisTemplate implements
         return super.update(NAMESPACE.concat("update_dealerCancel"), data);
     }
 
+    @Override
+    public int updateUploadPic(DemandOrder data) {
+        return super.update(NAMESPACE.concat("update_uploadPic"), data);
+    }
+
 }

@@ -18,6 +18,9 @@ public class XN619022Req {
     // 需求编号
     private String code;
 
+    // 需求类型
+    private String type;
+
     // 开始时间（必填）
     private String startDatetime;
 
@@ -66,6 +69,14 @@ public class XN619022Req {
 
     public void setCode(String code) {
         this.code = code;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 
     public String getStartDatetime() {

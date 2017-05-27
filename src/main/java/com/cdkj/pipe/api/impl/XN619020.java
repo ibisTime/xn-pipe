@@ -44,7 +44,7 @@ public class XN619020 extends AProcessor {
     @Override
     public void doCheck(String inputparams) throws ParaException {
         req = JsonUtil.json2Bean(inputparams, XN619020Req.class);
-        StringValidater.validateBlank(req.getDealerCode(),
+        StringValidater.validateBlank(req.getType(), req.getDealerCode(),
             req.getStartDatetime(), req.getEndDatetime(), req.getProvince(),
             req.getCity(), req.getArea(), req.getAddress(), req.getLongitude(),
             req.getLatitude(), req.getPrice(), req.getSummary(),

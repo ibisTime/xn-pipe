@@ -8,6 +8,8 @@
  */
 package com.cdkj.pipe.dto.req;
 
+import java.util.List;
+
 /** 
  * @author: haiqingzheng 
  * @since: 2017年3月12日 下午12:57:00 
@@ -26,6 +28,9 @@ public class XN619033Req extends APageReq {
     // 纬度（选填）
     private String latitude;
 
+    // 状态list(选填)
+    private List<String> statusList;
+
     public String getLongitude() {
         return longitude;
     }
@@ -40,6 +45,14 @@ public class XN619033Req extends APageReq {
 
     public void setLatitude(String latitude) {
         this.latitude = latitude;
+    }
+
+    public List<String> getStatusList() {
+        return statusList;
+    }
+
+    public void setStatusList(List<String> statusList) {
+        this.statusList = statusList;
     }
 
 }

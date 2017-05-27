@@ -22,4 +22,6 @@ public interface IDemandOrderAO {
 
     public DemandOrder getDemandOrder(String code);
 
+    public void uploadPic(String code, String pic);
+
 }

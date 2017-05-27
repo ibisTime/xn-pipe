@@ -63,6 +63,7 @@ public class ReqConverter {
 
     public static Demand converter(XN619020Req req) {
         Demand demand = new Demand();
+        demand.setType(req.getType());
         demand.setDealerCode(req.getDealerCode());
         demand.setStartDatetime(DateUtil.strToDate(req.getStartDatetime(),
             DateUtil.FRONT_DATE_FORMAT_STRING));
@@ -86,6 +87,7 @@ public class ReqConverter {
     public static Demand converter(XN619022Req req) {
         Demand demand = new Demand();
         demand.setCode(req.getCode());
+        demand.setType(req.getType());
         demand.setStartDatetime(DateUtil.strToDate(req.getStartDatetime(),
             DateUtil.FRONT_DATE_FORMAT_STRING));
         demand.setEndDatetime(DateUtil.strToDate(req.getEndDatetime(),

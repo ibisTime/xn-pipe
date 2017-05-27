@@ -129,4 +129,14 @@ public class DemandOrderAOImpl implements IDemandOrderAO {
         }
     }
 
+    @Override
+    public void uploadPic(String code, String pic) {
+        DemandOrder demandOrder = demandOrderBO.getDemandOrder(code);
+        if (!EDemandOrderStatus.ING.getCode().equals(demandOrder.getStatus())) {
+            throw new BizException("xn0000", "当前订单状态不允许进行上传图片操作");
+        }
+        demandOrder.setPic(pic);
+        demandOrderBO.uploadPic(demandOrder);
+    }
+
 }

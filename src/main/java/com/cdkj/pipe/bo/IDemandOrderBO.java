@@ -23,6 +23,8 @@ public interface IDemandOrderBO extends IPaginableBO<DemandOrder> {
 
     public int refreshDemandOrder(DemandOrder data);
 
+    public int uploadPic(DemandOrder data);
+
     public List<DemandOrder> queryDemandOrderList(DemandOrder condition);
 
     public DemandOrder getDemandOrder(String code);

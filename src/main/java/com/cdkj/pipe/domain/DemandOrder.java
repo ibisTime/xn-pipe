@@ -49,6 +49,9 @@ public class DemandOrder extends ABaseDO {
     // 赠送积分
     private Long giveIntegral;
 
+    // 施工图片
+    private String pic;
+
     /******查询条件*******/
     // 状态list
     private List<String> statusList;
@@ -177,5 +180,13 @@ public class DemandOrder extends ABaseDO {
 
     public void setUser(XN001400Res user) {
         this.user = user;
+    }
+
+    public String getPic() {
+        return pic;
+    }
+
+    public void setPic(String pic) {
+        this.pic = pic;
     }
 }

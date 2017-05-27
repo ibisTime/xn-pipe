@@ -12,4 +12,6 @@ public interface IDemandOrderDAO extends IBaseDAO<DemandOrder> {
 
     public int updateDealerCancel(DemandOrder data);
 
+    public int updateUploadPic(DemandOrder data);
+
 }

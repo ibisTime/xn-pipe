@@ -14,6 +14,7 @@
 		<result column="update_datetime" property="updateDatetime" />
 		<result column="remark" property="remark" />
 		<result column="give_integral" property="giveIntegral" />
+		<result column="pic" property="pic" />
 		
 		<association property="dealer" javaType="dealer">   
             <result column="dealer_pic" property="pic" />
@@ -79,6 +80,7 @@
 		,t.update_datetime
 		,t.remark
 		,t.give_integral
+		,t.pic
 		,tdealer.pic dealer_pic
 		,tdealer.name dealer_name
 		,tdemand.summary demand_summary
@@ -162,6 +164,13 @@
 		,update_datetime = #{updateDatetime}
 		,remark = #{remark}
 		,give_integral = #{giveIntegral}
+		WHERE code = #{code}
+	</update>
+	
+	<update id="update_uploadPic" parameterType="demandOrder">
+		UPDATE tp_demand_order
+		SET
+		pic = #{pic}
 		WHERE code = #{code}
 	</update>
 	

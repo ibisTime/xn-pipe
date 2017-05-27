@@ -15,6 +15,9 @@ package com.cdkj.pipe.dto.req;
  */
 public class XN619020Req {
 
+    // 需求类型（必填）
+    private String type;
+
     // 经销商编号（必填）
     private String dealerCode;
 
@@ -59,6 +62,14 @@ public class XN619020Req {
 
     // 备注（选填）
     private String remark;
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
 
     public String getDealerCode() {
         return dealerCode;

@@ -134,4 +134,12 @@ public class DemandOrderBOImpl extends PaginableBOImpl<DemandOrder> implements
         return this.getTotalCount(condition);
     }
 
+    @Override
+    public int uploadPic(DemandOrder data) {
+        int count = 0;
+        if (data != null) {
+            count = demandOrderDAO.updateUploadPic(data);
+        }
+        return count;
+    }
 }
