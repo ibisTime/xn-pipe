@@ -194,6 +194,7 @@
 		)
 		VALUES(
 		#{code}
+		,#{type}
 		,#{dealerCode}
 		,#{startDatetime}
 		,#{endDatetime}
