@@ -141,7 +141,11 @@ public class DemandAOImpl implements IDemandAO {
     @Transactional
     public void assgin(String code, String updater, String userId) {
         Demand demand = demandBO.getDemand(code);
-        if (!EDemandStatus.PUT_ON.getCode().equals(demand.getStatus())) {
+        // 未上架 已上架 已下架 已取消 的需求可以进行派单
+        if (!EDemandStatus.NEW.getCode().equals(demand.getStatus())
+                && !EDemandStatus.PUT_ON.getCode().equals(demand.getStatus())
+                && !EDemandStatus.PUT_OFF.getCode().equals(demand.getStatus())
+                && !EDemandStatus.CANCEL.getCode().equals(demand.getStatus())) {
             throw new BizException("xn0000", "需求状态不允许派单操作");
         }
         Hear hear = hearBO.getHear(userId);
