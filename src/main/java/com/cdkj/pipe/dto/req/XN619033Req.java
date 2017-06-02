@@ -28,6 +28,9 @@ public class XN619033Req extends APageReq {
     // 纬度（选填）
     private String latitude;
 
+    // 需求类型（选填）
+    private String type;
+
     // 状态list(选填)
     private List<String> statusList;
 
@@ -53,6 +56,14 @@ public class XN619033Req extends APageReq {
 
     public void setStatusList(List<String> statusList) {
         this.statusList = statusList;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 
 }

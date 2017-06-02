@@ -48,6 +48,7 @@ public class XN619033 extends AProcessor {
         condition.setLongitude(req.getLongitude());
         condition.setLatitude(req.getLatitude());
         condition.setStatusList(req.getStatusList());
+        condition.setType(req.getType());
         int start = StringValidater.toInteger(req.getStart());
         int limit = StringValidater.toInteger(req.getLimit());
         return demandAO.queryRangeDemandPage(start, limit, condition);

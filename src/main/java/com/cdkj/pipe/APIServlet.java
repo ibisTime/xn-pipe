@@ -35,6 +35,9 @@ public class APIServlet extends HttpServlet {
         logger.info("Successful Deployment");
         PrintWriter writer = response.getWriter();
         writer.append("SystemCode:" + ESystemCode.QNSDGZS.getCode() + " \n");
+        writer.append("Lastest Version:v1.0.1 \n");
+        writer.append("Description:bug fix & update \n");
+        writer.append("************************************************ \n");
         writer.append("Version:v1.0.0 \n");
         writer.append("Description:1st_addc \n");
         writer.flush();
