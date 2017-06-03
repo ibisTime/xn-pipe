@@ -8,7 +8,8 @@
  */
 package com.cdkj.pipe.api.impl;
 
-import org.apache.commons.lang3.StringUtils;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.cdkj.pipe.ao.IDemandAO;
 import com.cdkj.pipe.api.AProcessor;
@@ -39,15 +40,14 @@ public class XN619033 extends AProcessor {
     @Override
     public Object doBusiness() throws BizException {
         Demand condition = new Demand();
-        condition.setStatus(EDemandStatus.PUT_ON.getCode());
-        String orderColumn = req.getOrderColumn();
-        if (StringUtils.isBlank(orderColumn)) {
-            orderColumn = IDemandAO.DEFAULT_ORDER_COLUMN;
-        }
-        condition.setOrder(orderColumn, req.getOrderDir());
+        List<String> statusList = new ArrayList<String>();
+        statusList.add(EDemandStatus.PUT_ON.getCode());
+        statusList.add(EDemandStatus.RECEIVE.getCode());
+        statusList.add(EDemandStatus.FINISH.getCode());
+        condition.setStatusList(statusList);
+        condition.setOrder("status", "asc");
         condition.setLongitude(req.getLongitude());
         condition.setLatitude(req.getLatitude());
-        condition.setStatusList(req.getStatusList());
         condition.setType(req.getType());
         int start = StringValidater.toInteger(req.getStart());
         int limit = StringValidater.toInteger(req.getLimit());
