@@ -124,8 +124,8 @@ public class DemandOrderAOImpl implements IDemandOrderAO {
         if (giveIntegral > 0) {
             String fromUserId = dealerBO.getDealerUserId(dealerCode);
             accountBO.doTransferAmountRemote(fromUserId, userId, ECurrency.JF,
-                giveIntegral, EBizType.AJ_WCDDSJF,
-                EBizType.AJ_WCDDSJF.getValue(), EBizType.AJ_WCDDSJF.getValue());
+                giveIntegral, EBizType.GD_WCDDSJF,
+                EBizType.GD_WCDDSJF.getValue(), EBizType.GD_WCDDSJF.getValue());
         }
     }
 
