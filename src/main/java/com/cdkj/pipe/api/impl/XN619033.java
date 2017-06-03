@@ -42,7 +42,6 @@ public class XN619033 extends AProcessor {
         Demand condition = new Demand();
         List<String> statusList = new ArrayList<String>();
         statusList.add(EDemandStatus.PUT_ON.getCode());
-        statusList.add(EDemandStatus.RECEIVE.getCode());
         statusList.add(EDemandStatus.FINISH.getCode());
         condition.setStatusList(statusList);
         condition.setOrder("status", "asc");
