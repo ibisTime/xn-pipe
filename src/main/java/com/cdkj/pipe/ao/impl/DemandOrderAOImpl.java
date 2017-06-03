@@ -2,6 +2,7 @@ package com.cdkj.pipe.ao.impl;
 
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -48,6 +49,9 @@ public class DemandOrderAOImpl implements IDemandOrderAO {
         DemandOrder demandOrder = demandOrderBO.getDemandOrder(code);
         if (!EDemandOrderStatus.ING.getCode().equals(demandOrder.getStatus())) {
             throw new BizException("xn0000", "当前订单状态不允许进行完成操作");
+        }
+        if (StringUtils.isBlank(demandOrder.getPic())) {
+            throw new BizException("xn0000", "请联系水电工上传施工图");
         }
         // 修改订单状态
         demandOrderBO.complete(demandOrder, evaluate, giveIntegral, updater,
