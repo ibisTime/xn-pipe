@@ -4,7 +4,7 @@ LIMIT 0, 10000
 
 -- Date: 2017-03-14 15:15
 */
-INSERT INTO `tstd_user` (`user_id`,`login_name`,`nickname`,`login_pwd`,`login_pwd_strength`,`kind`,`level`,`user_referee`,`mobile`,`id_kind`,`id_no`,`real_name`,`trade_pwd`,`trade_pwd_strength`,`role_code`,`status`,`pdf`,`amount`,`lj_amount`,`company_code`,`open_id`,`jpush_id`,`updater`,`update_datetime`,`remark`,`system_code`) VALUES ('SYS_USER_PIPE','admin',NULL,'21218cca77804d2ba1922c33e0151105','1','01','0',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'CGDR201600000000000000','0',NULL,NULL,NULL,NULL,NULL,NULL,'admin','2017-04-11 11:41:26','管理端系统方','CD-CGD000006');
+INSERT INTO `tstd_user` (`user_id`,`login_name`,`nickname`,`login_pwd`,`login_pwd_strength`,`kind`,`level`,`user_referee`,`mobile`,`id_kind`,`id_no`,`real_name`,`trade_pwd`,`trade_pwd_strength`,`role_code`,`status`,`pdf`,`company_code`,`open_id`,`jpush_id`,`updater`,`update_datetime`,`remark`,`system_code`) VALUES ('SYS_USER_PIPE','admin',NULL,'21218cca77804d2ba1922c33e0151105','1','01','0',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'CGDR201600000000000000','0',NULL,NULL,NULL,NULL,'admin','2017-04-11 11:41:26','管理端系统方','CD-CGD000006');
 
 /*
 -- Query: SELECT code,name,type,url,order_no,updater, now() as update_datetime,remark,parent_code,system_code FROM tsys_menu where system_code = 'CD-CGD000006'
@@ -130,8 +130,8 @@ LIMIT 0, 10000
 
 -- Date: 2017-03-14 15:19
 */
-INSERT INTO `tsys_role` (`code`,`name`,`level`,`updater`,`update_datetime`,`remark`) VALUES ('CGDR201600000000000000','超级管理员','1','admin',now(),NULL);
-INSERT INTO `tsys_role` (`code`,`name`,`level`,`updater`,`update_datetime`,`remark`) VALUES ('SR20160000DEALER','经销商角色','1','admin',now(),NULL);
+INSERT INTO `tsys_role` (`code`,`name`,`level`,`updater`,`update_datetime`,`remark`,`system_code`) VALUES ('CGDR201600000000000000','超级管理员','1','admin',now(),NULL,'CD-CGD000006');
+INSERT INTO `tsys_role` (`code`,`name`,`level`,`updater`,`update_datetime`,`remark`,`system_code`) VALUES ('SR20160000DEALER','经销商角色','1','admin',now(),NULL,'CD-CGD000006');
 
 /*
 -- Query: SELECT role_code,menu_code,updater,now() as update_datetime,remark, system_code FROM tsys_menu_role where role_code in('CGDR201600000000000000','SR20160000DEALER') AND system_code = 'CD-CGD000006'

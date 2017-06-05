@@ -58,7 +58,7 @@ public class DemandOrderAOImpl implements IDemandOrderAO {
             remark);
 
         // 修改需求状态
-        demandBO.complete(code, updater);
+        demandBO.complete(demandOrder.getDemandCode(), updater);
 
         // 添加水电工评价
         commentBO.saveComment(null, evaluate, null,
