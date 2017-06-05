@@ -6,8 +6,6 @@ INSERT INTO `tstd_company_channel` (`company_code`,`company_name`,`channel_type`
 -- Date: 2017-04-11 11:49
 */
 INSERT INTO `tstd_account` (`account_number`,`user_id`,`real_name`,`type`,`status`,`currency`,`amount`,`frozen_amount`,`md5`,`create_datetime`,`last_order`,`company_code`,`system_code`) VALUES ('CD-CGD000006','SYS_USER_PIPE_TG','平台托管账户','P','0','CNY',0,0,'b99e0407fedc3d160f73fec8d1fa9a0c',now(),NULL,'CD-CGD000006','CD-CGD000006');
-INSERT INTO `tstd_account` (`account_number`,`user_id`,`real_name`,`type`,`status`,`currency`,`amount`,`frozen_amount`,`md5`,`create_datetime`,`last_order`,`company_code`,`system_code`) VALUES ('CGD2016100000000000000','SYS_USER_PIPE','平台','P','0','CNY',0,0,'b99e0407fedc3d160f73fec8d1fa9a0c',now(),NULL,'CD-CGD000006','CD-CGD000006');
-INSERT INTO `tstd_account` (`account_number`,`user_id`,`real_name`,`type`,`status`,`currency`,`amount`,`frozen_amount`,`md5`,`create_datetime`,`last_order`,`company_code`,`system_code`) VALUES ('CGD2016100000000000001','SYS_USER_PIPE','平台','P','0','JF',0,0,'776107f5a3b950391e92f668137b2b70',now(),NULL,'CD-CGD000006','CD-CGD000006');
 
 INSERT INTO `tsys_dict` (`type`,`parent_key`,`dkey`,`dvalue`,`updater`,`update_datetime`,`remark`,`system_code`) VALUES ('0',NULL,'currency','货币','admin',now(),'','CD-CGD000006');
 INSERT INTO `tsys_dict` (`type`,`parent_key`,`dkey`,`dvalue`,`updater`,`update_datetime`,`remark`,`system_code`) VALUES ('1','currency','CNY','人民币','admin',now(),'','CD-CGD000006');
