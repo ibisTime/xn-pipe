@@ -24,7 +24,7 @@ public interface IAccountBO {
 
     public void doTransferAmountRemote(String fromUserId, String toUserId,
             ECurrency currency, Long amount, EBizType bizType,
-            String fromBizNote, String toBizNote);
+            String fromBizNote, String toBizNote, String refNo);
 
     /**
      * 微信H5支付

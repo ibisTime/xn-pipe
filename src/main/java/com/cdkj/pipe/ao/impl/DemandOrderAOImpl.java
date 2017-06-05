@@ -66,7 +66,7 @@ public class DemandOrderAOImpl implements IDemandOrderAO {
 
         // 赠送相应积分
         doGivePresent(demandOrder.getDealerCode(), demandOrder.getReceiver(),
-            giveIntegral);
+            giveIntegral, code);
     }
 
     @Override
@@ -124,12 +124,13 @@ public class DemandOrderAOImpl implements IDemandOrderAO {
     }
 
     private void doGivePresent(String dealerCode, String userId,
-            Long giveIntegral) {
+            Long giveIntegral, String orderCode) {
         if (giveIntegral > 0) {
             String fromUserId = dealerBO.getDealerUserId(dealerCode);
             accountBO.doTransferAmountRemote(fromUserId, userId, ECurrency.JF,
                 giveIntegral, EBizType.GD_WCDDSJF,
-                EBizType.GD_WCDDSJF.getValue(), EBizType.GD_WCDDSJF.getValue());
+                EBizType.GD_WCDDSJF.getValue(), EBizType.GD_WCDDSJF.getValue(),
+                orderCode);
         }
     }
 

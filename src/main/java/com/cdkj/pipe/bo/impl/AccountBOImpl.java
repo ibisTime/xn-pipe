@@ -95,16 +95,18 @@ public class AccountBOImpl implements IAccountBO {
     @Override
     public void doTransferAmountRemote(String fromUserId, String toUserId,
             ECurrency currency, Long amount, EBizType bizType,
-            String fromBizNote, String toBizNote) {
+            String fromBizNote, String toBizNote, String refNo) {
         if (amount != null && amount != 0) {
             XN002100Req req = new XN002100Req();
             req.setFromUserId(fromUserId);
+            req.setFromCurrency(currency.getCode());
             req.setToUserId(toUserId);
-            req.setCurrency(currency.getCode());
+            req.setToCurrency(currency.getCode());
             req.setTransAmount(String.valueOf(amount));
             req.setBizType(bizType.getCode());
             req.setFromBizNote(fromBizNote);
             req.setToBizNote(toBizNote);
+            req.setRefNo(refNo);
             BizConnecter.getBizData("002100", JsonUtils.object2Json(req),
                 Object.class);
         }
