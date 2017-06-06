@@ -23,6 +23,9 @@ public class XN619030Req extends APageReq {
     // 经销商编号
     private String dealerCode;
 
+    // 需求类型
+    private String type;
+
     // 省（选填）
     private String province;
 
@@ -44,6 +47,14 @@ public class XN619030Req extends APageReq {
 
     public void setDealerCode(String dealerCode) {
         this.dealerCode = dealerCode;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 
     public String getProvince() {

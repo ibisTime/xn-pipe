@@ -39,6 +39,7 @@ public class XN619030 extends AProcessor {
     public Object doBusiness() throws BizException {
         Demand condition = new Demand();
         condition.setProvince(req.getProvince());
+        condition.setType(req.getType());
         condition.setCity(req.getCity());
         condition.setArea(req.getArea());
         condition.setSummary(req.getSummary());

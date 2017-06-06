@@ -74,6 +74,9 @@
 			<if test="userId != null and userId != '' ">
 				AND t.userId = #{userId}
 			</if>
+			<if test="distance != null and distance != '' ">
+				<![CDATA[ having distance <= #{distance}]]>
+			</if>
 		</trim>
 	</sql>
 	<select id="select_dealer" parameterType="dealer" resultMap="dealer_DB_Result">
